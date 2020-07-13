@@ -13,4 +13,4 @@ TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
 Media File Renamer is built with Electron, React, Python, & the [TVmaze API](https://www.tvmaze.com/api), and is fully open-source. the technologies are bridged with the help of Electron's [Inter Process Communication](https://www.electronjs.org/docs/api/ipc-main), Node's [child_process](https://nodejs.org/api/child_process.html), using Python with [Flask](https://palletsprojects.com/p/flask/) as a micro-service.<br />
 
 ## 🏷️ License
-MIT © [Media File Renamer](https://github.com/iPzard/media-name-fixer/blob/master/LICENSE)
+MIT © [Media File Renamer](https://github.com/iPzard/media-file-renamer/blob/master/LICENSE)
