@@ -1,0 +1,26 @@
+@import 'theme/variables.scss';
+
+.select {
+
+  .select-container {
+    display: flex;
+  }
+
+  .select-input-field {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .select-browse-button {
+    margin-top: 29px;
+    margin-left: 4px;
+  }
+
+  .svg {
+    color: $grey;
+    width: 325px;
+    position: fixed;
+    right: 6rem;
+    bottom: 9rem;
+  }
+}

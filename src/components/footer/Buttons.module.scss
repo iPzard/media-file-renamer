@@ -1,0 +1,8 @@
+.button {
+  margin-left: 1.25rem;
+
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+}

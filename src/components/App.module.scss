@@ -1,0 +1,19 @@
+@import 'theme/variables.scss';
+
+.main {
+  display: flex;
+  justify-content: center;
+
+  section {
+    max-width: 1280px;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: arial;
+    &, p {
+      color: $black;
+    }
+  }
+}
