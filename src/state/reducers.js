@@ -1,7 +1,4 @@
-const fileReducer = (
-  state = { fileList: [], directory: '' },
-  action
-) => {
+const fileReducer = (state = { fileList: [], directory: '' }, action) => {
   switch (action.type) {
     case 'SET_DIRECTORY':
       return state = { ...state,  directory: action.directory };
@@ -13,7 +10,6 @@ const fileReducer = (
       return state;
   };
 };
-fileReducer.stateName = 'files';
 
 const pageReducer = (state = 1, action) => {
   switch (action.type) {
@@ -27,7 +23,6 @@ const pageReducer = (state = 1, action) => {
       return state;
   };
 };
-pageReducer.stateName = 'page';
 
 const showReducer = (state = '', action) => {
   switch (action.type) {
@@ -38,6 +33,10 @@ const showReducer = (state = '', action) => {
       return state;
   };
 };
+
+// Set `stateName` for store logic
+fileReducer.stateName = 'files';
+pageReducer.stateName = 'page';
 showReducer.stateName = 'show';
 
 export { fileReducer, pageReducer, showReducer }

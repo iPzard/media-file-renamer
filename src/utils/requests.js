@@ -4,7 +4,6 @@ const { ipcRenderer } = window.require('electron');
 // Dynamically generated TCP (open) port between 3000-3999
 const port = ipcRenderer.sendSync('get-port-number');
 
-
 /**
 * Helper GET method for sending requests to and from the Python/Flask services.
 * @param route - URL route of the Python/Flask service you want to use.
