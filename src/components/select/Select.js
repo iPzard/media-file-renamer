@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import { PrimaryButton } from 'office-ui-fabric-react';
+import React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { TvIcon } from 'components/select/img/TvIcon';
+import { connect } from 'react-redux';
 import { getFiles } from 'utils/services';
 import styles from 'components/select/Select.module.scss';
 
 //import PropTypes from 'prop-types';
 
 const Select = props => {
+  const { setFiles, setDirectory } = props;
 
-  const [ directory, setDirectory ] = useState({
-    files: [],
-    folder: ''
+  //const [ state, setState ] = useState(files);
+
+  const disabled = !props.state.files.fileList.length ? true : false;
+
+  const handleGetFiles = () => getFiles((fileList, directory) => {
+    setDirectory(directory)
+    setFiles(fileList);
   });
 
-  const handleGetFiles = () => getFiles((files, folder) => setDirectory({ files, folder }));
-  const disabled = !directory.files.length ? true : false;
-  console.log(props)
 
   return (
     <section className={ styles.select }>
       <Header
-        title='Select A Folder'
+        title='Select Folder'
         description='Select a folder on your computer that contains media files you want to rename.'
       />
 
@@ -34,17 +37,16 @@ const Select = props => {
           className={ styles['select-input-field'] }
           placeholder="Browse for a folder"
           onClick={ handleGetFiles }
-          value={ directory.folder }
+          value={ props.state.files.directory }
         />
         <PrimaryButton onClick={ handleGetFiles } text="Browse..." className={ styles['select-browse-button'] }/>
       </article>
 
-      <TvIcon className={ styles.svg } />
-      <Footer disabled={{ next: disabled, text: 'You must select a folder' }} hidden={{ back: true }} />
+      <Footer disabled={{ next: disabled }} hidden={{ back: true }} />
     </section>
   );
 };
 
 //Select.propTypes = { };
 
-export default Select;
+export default connect(mapStateToProps, mapDispatchToProps)(Select);

@@ -1,5 +1,13 @@
-// Actions for navigating pages
 export const pageActions = dispatch => ({
-  handleNext: () => dispatch({ type: 'PAGE_NEXT' }),
-  handleBack: () => dispatch({ type: 'PAGE_BACK' })
+  nextPage: () => dispatch({ type: 'NEXT_PAGE' }),
+  prevPage: () => dispatch({ type: 'PREV_PAGE' })
 });
+
+export const fileActions = dispatch => ({
+  setDirectory: directory => dispatch({ type: 'SET_DIRECTORY', directory }),
+  setFiles: fileList => dispatch({ type: 'SET_FILES', fileList })
+});
+
+export const showActions = dispatch => ({
+  setShow: show => dispatch({ type: 'SET_SHOW', show })
+})

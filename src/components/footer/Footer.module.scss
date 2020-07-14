@@ -1,9 +1,11 @@
+@import 'theme/variables.scss';
+
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,.15);
+  background-color: $lightgrey;
   display: flex;
   justify-content: flex-end;
   padding: .75rem 1.5rem;

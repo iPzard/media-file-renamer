@@ -18,17 +18,16 @@ let port;
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    frame: false,
     width: 850,
-    height: 800,
     minWidth: 850,
-    minHeight: 800,
-    maxWidth: 1050,
-    maxHeight: 1200,
+    minHeight: 600,
     webPreferences: {
+      enableRemoteModule: true,
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
-  })
+  });
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'build/index.html'));
@@ -36,12 +35,21 @@ function createWindow () {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
+  // Set opacity for title on window blur & focus
+  const setTitleOpacity = value => `
+    document.getElementById('electron-window-title-text').style.opacity = ${value};
+    document.getElementById('electron-window-title-buttons').style.opacity = ${value}
+  `;
 
-  // DEV: Developer zone
+  const executeOnWindow = command => mainWindow.webContents.executeJavaScript(command);
+  mainWindow.on('focus', ()=> executeOnWindow(setTitleOpacity(1)));
+  mainWindow.on('blur',  ()=> executeOnWindow(setTitleOpacity(.5)));
+
   // Send window control event listeners to front end
-  ipcMain.on('app-quit', (event, arg) => app.quit());
-  ipcMain.on('app-minimize', (event, arg) => mainWindow.minimize());
   ipcMain.on('app-maximize', (event, arg) => mainWindow.maximize());
+  ipcMain.on('app-minimize', (event, arg) => mainWindow.minimize());
+  ipcMain.on('app-quit', (event, arg) => app.quit());
+  ipcMain.on('app-unmaximize', (event, arg) => mainWindow.unmaximize());
 }
 
 // This method will be called when Electron has finished

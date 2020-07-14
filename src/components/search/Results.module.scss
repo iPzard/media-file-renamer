@@ -1,0 +1,31 @@
+.results {
+  margin: 1.25rem 0;
+  max-height: 335px;
+  overflow-y: scroll;
+  border: solid 1px;
+  border-radius: 2px;
+
+  table {
+    width: 100%;
+  }
+
+  thead {
+    tr {
+      padding: 5px 0;
+    }
+  }
+
+  tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+  }
+
+  td {
+    border-top: solid 1px;
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 20px;
+
+  }
+}

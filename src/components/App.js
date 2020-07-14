@@ -1,8 +1,10 @@
 import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
 import React from 'react';
+import Rename from 'components/rename/Rename';
+import Search from 'components/search/Search';
 import Select from 'components/select/Select';
-import { app } from 'utils/services';
+import Titlebar from 'components/titlebar/Titlebar';
 import { connect } from 'react-redux';
 import { customTheme } from 'theme/palette';
 import { loadTheme } from 'office-ui-fabric-react';
@@ -12,23 +14,21 @@ loadTheme({ palette: customTheme });
 
 const App = props => {
 
-
-  const { state } = props;
-  console.log(state)
-  // TODO: set page setting logic
-  // update footer to have actions
-  const { maximize, minimize, quit } = app;
-  // DEV: developer zone
-  const handleClick = ()=> quit();
-  const handleMin = ()=> minimize();
-  const handleMax = ()=> maximize();
-
+  const Page = () => {
+    switch(props.state.page) {
+      case 1:
+        return <Select />;
+      case 2:
+        return <Search />;
+      case 3:
+        return <Rename />
+    }
+  }
+  console.log(props)
   return (
     <main className={ styles.main }>
-      <button onClick={ handleClick } id="test"></button>
-      <button onClick={ handleMin } id="min"></button>
-      <button onClick={ handleMax } id="max"></button>
-      <Select />
+      <Titlebar />
+      <Page />
     </main>
   );
 }

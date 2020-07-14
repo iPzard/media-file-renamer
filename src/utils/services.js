@@ -9,7 +9,8 @@ const { ipcRenderer, remote: { dialog } } = window.require('electron');
 export const app = {
   maximize: () => ipcRenderer.send('app-maximize'),
   minimize: () => ipcRenderer.send('app-minimize'),
-  quit: () => ipcRenderer.send('app-quit')
+  quit: () => ipcRenderer.send('app-quit'),
+  unmaximize: () => ipcRenderer.send('app-unmaximize')
 };
 
 
@@ -28,7 +29,7 @@ export const getFiles = (callback) => {
   .then( response => {
     if(!response.canceled) {
       const folder = String.raw`${response.filePaths[0]}`;
-      post(folder, 'get_files', files => callback(files, folder) || undefined);
+      post(folder, 'get_files', fileList => callback(fileList, folder) || undefined);
     } else console.log('response canceled.');
   });
 

@@ -1,37 +1,26 @@
-import { BackButton, NextButton, Tooltip } from 'components/footer/Buttons';
+import { BackButton, NextButton } from 'components/footer/FooterButtons';
+import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
-import { DirectionalHint } from 'office-ui-fabric-react/lib/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from 'components/footer/Footer.module.scss';
 
 const Footer = props => {
-  const { disabled, hidden } = props;
+  const {
+    disabled,
+    hidden,
+    nextPage,
+    prevPage
+  } = props;
 
-  const shouldHide = button => ({ display: hidden[button] ? 'none' : 'auto' });
+  const shouldHide = button => ({ display: hidden ? hidden[button] ? 'none' : 'auto' : 'auto' });
   const buttonProps = { disabled, shouldHide };
-
-  // TODO: make next and back a single "Button" component with props to determine variables
-  const Next = () => (
-    disabled.next ?
-    <Tooltip text={ disabled.text } location={ DirectionalHint.topLeftEdge }>
-      <NextButton {...buttonProps } aria-describedby='footerToolTip'/>
-    </Tooltip>:
-    <NextButton {...buttonProps }/>
-  );
-
-  const Back = () => (
-    disabled.back ?
-    <Tooltip text={ disabled.text } location={ DirectionalHint.topCenter }>
-      <BackButton {...buttonProps } aria-describedby='footerToolTip'/>
-    </Tooltip>:
-    <BackButton {...buttonProps }/>
-  );
 
   return (
     <footer className={ styles.footer }>
-      <Back />
-      <Next />
+      <BackButton {...buttonProps } onClick={ ()=> { prevPage(); console.dir(props);} }/>
+      <NextButton {...buttonProps } onClick={ ()=> { nextPage(); console.dir(props);} }/>
     </footer>
   )
 };
@@ -41,4 +30,4 @@ Footer.propTypes = {
   hidden: PropTypes.object,
 };
 
-export default Footer;
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);
