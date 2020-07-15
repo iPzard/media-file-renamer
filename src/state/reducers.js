@@ -1,3 +1,13 @@
+const episodeReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'SET_EPISODES':
+      return state = action.episodes;
+
+    default:
+      return state;
+  }
+};
+
 const fileReducer = (state = { fileList: [], directory: '' }, action) => {
   switch (action.type) {
     case 'SET_DIRECTORY':
@@ -12,22 +22,34 @@ const fileReducer = (state = { fileList: [], directory: '' }, action) => {
 };
 
 const pageReducer = (state = 1, action) => {
+  const { skip } = action;
+
   switch (action.type) {
     case 'NEXT_PAGE':
-      return state + 1;
+      return state + (1 + skip);
 
     case 'PREV_PAGE':
-      return state - 1;
+      return state - (1 + skip);
 
     default:
       return state;
   };
 };
 
-const showReducer = (state = '', action) => {
+const seasonReducer = (state = 1, action) => {
   switch (action.type) {
-    case 'SET_SHOW':
-      return state = action.show;
+    case 'SET_SEASON':
+      return state = action.season;
+
+    default:
+      return state;
+  };
+};
+
+const tvShowReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'SET_TV_SHOW':
+      return state = action.tvShow;
 
     default:
       return state;
@@ -35,8 +57,16 @@ const showReducer = (state = '', action) => {
 };
 
 // Set `stateName` for store logic
+episodeReducer.stateName = 'episodes';
 fileReducer.stateName = 'files';
 pageReducer.stateName = 'page';
-showReducer.stateName = 'show';
+seasonReducer.stateName = 'season';
+tvShowReducer.stateName = 'tvShow';
 
-export { fileReducer, pageReducer, showReducer }
+export {
+  episodeReducer,
+  fileReducer,
+  pageReducer,
+  seasonReducer,
+  tvShowReducer
+}

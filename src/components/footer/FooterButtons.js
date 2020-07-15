@@ -1,7 +1,7 @@
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
 
 import React from 'react';
-import styles from 'components/footer/FooterButtons.module.scss';
+import styles from 'components/footer/scss/FooterButtons.module.scss';
 
 export const NextButton = props => (
   <PrimaryButton

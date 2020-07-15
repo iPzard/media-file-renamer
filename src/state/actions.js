@@ -1,6 +1,6 @@
 export const pageActions = dispatch => ({
-  nextPage: () => dispatch({ type: 'NEXT_PAGE' }),
-  prevPage: () => dispatch({ type: 'PREV_PAGE' })
+  nextPage: (skip = 0) => dispatch({ type: 'NEXT_PAGE', skip }),
+  prevPage: (skip = 0) => dispatch({ type: 'PREV_PAGE', skip  })
 });
 
 export const fileActions = dispatch => ({
@@ -8,6 +8,14 @@ export const fileActions = dispatch => ({
   setFiles: fileList => dispatch({ type: 'SET_FILES', fileList })
 });
 
-export const showActions = dispatch => ({
-  setShow: show => dispatch({ type: 'SET_SHOW', show })
+export const seasonActions = dispatch => ({
+  setSeason: season => dispatch({ type: 'SET_SEASON', season })
+});
+
+export const episodeActions = dispatch => ({
+  setEpisodes: episodes => dispatch({ type: 'SET_EPISODES', episodes })
+});
+
+export const tvShowActions = dispatch => ({
+  setTvShow: tvShow => dispatch({ type: 'SET_TV_SHOW', tvShow })
 })

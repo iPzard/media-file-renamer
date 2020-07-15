@@ -1,0 +1,11 @@
+@import 'theme/variables.scss';
+
+.search {
+  .svg {
+    color: $grey;
+    width: 275px;
+    position: fixed;
+    right: 100px;
+    bottom: 131px;
+  }
+}

@@ -10,10 +10,11 @@
     padding: 1rem;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: arial;
-    &, p {
-      color: $black;
-    }
+  h2, h3, h4, h5, h6 {
+    color: $secondary-color;
+  }
+
+  h1, p {
+      color: $dark-charcoal;
   }
 }

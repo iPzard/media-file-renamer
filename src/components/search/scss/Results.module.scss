@@ -1,0 +1,39 @@
+@import 'theme/variables.scss';
+
+.results {
+  margin: 1.25rem 0;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    height: 275px;
+    overflow-y: scroll;
+    border: solid 1px lightgrey;
+    border-radius: 2px;
+    padding: 0 5px;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      border-top: solid 1px lightgrey;
+    }
+  }
+
+  h3 {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+
+  // Selection section
+  + section {
+    display: none;
+  }
+}

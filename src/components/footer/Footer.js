@@ -4,14 +4,15 @@ import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import styles from 'components/footer/Footer.module.scss';
+import styles from 'components/footer/scss/Footer.module.scss';
 
 const Footer = props => {
   const {
     disabled,
     hidden,
     nextPage,
-    prevPage
+    prevPage,
+    skip = { back: 0, next: 0 }
   } = props;
 
   const shouldHide = button => ({ display: hidden ? hidden[button] ? 'none' : 'auto' : 'auto' });
@@ -19,8 +20,8 @@ const Footer = props => {
 
   return (
     <footer className={ styles.footer }>
-      <BackButton {...buttonProps } onClick={ ()=> { prevPage(); console.dir(props);} }/>
-      <NextButton {...buttonProps } onClick={ ()=> { nextPage(); console.dir(props);} }/>
+      <BackButton {...buttonProps } onClick={ ()=> prevPage(skip.back) }/>
+      <NextButton {...buttonProps } onClick={ ()=> nextPage(skip.forward) }/>
     </footer>
   )
 };

@@ -4,12 +4,10 @@ import { post } from 'utils/requests';
 // Electron Inter Process Communication and dialog
 const { ipcRenderer, remote: { dialog } } = window.require('electron');
 
-// DEV: Developer zone
-// TODO: use icpRenderer to configure the titlebar
 export const app = {
-  maximize: () => ipcRenderer.send('app-maximize'),
-  minimize: () => ipcRenderer.send('app-minimize'),
-  quit: () => ipcRenderer.send('app-quit'),
+  maximize:   () => ipcRenderer.send('app-maximize'),
+  minimize:   () => ipcRenderer.send('app-minimize'),
+  quit:       () => ipcRenderer.send('app-quit'),
   unmaximize: () => ipcRenderer.send('app-unmaximize')
 };
 

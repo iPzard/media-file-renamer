@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from 'components/header/Header.module.scss';
+import styles from 'components/header/scss/Header.module.scss';
 
 const Header = props => {
   const { description, title } = props;

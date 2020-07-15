@@ -9,11 +9,11 @@ const port = ipcRenderer.sendSync('get-port-number');
 * @param route - URL route of the Python/Flask service you want to use.
 * @return response data from Python/Flask service.
 */
-export const get = (route) => {
-  fetch(`http://localhost:${port}/${route}`)
+export const get = (url, callback) => {
+  fetch(url)
   .catch(error => console.error(error))
-  .then(response => response.text())
-  .then(response => console.log(response));
+  .then(response => response.json())
+  .then(response => callback(response));
 };
 
 
@@ -31,5 +31,5 @@ export const post = (body, route, callback) => {
     headers: { 'Content-type': 'application/json' }
   })
   .catch(error => console.error(error))
-  .then(response => response.json()).then(response => callback(response) || undefined);
+  .then(response => response.json()).then(response => callback(response));
 };

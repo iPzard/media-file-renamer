@@ -1,20 +1,18 @@
 import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
+import { FolderOpenIcon } from 'components/select/icons/FolderOpenIcon';
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import { PrimaryButton } from 'office-ui-fabric-react';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { connect } from 'react-redux';
 import { getFiles } from 'utils/services';
-import styles from 'components/select/Select.module.scss';
-
-//import PropTypes from 'prop-types';
+import styles from 'components/select/scss/Select.module.scss';
 
 const Select = props => {
   const { setFiles, setDirectory } = props;
-
-  //const [ state, setState ] = useState(files);
 
   const disabled = !props.state.files.fileList.length ? true : false;
 
@@ -22,7 +20,6 @@ const Select = props => {
     setDirectory(directory)
     setFiles(fileList);
   });
-
 
   return (
     <section className={ styles.select }>
@@ -42,11 +39,16 @@ const Select = props => {
         <PrimaryButton onClick={ handleGetFiles } text="Browse..." className={ styles['select-browse-button'] }/>
       </article>
 
+      <FolderOpenIcon className={ styles.svg }/>
+
       <Footer disabled={{ next: disabled }} hidden={{ back: true }} />
     </section>
   );
 };
 
-//Select.propTypes = { };
+Select.propTypes = {
+  setDirectory: PropTypes.func.isRequired,
+  setFiles: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);

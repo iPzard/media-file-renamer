@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { app } from 'utils/services';
 import favicon from 'components/titlebar/img/favicon.png';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
-import styles from 'components/titlebar/Titlebar.module.scss';
+import styles from 'components/titlebar/scss/Titlebar.module.scss';
 
 initializeIcons();
 

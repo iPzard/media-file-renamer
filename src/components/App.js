@@ -21,7 +21,7 @@ const App = props => {
       case 2:
         return <Search />;
       case 3:
-        return <Rename />
+        return <Rename />;
     }
   }
   console.log(props)

@@ -6,7 +6,8 @@ Links to Windows, Mac, and Linux downloads. (coming soon)
 <br>
 
 ## 🙏 Attribution
-TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
+* TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
+* Icons used are from [Font Awesome](http://fontawesome.io) and are fully open-source.
 <br>
 
 ## 🐱‍👤 Develop
