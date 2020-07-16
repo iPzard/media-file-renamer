@@ -40,7 +40,7 @@ const Search = props => {
 };
 
 Search.propTypes = {
-  state: PropTypes.object.isRequired
+  state: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

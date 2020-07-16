@@ -1,0 +1,61 @@
+@import 'theme/variables.scss';
+
+.list {
+  max-height: 279px;
+
+  &:nth-child(2) li {
+    border-left: solid 1px lightgrey;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background: $list-hover;
+    }
+
+    &:not(:first-child) {
+      border-top: solid 1px $very-lightgrey;
+    }
+
+    &:last-child {
+      border-bottom: solid 1px $very-lightgrey;
+    }
+
+    &.missing-name {
+      color: $secondary-color;
+      display: flex;
+      justify-content: center;
+      //cursor: default;
+
+      span {
+        opacity: .5;
+      }
+    }
+  }
+
+  .button-container {
+    margin: 0 auto;
+    margin-top: -16px;
+    background: lightgrey;
+
+    &[data-list-type='files'] {
+      border-right: none;
+      margin-left: -1px;
+    }
+
+    &[data-list-type='names'] {
+      margin-right: -1px;
+      border-left: solid 1px $list-hover;
+    }
+  }
+}

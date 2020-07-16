@@ -1,0 +1,29 @@
+@import 'theme/variables.scss';
+
+.rename {
+
+
+  .titles {
+    display: flex;
+    justify-content: center;
+
+    h3 {
+      margin: auto;
+      margin-bottom: 12px;
+    }
+  }
+
+  .name-display {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    height: 279px;
+    border: $border;
+    border-radius: $border-radius;
+
+
+    &.scrollY {
+      overflow-y: scroll;
+    }
+  }
+}

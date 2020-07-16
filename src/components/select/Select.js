@@ -47,8 +47,8 @@ const Select = props => {
 };
 
 Select.propTypes = {
-  setDirectory: PropTypes.func.isRequired,
-  setFiles: PropTypes.func.isRequired
+  setDirectory: PropTypes.func,
+  setFiles: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);

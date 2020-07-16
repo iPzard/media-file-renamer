@@ -1,3 +1,5 @@
+@import 'theme/variables.scss';
+
 .selection {
   margin-top: 20px;
 
@@ -25,11 +27,23 @@
 
         + div {
           height: 208px;
-          overflow-y: scroll;
-          border: solid 1px lightgrey;
-          border-radius: 2px;
           padding: 0 12px;
           margin-top: -12px;
+          overflow-y: scroll;
+          border: $border;
+          border-radius: $border-radius;
+
+          &.inactive {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h1 {
+              color: $grey;
+              font-size: 50px;
+              opacity: .1;
+            }
+          }
         }
 
       }

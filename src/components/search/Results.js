@@ -7,7 +7,12 @@ import { getEpisodeList } from 'utils/api';
 import styles from 'components/search/scss/Results.module.scss';
 
 const Results = props => {
-  const { matches, setEpisodes, setSeason, setTvShow } = props;
+  const {
+    matches,
+    setEpisodes,
+    setSeason,
+    setTvShow
+  } = props;
 
   const updateTvShow = match => {
     getEpisodeList(match.show.id, episodes => setEpisodes(episodes));
@@ -26,13 +31,13 @@ const Results = props => {
 
             return (
               <li
-              key={ match.show.id }
-              title={ match.show.name }
-              onClick={ ()=> updateTvShow(match) }
-            >
-              <span>{ match.show.name } { genres ? <i>{ genres }</i> : undefined }</span>
-              <span>{ new Date(match.show.premiered).getFullYear() }</span>
-            </li>
+                key={ match.show.id }
+                title={ match.show.name }
+                onClick={ ()=> updateTvShow(match) }
+              >
+                <span>{ match.show.name } { genres ? <i>{ genres }</i> : undefined }</span>
+                <span>{ new Date(match.show.premiered).getFullYear() }</span>
+              </li>
             )
           })
         }
@@ -41,8 +46,12 @@ const Results = props => {
   );
 };
 
+
 Results.propTypes = {
-  matches: PropTypes.array.isRequired
+  matches: PropTypes.array,
+  setEpisodes: PropTypes.func,
+  setSeason: PropTypes.func,
+  setTvShow: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

@@ -15,8 +15,8 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  disabled: PropTypes.bool,
-  hidden: PropTypes.bool,
+  description: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default Header;

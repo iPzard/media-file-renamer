@@ -29,6 +29,9 @@ const Footer = props => {
 Footer.propTypes = {
   disabled: PropTypes.object,
   hidden: PropTypes.object,
+  nextPage: PropTypes.func,
+  prevPage: PropTypes.func,
+  skip: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

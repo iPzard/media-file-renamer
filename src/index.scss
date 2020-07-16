@@ -1,3 +1,5 @@
+@import 'theme/variables.scss';
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -8,12 +10,19 @@
 }
 
 body {
-  // 32px for titlebar + 8px for default body margin
-  margin-top: 40px;
+  margin-top: 40px; // 32px for titlebar + 8px for default body margin
   overflow: hidden;
 
   font-family: 'Roboto', sans-serif;
   * {
     font-family: inherit;
+  }
+
+  h2, h3, h4, h5, h6 {
+    color: $secondary-color;
+  }
+
+  h1, p {
+      color: $dark-charcoal;
   }
 }
