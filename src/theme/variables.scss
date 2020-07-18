@@ -1,7 +1,12 @@
-$dark-charcoal: #383838;
-$grey: #565656;
-$very-lightgrey: #EAECEE;
+// Colors
 $secondary-color: #A95757;
-$list-hover: #EEEEEE;
+$grey: #565656;
+$lighter-grey: #EAECEE;
+$lighter-grey-hover: #EEEEEE;
+$lighter-grey-alt: $lighter-grey-hover;
+$lighter-grey-focus: #D1D1D1;
+$darker-grey: hsl(0, 0%, 22%);
+
+// Borders
 $border: 1px solid lightgrey;
 $border-radius: 2px;

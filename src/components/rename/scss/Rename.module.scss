@@ -24,6 +24,12 @@
 
     &.scrollY {
       overflow-y: scroll;
+      overflow-y: overlay; // If it's available
     }
+  }
+
+  .controls-container {
+    display: grid;
+    grid-template-rows: 1fr;
   }
 }

@@ -9,15 +9,14 @@ import styles from 'components/search/scss/Results.module.scss';
 const Results = props => {
   const {
     matches,
-    setEpisodes,
-    setSeason,
-    setTvShow
+    setResults,
+    setTVShowAll
   } = props;
 
   const updateTvShow = match => {
-    getEpisodeList(match.show.id, episodes => setEpisodes(episodes));
-    setTvShow(match);
-    setSeason(1);
+    getEpisodeList(match.show.id, episodes =>
+      setTVShowAll(match, episodes, 1));
+    setResults([]);
   };
 
   return (
@@ -49,9 +48,8 @@ const Results = props => {
 
 Results.propTypes = {
   matches: PropTypes.array,
-  setEpisodes: PropTypes.func,
-  setSeason: PropTypes.func,
-  setTvShow: PropTypes.func,
+  setResults: PropTypes.func,
+  setTVShowAll: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

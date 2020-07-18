@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 
-import { IconButton } from '@fluentui/react/lib/Button';
 import PropTypes from 'prop-types';
 import styles from 'components/rename/scss/NameList.module.scss';
+
+const missingFileText = 'No File';
+const missingNameText = 'Too Many Files';
 
 const NameList = props => {
 
   const {
     list,
     renameData,
+    renameData: { files, names },
+    selectedFileIndex,
     setRenameData,
-    type,
+    type
   } = props;
 
-  const { files, names } = renameData;
-  const missingFileText = 'File Not Found';
-  const missingNameText = 'Too Many Files';
 
   useEffect(() => {
     if(files.length < names.length) {
@@ -31,43 +32,39 @@ const NameList = props => {
 
       setRenameData({ ...renameData, names: namesNoGaps });
     }
-  }, []);
+  }, [files, names]);
 
-  const UpButton = buttonProps => <IconButton
-    className={ styles.button }
-    iconProps={{ iconName: 'CaretUpSolid8' }}
-    title="Move Up"
-    ariaLabel="Move Up"
-    { ...buttonProps }
-  />;
-
-  const DownButton = buttonProps => <IconButton
-    className={ styles.button }
-    iconProps={{ iconName: 'CaretDownSolid8' }}
-    title="Move Down"
-    ariaLabel="Move Down"
-    { ...buttonProps }
-  />;
+  const handleClick = index => type === 'files' ? setRenameData(renameData, index) : undefined;
 
   return (
     <article className={ styles.list }>
-      <ul>
+      <ul data-list-type={ type }>
         {
           list.map((name, index) => {
-            const hasNoName = name === missingFileText;
-            const listProps = { key: hasNoName ? index : name };
+            const hasNoName = name === missingFileText || name === missingNameText;
+            const selected = selectedFileIndex === index && type === 'files';
+            const listProps = { key: hasNoName ? `${type}-${index}` : `${type}-${name}` };
 
-            if(hasNoName)
+            if(hasNoName && selected) {
+              listProps.className = `${styles['missing-name']} ${styles['selected-file']}`;
+            }
+
+            else if(selected) {
+              listProps.className = styles['selected-file'];
+            }
+
+            else if(hasNoName) {
               listProps.className = styles['missing-name'];
+            }
 
-            return (<li { ...listProps }>{ hasNoName ? <span>{ name }</span> : name }</li>);
+            return (
+              <li { ...listProps } onClick={ ()=> handleClick(index) }>
+                { hasNoName ? <span className={ styles['message'] }>{ name }</span> : name }
+              </li>
+            );
           })
         }
       </ul>
-      <div className={ styles['button-container'] } data-list-type={ type }>
-        <UpButton />
-        <DownButton />
-      </div>
     </article>
   );
 };
@@ -76,8 +73,12 @@ const NameList = props => {
 NameList.propTypes = {
   list: PropTypes.array,
   renameData: PropTypes.object,
+  selectedFileIndex: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   setRenameData: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 export default NameList;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
 import Footer from 'components/footer/Footer';
@@ -29,9 +29,9 @@ const Search = props => {
         onClear={ ()=> setResults([]) }
       />
       {
-        results.length ? <Results matches={ results } /> :
+        results.length ? <Results matches={ results } setResults={ setResults } /> :
         !tvShow ? <TvIcon className={ styles.svg } /> :
-        <Selection tvShow={ tvShow } />
+        <Selection />
       }
 
       <Footer disabled={{ next: !tvShow }} />

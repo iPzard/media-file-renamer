@@ -11,11 +11,10 @@ const Selection = props => {
 
   const {
     setSeason,
-    state: { season, episodes },
-    tvShow,
+    state: { tvShow: { season, episodes, tvShowData } },
   } = props;
 
-  const lastSeason = !episodes.length ? 0 : episodes[episodes.length - 1].season;
+  const lastSeason = !episodes ? 0 : episodes[episodes.length - 1].season;
   const increment = () => season !== lastSeason ? setSeason(season + 1) : undefined;
   const decrement = () => season > 1 ? setSeason(season - 1) : undefined;
 
@@ -23,13 +22,13 @@ const Selection = props => {
   return (
     <section className={ styles.selection }>
       <article>
-        <img src={ tvShow.show.image.medium } alt='TV Show Poster' />
+        <img src={ tvShowData.show.image.medium } alt='TV Show Poster' />
         <div className={ styles.description } >
-          <h3>{ tvShow.show.name }</h3>
-          <div className={ tvShow.show.summary ? styles.active : styles.inactive }>
+          <h3>{ tvShowData.show.name }</h3>
+          <div className={ tvShowData.show.summary ? styles.active : styles.inactive }>
             {
-              tvShow.show.summary ?
-              ReactHtmlParser(tvShow.show.summary) :
+              tvShowData.show.summary ?
+              ReactHtmlParser(tvShowData.show.summary) :
               <h1>No description</h1>
             }
           </div>
@@ -52,7 +51,6 @@ const Selection = props => {
 Selection.propTypes = {
   setSeason: PropTypes.func,
   state: PropTypes.object,
-  tvShow: PropTypes.any,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Selection);

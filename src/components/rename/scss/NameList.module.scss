@@ -1,7 +1,9 @@
 @import 'theme/variables.scss';
 
+$height: 279px;
+
 .list {
-  max-height: 279px;
+  height: $height;
 
   &:nth-child(2) li {
     border-left: solid 1px lightgrey;
@@ -11,51 +13,56 @@
     list-style: none;
     padding: 0;
     margin-top: 0;
-  }
+    min-height: $height;
 
-  li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    cursor: pointer;
-
-    &:hover {
-      background: $list-hover;
-    }
-
-    &:not(:first-child) {
-      border-top: solid 1px $very-lightgrey;
-    }
-
-    &:last-child {
-      border-bottom: solid 1px $very-lightgrey;
-    }
-
-    &.missing-name {
-      color: $secondary-color;
+    li {
       display: flex;
-      justify-content: center;
-      //cursor: default;
+      justify-content: space-between;
+      align-items: center;
+      height: 26px;
+      padding: 10px 15px;
+      cursor: pointer;
 
-      span {
-        opacity: .5;
+      &:hover {
+        background: $lighter-grey-hover;
+      }
+
+      &:not(:first-child) {
+        border-top: solid 1px $lighter-grey;
+      }
+
+      &:last-child {
+        border-bottom: solid 1px $lighter-grey;
+      }
+
+      &.missing-name {
+        color: $secondary-color;
+        display: flex;
+        justify-content: center;
+
+        .message {
+          opacity: .5;
+        }
+      }
+      &.selected-file {
+        background-color: $lighter-grey-focus;
+
+        .message {
+          opacity: 1;
+        }
+      }
+    }
+
+
+    &[data-list-type="names"] {
+      li {
+        cursor: not-allowed;
+
+        &:hover {
+          background: initial;
+        }
       }
     }
   }
 
-  .button-container {
-    margin: 0 auto;
-    margin-top: -16px;
-    background: lightgrey;
-
-    &[data-list-type='files'] {
-      border-right: none;
-      margin-left: -1px;
-    }
-
-    &[data-list-type='names'] {
-      margin-right: -1px;
-      border-left: solid 1px $list-hover;
-    }
-  }
 }

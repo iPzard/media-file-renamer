@@ -18,10 +18,10 @@
     padding: 10px 15px;
     cursor: pointer;
     &:hover {
-      background: $list-hover;
+      background: $lighter-grey-hover;
     }
     &:not(:first-child) {
-      border-top: solid 1px $very-lightgrey;
+      border-top: solid 1px $lighter-grey;
     }
   }
 

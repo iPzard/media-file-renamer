@@ -1,5 +1,6 @@
 import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import Rename from 'components/rename/Rename';
 import Search from 'components/search/Search';
@@ -13,25 +14,23 @@ import styles from 'components/App.module.scss';
 loadTheme({ palette: customTheme });
 
 const App = props => {
+  const { state: { page } } = props;
 
-  const Page = () => {
-    switch(props.state.page) {
-      case 1:
-        return <Select />;
-      case 2:
-        return <Search />;
-      case 3:
-        return <Rename />;
-    }
-  }
-  console.log(props)
   return (
     <main className={ styles.main }>
       <Titlebar />
-      <Page />
+      {
+        page === 1 ? <Select /> :
+        page === 2 ? <Search /> :
+        page === 3 ? <Rename /> :
+        undefined
+      }
     </main>
   );
-}
+};
 
+App.propTypes = {
+  state: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

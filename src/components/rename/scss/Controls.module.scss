@@ -1,0 +1,14 @@
+@import 'theme/variables.scss';
+
+.controls {
+  background: $lighter-grey-alt;
+  border: 1px solid lightgrey;
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+  padding: 0 5px 1px;
+
+  button[title="Remove"], button[title="Remove"]:hover {
+    color: $secondary-color;
+  }
+
+}
