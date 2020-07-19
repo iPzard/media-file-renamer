@@ -16,34 +16,17 @@ class Controls extends Component {
   state = {
     hideDialog: true,
     notice: {
-      cancelFunc: ()=> {},
-      cancelText: '',
-      messageText: '',
-      okayFunc: ()=> {},
-      okayText: '',
-      title: ''
+      cancelFunc: undefined,
+      cancelText: undefined,
+      messageText: undefined,
+      okayFunc: undefined,
+      okayText: undefined,
+      title: undefined
     }
   }
 
-  configureNotice = ({
-    cancelFunc,
-    cancelText,
-    messageText,
-    okayFunc,
-    okayText,
-    title
-  },
-  callback) => {
-    this.setState({
-      notice: {
-        cancelFunc,
-        cancelText,
-        messageText,
-        okayFunc,
-        okayText,
-        title
-      }
-    }, callback || undefined);
+  configureNotice = ({ ...args }, callback) => {
+    this.setState({ notice: { ...args }}, callback || undefined);
   };
 
   setHideDialog = (bool, callback) => this.setState({ hideDialog: bool }, callback || undefined);

@@ -1,14 +1,15 @@
 import { post } from 'utils/requests';
-//import { searchSeries } from 'utils/api';
 
 // Electron Inter Process Communication and dialog
 const { ipcRenderer, remote: { dialog } } = window.require('electron');
 
+// Methods to communicate with Electron services
 export const app = {
   maximize:   () => ipcRenderer.send('app-maximize'),
   minimize:   () => ipcRenderer.send('app-minimize'),
   quit:       () => ipcRenderer.send('app-quit'),
-  unmaximize: () => ipcRenderer.send('app-unmaximize')
+  resize:   size => ipcRenderer.send('resize-window', size),
+  unmaximize: () => ipcRenderer.send('app-unmaximize'),
 };
 
 

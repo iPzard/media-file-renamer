@@ -3,7 +3,6 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 const getPort = require('get-port');
 const path = require('path');
-const { electron } = require('process');
 
 // Dynamically set the port number to an open port within the range of 3000-3999
 // This way if a port is in use it will just go to the next.
@@ -19,14 +18,15 @@ function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     frame: false,
-    width: 850,
-    minWidth: 850,
+    height: 600,
     minHeight: 600,
+    minWidth: 850,
     webPreferences: {
       enableRemoteModule: true,
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    width: 850,
   });
 
   // and load the index.html of the app.
@@ -46,10 +46,14 @@ function createWindow () {
   mainWindow.on('blur',  ()=> executeOnWindow(setTitleOpacity(.5)));
 
   // Send window control event listeners to front end
-  ipcMain.on('app-maximize', (event, arg) => mainWindow.maximize());
-  ipcMain.on('app-minimize', (event, arg) => mainWindow.minimize());
-  ipcMain.on('app-quit', (event, arg) => app.quit());
-  ipcMain.on('app-unmaximize', (event, arg) => mainWindow.unmaximize());
+  ipcMain.on('app-maximize',   () => mainWindow.maximize());
+  ipcMain.on('app-minimize',   () => mainWindow.minimize());
+  ipcMain.on('app-quit',       () => app.quit());
+  ipcMain.on('app-unmaximize', () => mainWindow.unmaximize());
+  ipcMain.on('resize-window',  (event, arg) => {
+    const { width = 850, height = 600 } = arg;
+    mainWindow.setSize(width, height)
+  });
 }
 
 // This method will be called when Electron has finished
