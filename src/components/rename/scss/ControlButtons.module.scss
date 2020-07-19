@@ -1,0 +1,8 @@
+@import 'theme/variables.scss';
+
+.button {
+
+  &[title="Remove"], &[title="Remove"]:hover {
+    color: $secondary-color;
+  }
+}

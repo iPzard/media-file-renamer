@@ -82,9 +82,22 @@ class Rename extends Component {
     }
   };
 
+  resetFileList = () => {
+    const {
+      props: { setRenameData },
+      state: { fileList }
+    } = this;
+
+    setRenameData({
+      files: fileList.reduce((acc, filename) => acc = [...acc, filename ], []),
+      names: [ ...this.props.state.options.renameData.names ]
+    });
+  };
+
   render() {
 
     const {
+      resetFileList,
       scrollArea,
       props: {
         setRenameData,
@@ -132,7 +145,7 @@ class Rename extends Component {
         </div>
 
         <div className={ styles['controls-container'] }>
-          <Controls { ...listControlProps } />
+          <Controls { ...listControlProps } resetFileList={ resetFileList }/>
         </div>
         <Footer />
       </section>

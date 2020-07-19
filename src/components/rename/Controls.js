@@ -1,46 +1,84 @@
-import React, { useState } from 'react';
+import {
+  DownButton,
+  ResetButton,
+  TrashButton,
+  UpButton
+} from 'components/rename/ControlButtons';
+import React, { Component } from 'react';
 
-import { IconButton } from '@fluentui/react/lib/Button';
 import Notice from 'components/dialog/Notice';
 import PropTypes from 'prop-types';
+import { missingFileText } from 'utils/constants';
 import styles from 'components/rename/scss/Controls.module.scss';
 
-const UpButton = buttonProps => <IconButton
-  className={ styles.button }
-  iconProps={{ iconName: 'CaretUpSolid8' }}
-  title="Move Up"
-  ariaLabel="Move Up"
-  { ...buttonProps }
-/>;
+class Controls extends Component {
 
-const DownButton = buttonProps => <IconButton
-  className={ styles.button }
-  iconProps={{ iconName: 'CaretDownSolid8' }}
-  title="Move Down"
-  ariaLabel="Move Down"
-  { ...buttonProps }
-/>;
+  state = {
+    hideDialog: true,
+    notice: {
+      cancelFunc: ()=> {},
+      cancelText: '',
+      messageText: '',
+      okayFunc: ()=> {},
+      okayText: '',
+      title: ''
+    }
+  }
 
-const TrashButton = buttonProps => <IconButton
-  iconProps={{ iconName: 'Delete' }}
-  title="Remove"
-  ariaLabel="Remove"
-  { ...buttonProps }
-/>;
+  configureNotice = ({
+    cancelFunc,
+    cancelText,
+    messageText,
+    okayFunc,
+    okayText,
+    title
+  },
+  callback) => {
+    this.setState({
+      notice: {
+        cancelFunc,
+        cancelText,
+        messageText,
+        okayFunc,
+        okayText,
+        title
+      }
+    }, callback || undefined);
+  };
 
+  setHideDialog = (bool, callback) => this.setState({ hideDialog: bool }, callback || undefined);
 
-const Controls = props => {
-  const [hideDialog, setHideDialog] = useState(true);
+  removeFileFromList = () => {
 
-  const {
-    renameData,
-    selectedFileIndex,
-    setRenameData
-  } = props;
+    const {
+      props: {
+        renameData,
+        renameData: { files },
+        setRenameData,
+        selectedFileIndex
+      },
+      setHideDialog,
+    } = this;
 
-  const { files } = renameData;
+    setHideDialog(true, ()=> {
+      files[selectedFileIndex] = missingFileText;
+      setRenameData(renameData, selectedFileIndex);
+    });
+  };
 
-  const handleButton = command => {
+  handleButton = command => {
+
+    const {
+      configureNotice,
+      props: {
+        renameData,
+        renameData: { files },
+        selectedFileIndex,
+        setRenameData
+      },
+      removeFileFromList,
+      setHideDialog,
+    } = this;
 
     if(!Array.prototype.hasOwnProperty('swapIndices')) {
       Array.prototype.swapIndices = function(indexA, indexB) {
@@ -63,31 +101,76 @@ const Controls = props => {
         break;
 
       case 'delete':
-        setHideDialog(false);
+        configureNotice({
+          cancelFunc: ()=> setHideDialog(true),
+          cancelText: 'Cancel',
+          messageText: 'Do you want to remove this file from your rename list?',
+          okayFunc: removeFileFromList,
+          okayText: 'Confirm',
+          title: 'Remove file'
+        }, setHideDialog(false))
+        break;
+
+      case 'reset':
+        configureNotice({
+          cancelFunc: ()=> setHideDialog(true),
+          cancelText: 'Cancel',
+          messageText: 'Reset all changes you have made to the rename list?',
+          okayFunc: ()=> setHideDialog(true, this.props.resetFileList),
+          okayText: 'Confirm',
+          title: 'Reset changes'
+        }, setHideDialog(false))
+        break;
 
       default:
         return;
     }
   };
 
-  return(
-    <div className={ styles.controls } >
-      <TrashButton onClick={ ()=> handleButton('delete') }/>
-      <UpButton onClick={ ()=> handleButton('up') } />
-      <DownButton onClick={ ()=> handleButton('down') } />
+  render() {
 
-      <Notice
-        cancelFunc={ ()=>{} } // Don't forget to setHideDialog w/this func
-        cancelText='Cancel'
-        hideDialog={ hideDialog }
-        messageText='Do you want to remove this file from your rename list?'
-        okayFunc={ ()=>{} } // Don't forget to setHideDialog w/this func
-        okayText='Confirm'
-        setHideDialog={ setHideDialog }
-        title='Remove file'
-      />
-    </div>
-  );
+    const {
+      handleButton,
+      setHideDialog,
+      props: {
+        renameData,
+        selectedFileIndex,
+      },
+      state: {
+        hideDialog,
+        notice: {
+          cancelFunc,
+          cancelText,
+          messageText,
+          okayFunc,
+          okayText,
+          title
+        }
+      }
+    } = this;
+
+    const ifNoFileExists = renameData.files[selectedFileIndex] === missingFileText;
+
+    return(
+      <div className={ styles.controls } >
+        <TrashButton onClick={ ()=> handleButton('delete') } disabled={ ifNoFileExists }/>
+        <ResetButton onClick={ ()=> handleButton('reset') } />
+        <UpButton onClick={ ()=> handleButton('up') } />
+        <DownButton onClick={ ()=> handleButton('down') } />
+
+        <Notice
+          cancelFunc={ cancelFunc }
+          cancelText={ cancelText }
+          hideDialog={ hideDialog }
+          messageText={ messageText }
+          okayFunc={ okayFunc }
+          okayText={ okayText }
+          setHideDialog={ setHideDialog }
+          title={ title }
+        />
+      </div>
+    );
+  };
 };
 
 

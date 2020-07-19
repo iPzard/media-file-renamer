@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
+import { missingFileText, missingNameText } from 'utils/constants';
 
 import PropTypes from 'prop-types';
 import styles from 'components/rename/scss/NameList.module.scss';
-
-const missingFileText = 'No File';
-const missingNameText = 'Too Many Files';
 
 const NameList = props => {
 
