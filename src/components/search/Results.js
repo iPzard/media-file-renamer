@@ -19,6 +19,11 @@ const Results = props => {
     setResults([]);
   };
 
+  const handleKeyPress = (event, match) => {
+    if(event.charCode === 13)
+      updateTvShow(match);
+  };
+
   return (
     <article className={ styles.results }>
       <h3><span>{ matches.length } Results:</span><span>Aired</span></h3>
@@ -33,6 +38,8 @@ const Results = props => {
                 key={ match.show.id }
                 title={ match.show.name }
                 onClick={ ()=> updateTvShow(match) }
+                onKeyPress={ event => handleKeyPress(event, match) }
+                tabIndex='0'
               >
                 <span>{ match.show.name } { genres ? <i>{ genres }</i> : undefined }</span>
                 <span>{ new Date(match.show.premiered).getFullYear() }</span>

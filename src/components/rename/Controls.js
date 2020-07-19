@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
+
 import { IconButton } from '@fluentui/react/lib/Button';
+import Notice from 'components/dialog/Notice';
 import PropTypes from 'prop-types';
-import React from 'react';
 import styles from 'components/rename/scss/Controls.module.scss';
 
 const UpButton = buttonProps => <IconButton
@@ -28,6 +30,7 @@ const TrashButton = buttonProps => <IconButton
 
 
 const Controls = props => {
+  const [hideDialog, setHideDialog] = useState(true);
 
   const {
     renameData,
@@ -37,7 +40,7 @@ const Controls = props => {
 
   const { files } = renameData;
 
-  const handleButton = direction => {
+  const handleButton = command => {
 
     if(!Array.prototype.hasOwnProperty('swapIndices')) {
       Array.prototype.swapIndices = function(indexA, indexB) {
@@ -46,7 +49,7 @@ const Controls = props => {
       };
     }
 
-    switch(direction) {
+    switch(command) {
       case 'up':
         if(selectedFileIndex <= 0) return;
         files.swapIndices(selectedFileIndex, selectedFileIndex - 1);
@@ -59,6 +62,9 @@ const Controls = props => {
         setRenameData(renameData, selectedFileIndex + 1);
         break;
 
+      case 'delete':
+        setHideDialog(false);
+
       default:
         return;
     }
@@ -66,9 +72,20 @@ const Controls = props => {
 
   return(
     <div className={ styles.controls } >
-      <TrashButton />
+      <TrashButton onClick={ ()=> handleButton('delete') }/>
       <UpButton onClick={ ()=> handleButton('up') } />
       <DownButton onClick={ ()=> handleButton('down') } />
+
+      <Notice
+        cancelFunc={ ()=>{} } // Don't forget to setHideDialog w/this func
+        cancelText='Cancel'
+        hideDialog={ hideDialog }
+        messageText='Do you want to remove this file from your rename list?'
+        okayFunc={ ()=>{} } // Don't forget to setHideDialog w/this func
+        okayText='Confirm'
+        setHideDialog={ setHideDialog }
+        title='Remove file'
+      />
     </div>
   );
 };

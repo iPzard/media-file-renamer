@@ -17,7 +17,7 @@ class Rename extends Component {
     this.state = {
       episodes: this.props.state.tvShow.episodes,
       fileList: this.props.state.files.fileList,
-      season:  this.props.state.tvShow.season,
+      season:   this.props.state.tvShow.season,
     };
   };
 
@@ -60,14 +60,14 @@ class Rename extends Component {
       return selectedPosition;
     }
 
-    // Resolve for edge-case
+    // Resolves a few edge-cases
     else if(
       selectedPosition > scrollViewSize &&
       prevSelection === selection - 1 &&
       Number.isInteger(prevSelectedPosition / scrollViewSize) &&
       Number.isInteger(scrollAreaScrollTop / scrollViewSize)
     ) {
-      return selectedPosition - 47;
+      return selectedPosition - lineHeight;
     }
 
     return null;
@@ -81,7 +81,6 @@ class Rename extends Component {
       this.scrollArea.current.scrollTop = snapshot;
     }
   };
-
 
   render() {
 

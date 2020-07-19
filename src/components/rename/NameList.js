@@ -38,7 +38,7 @@ const NameList = props => {
 
   return (
     <article className={ styles.list }>
-      <ul data-list-type={ type }>
+      <ul data-list-type={ type } >
         {
           list.map((name, index) => {
             const hasNoName = name === missingFileText || name === missingNameText;
