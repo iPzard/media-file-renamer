@@ -36,17 +36,52 @@ class Rename extends Component {
 
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    if (prevProps.state.options.selection !== this.props.state.options.selection)
-      return this.props.state.options.selection * 47;
+    // Line dimensions
+    const lineHeight = 47, rows = 6;
+    const scrollViewSize = lineHeight * rows;
+
+    // Props to declarations
+    const selection = this.props.state.options.selection;
+    const prevSelection = prevProps.state.options.selection;
+    const scrollAreaScrollTop = this.scrollArea.current.scrollTop;
+
+    // Size of viewable area and position of selected & prev selected items
+    const scrollView = scrollAreaScrollTop + scrollViewSize;
+    const selectedPosition = selection * lineHeight;
+    const prevSelectedPosition = prevSelection * lineHeight;
+
+    // Determining if below or above viewable area
+    const aboveScrollView = selectedPosition > scrollView;
+    const belowScrollView = selectedPosition <= scrollView - scrollViewSize ||
+      selectedPosition === scrollView && prevSelectedPosition < selectedPosition;
+
+    // If out of view, return selected item scroll top
+    if (aboveScrollView || belowScrollView) {
+      return selectedPosition;
+    }
+
+    // Resolve for edge-case
+    else if(
+      selectedPosition > scrollViewSize &&
+      prevSelection === selection - 1 &&
+      Number.isInteger(prevSelectedPosition / scrollViewSize) &&
+      Number.isInteger(scrollAreaScrollTop / scrollViewSize)
+    ) {
+      return selectedPosition - 47;
+    }
 
     return null;
   };
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (snapshot !== null)
+
+    // If selected item scrollTop in snapshot, set it
+    if (snapshot !== null) {
       this.scrollArea.current.scrollTop = snapshot;
+    }
   };
+
 
   render() {
 

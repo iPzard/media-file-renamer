@@ -22,8 +22,7 @@ const App = props => {
       {
         page === 1 ? <Select /> :
         page === 2 ? <Search /> :
-        page === 3 ? <Rename /> :
-        undefined
+        <Rename />
       }
     </main>
   );
