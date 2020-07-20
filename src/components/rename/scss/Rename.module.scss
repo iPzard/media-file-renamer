@@ -33,4 +33,25 @@
     grid-template-rows: 1fr;
     margin-bottom: 5px;
   }
+
+  .modifications-container {
+    display: flex;
+    div {
+      display: grid;
+      justify-content: flex-end;
+      margin: 0 10px 5px;
+
+      div {
+        display: grid;
+        margin-left: 0;
+        width: 225px;
+        align-items: center;
+        justify-content: start;
+      }
+
+      label {
+        color: $secondary-color;
+      }
+    }
+  }
 }

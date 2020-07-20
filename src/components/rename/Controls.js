@@ -56,6 +56,8 @@ class Controls extends Component {
       props: {
         renameData,
         renameData: { files },
+        resetFileList,
+        resetUserMods,
         selectedFileIndex,
         setRenameData
       },
@@ -99,7 +101,7 @@ class Controls extends Component {
           cancelFunc: ()=> setHideDialog(true),
           cancelText: 'Cancel',
           messageText: 'Reset all changes you have made to the rename list?',
-          okayFunc: ()=> setHideDialog(true, this.props.resetFileList),
+          okayFunc: ()=> setHideDialog(true, ()=> resetUserMods(resetFileList)),
           okayText: 'Confirm',
           title: 'Reset changes'
         }, setHideDialog(false))
@@ -159,6 +161,8 @@ class Controls extends Component {
 
 Controls.propTypes = {
   renameData: PropTypes.object,
+  resetFileList: PropTypes.func,
+  resetUserMods: PropTypes.func,
   selectedFileIndex: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number

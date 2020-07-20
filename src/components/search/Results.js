@@ -20,7 +20,7 @@ const Results = props => {
   };
 
   const handleKeyPress = (event, match) => {
-    if(event.charCode === 13)
+    if(event.key === 'Enter')
       updateTvShow(match);
   };
 

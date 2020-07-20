@@ -9,7 +9,7 @@
     overflow-y: scroll;
     border: solid 1px lightgrey;
     border-radius: 2px;
-    padding: 0;
+    padding: 1px; // room for focus outline on tab
   }
 
   li {

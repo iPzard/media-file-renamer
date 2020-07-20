@@ -1,4 +1,9 @@
-// Contains variables used throughout multiple files
-
 export const missingFileText = 'No File';
 export const missingNameText = 'Too Many Files';
+
+export const seasonEpisodePrefix = (season, episode) => {
+  if(episode < 10) episode = `0${episode}`;
+  if(season < 10) season = `0${season}`;
+
+  return `S${season}E${episode} - `;
+}

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
 import { missingFileText, missingNameText } from 'utils/constants';
 
 import PropTypes from 'prop-types';
+import React from 'react';
 import styles from 'components/rename/scss/NameList.module.scss';
 
 const NameList = props => {
@@ -9,28 +9,10 @@ const NameList = props => {
   const {
     list,
     renameData,
-    renameData: { files, names },
     selectedFileIndex,
     setRenameData,
     type
   } = props;
-
-
-  useEffect(() => {
-    if(files.length < names.length) {
-      const filesNoGaps = names.reduce((acc, item, index) =>
-        acc = [ ...acc, files[index] || missingFileText], []);
-
-      setRenameData({ ...renameData, files: filesNoGaps });
-    }
-
-    else if(files.length > names.length) {
-      const namesNoGaps = files.reduce((acc, item, index) =>
-        acc = [ ...acc, names[index] || missingNameText], []);
-
-      setRenameData({ ...renameData, names: namesNoGaps });
-    }
-  }, [files, names]);
 
   const handleClick = index => type === 'files' ? setRenameData(renameData, index) : undefined;
 

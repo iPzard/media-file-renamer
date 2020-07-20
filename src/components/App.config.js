@@ -7,7 +7,7 @@ import { app } from 'utils/services';
 /**
 * App configuration settings.
 * @property component     - React component; to display for a given "page"
-* @property setScreenSize - function; if not maximized, sets the screen size of the app.
+* @property setScreenSize - Function; if not maximized, sets the screen size of the app.
 */
 
 export const config = {
