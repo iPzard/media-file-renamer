@@ -28,14 +28,13 @@ const renameOptionsReducer = (state = {
 
 
 const pageReducer = (state = 1, action) => {
-  const { skip } = action;
 
   switch (action.type) {
     case 'NEXT_PAGE':
-      return state + (1 + skip);
+      return state + 1;
 
     case 'PREV_PAGE':
-      return state - (1 + skip);
+      return state - 1;
 
     default:
       return state;

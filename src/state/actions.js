@@ -8,8 +8,8 @@ export const renameOptionsActions = dispatch => ({
 });
 
 export const pageActions = dispatch => ({
-  nextPage: (skip = 0) => dispatch({ type: 'NEXT_PAGE', skip }),
-  prevPage: (skip = 0) => dispatch({ type: 'PREV_PAGE', skip  })
+  nextPage: () => dispatch({ type: 'NEXT_PAGE' }),
+  prevPage: () => dispatch({ type: 'PREV_PAGE' })
 });
 
 export const tvShowActions = dispatch => ({

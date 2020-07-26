@@ -2,6 +2,13 @@ import { IconButton } from '@fluentui/react/lib/Button';
 import React from 'react';
 import styles from 'components/titlebar/scss/TitlebarButtons.module.scss';
 
+/**
+ * @description Title Component to use as an Electron customized titlebar.
+ *
+ * @member { id } electron-window-title-text used in main.js to set opacity on/off focus.
+ * @member { id } electron-window-title-buttons used in main.js to set opacity on/off focus.
+ */
+
 export const MinimizeButton = props => (
   <IconButton
     className={ styles.button }

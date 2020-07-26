@@ -5,8 +5,9 @@ import Select from 'components/select/Select';
 import { app } from 'utils/services';
 
 /**
-* App configuration settings.
-* @property component     - React component; to display for a given "page"
+* @description App configuration settings.
+*
+* @property component     - React component; to display for a given "page".
 * @property setScreenSize - Function; if not maximized, sets the screen size of the app.
 */
 

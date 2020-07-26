@@ -26,7 +26,7 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5"
   },
-  "description": "fix names of tv show episode files",
+  "description": "Fix names of tv show episode files",
   "devDependencies": {
     "electron": "^9.0.5",
     "eslint": "^6.8.0",
@@ -38,15 +38,15 @@
     "extends": "react-app"
   },
   "homepage": "./",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "main": "main.js",
   "name": "media-name-fixer",
   "private": true,
   "scripts": {
-    "start": "electron .",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "electron .",
+    "test": "react-scripts test"
   },
   "version": "1.0.0"
 }

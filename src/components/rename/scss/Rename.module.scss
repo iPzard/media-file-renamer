@@ -2,7 +2,6 @@
 
 .rename {
 
-
   .titles {
     display: flex;
     justify-content: center;
@@ -16,7 +15,7 @@
   .name-display {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     height: 279px;
     border: $border;
     border-radius: $border-radius;
@@ -47,6 +46,10 @@
         width: 225px;
         align-items: center;
         justify-content: start;
+
+        input {
+          width: inherit;
+        }
       }
 
       label {

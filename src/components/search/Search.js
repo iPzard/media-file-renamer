@@ -12,6 +12,13 @@ import { connect } from 'react-redux';
 import { searchShows } from 'utils/api';
 import styles from 'components/search/scss/Search.module.scss';
 
+/**
+ * @description Search page to search for shows and display matching show's information.
+ *
+ * @property {Object} state Object containing Redux mapped props.
+ * @property {Object} state.tvShow Object containing information about matching TV Show.
+ */
+
 const Search = props => {
 
   const [ results, setResults ] = useState([]);

@@ -2,6 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'components/header/scss/Header.module.scss';
 
+/**
+ * @description - Generic header component to display child content to the end user.
+ *
+ * @property {string} description - String to use as the header description.
+ * @property {string} title - String to use as the Header component's main header (H1).
+ */
+
 const Header = props => {
   const { description, title } = props;
 

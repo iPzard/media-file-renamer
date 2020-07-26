@@ -1,6 +1,12 @@
 import React, { Component, createRef } from 'react';
 import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
-import { missingFileText, missingNameText, seasonEpisodePrefix } from 'utils/constants';
+import {
+  missingFileText,
+  missingNameText,
+  notEnoughFilesWarning,
+  seasonEpisodePrefix,
+  tooManyFilesWarning
+} from 'utils/constants';
 
 import Controls from 'components/rename/Controls';
 import Footer from 'components/footer/Footer';
@@ -12,9 +18,17 @@ import Toast from 'components/dialog/Toast';
 import { connect } from 'react-redux';
 import styles from 'components/rename/scss/Rename.module.scss';
 
-// TODO: show file extensions on new names list
-// Remove any special characters from new names list
+/**
+ * @description - Rename screen of file renamer.
+ *
+ * @property {Object} state - Object containing Redux mapped props.
+ * @property {Object} state.renameData - Object containing updated files and names.
+ * @property {string|number} state.selectedFileIndex - represents the selected file index at any given moment.
+ * @property {function} setRenameData - Function to set the renameData object.
+ */
 
+// TODO: Give 'names' index that matches 'No File' and 'files' index that matches across from 'Too Many Files'
+// a disabled looking state..
 class Rename extends Component {
 
   constructor(props) {
@@ -61,9 +75,7 @@ class Rename extends Component {
       selectedPosition === scrollView && prevSelectedPosition < selectedPosition;
 
     // If out of view, return selected item scroll top
-    if (
-      aboveScrollView || belowScrollView
-    ) {
+    if (aboveScrollView || belowScrollView) {
       return selectedPosition;
     }
 
@@ -83,37 +95,46 @@ class Rename extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
 
+    const files = this.props.state.options.renameData.files;
+    const names = this.props.state.options.renameData.names;
+
     // If selected item scrollTop in snapshot, set it
     if (snapshot !== null)
       this.scrollArea.current.scrollTop = snapshot;
 
-    if(prevState.prefix !== this.state.prefix || prevState.suffix !== this.state.suffix)
-      this.resetFileList();
+    // If the prefix or suffix changed, update the list
+    if(
+      prevState.prefix !== this.state.prefix ||
+      prevState.suffix !== this.state.suffix
+    )
+      this.resetFileList(0, true);
 
+    // If there are not enough files and the warning isn't showing, show it
+    if(
+      files.includes(missingFileText) &&
+      !this.state.showWarning.show
+    )
+      this.setShowWarning(true, notEnoughFilesWarning);
+
+    // If all files are present and warning is showing, remove it
+    else if(
+      !files.includes(missingFileText) &&
+      !names.includes(missingNameText) &&
+      this.state.showWarning.show
+    )
+      this.setShowWarning(false);
 
     // Configuration for warning messages (e.g., not enough files or too many files)
-    if(this.tooManyFiles(prevProps)) {
-      this.setState({
-        showWarning: {
-          show: true,
-          message: `Files matching with '${missingNameText}' it will not be renamed.`
-        }
-      });
-    }
+    if(this.tooManyFiles(prevProps))
+      this.setShowWarning(true, tooManyFilesWarning);
 
-    else if(this.missingFiles(prevProps)) {
-      this.setState({
-        showWarning: {
-          show: true,
-          message: `Not enough files, new names matching '${missingFileText}' it will not be used.`
-        }
-      });
-    }
+    else if(this.missingFiles(prevProps))
+      this.setShowWarning(true, notEnoughFilesWarning);
 
   };
 
 
-  resetFileList = (selection = 0) => {
+  resetFileList = (selection = 0, updating) => {
     const {
       episodes,
       fileList,
@@ -122,9 +143,13 @@ class Rename extends Component {
       state: { prefix, suffix }
     } = this;
 
-    let files = fileList.reduce((acc, filename) => acc = [...acc, filename ], []);
+    // Determine whether to reset, or just updating (keeping 'No File' indexes)
+    let files = updating ?
+      this.props.state.options.renameData.files.reduce((acc, filename) => acc = [...acc, filename ], []) :
+      fileList.reduce((acc, filename) => acc = [...acc, filename ], []);
+
     let names = episodes.filter(episode => episode.season === season).map( episode => {
-      return `${prefix}${seasonEpisodePrefix(season, episode.number)}${episode.name}${suffix}`;
+      return `${seasonEpisodePrefix(season, episode.number)}${episode.name}`;
      });
 
     if(files.length < names.length) {
@@ -141,11 +166,32 @@ class Rename extends Component {
       names = namesNoGaps;
     }
 
+    // Add extension from matching file
+    names.forEach((name, index) => {
+
+      // If file the name is matching has an extension
+      if(
+          /\.[a-zA-Z][a-zA-Z][a-zA-Z]$/.test(files[index]) ||
+          files[index].includes(missingFileText)
+        ) {
+
+        // Only provide extension if it's not a 'No File' or 'Too Many Files' index
+        const extension = files[index].includes(missingFileText) || names[index].includes(missingNameText) ?
+          '': files[index].substring(files[index].lastIndexOf('.'));
+
+        // Piece together rename index
+        // TODO: Remove any special characters from new names list (use replace())
+        names[index] = `${prefix}${names[index]}${suffix}${extension}`;
+      }
+    });
+
     // Set data to files and current season (including user-added prefix/suffix)
     setRenameData({ files, names }, selection);
   };
 
+
   resetUserMods = callback => this.setState({ prefix: '', suffix: '' }, callback || undefined);
+
 
   // Check if there's 'Too Many Files' text here now, and wasn't previously
   tooManyFiles = prevProps => {
@@ -154,19 +200,32 @@ class Rename extends Component {
     return currentFilesHaveText && !prevFilesHaveText;
   };
 
+
   // Check if there's 'No File' text here now, and wasn't previously
   missingFiles = prevProps => {
     const currentNamesHaveText = this.props.state.options.renameData.files.includes(missingFileText);
     const prevNamesHaveText = prevProps.state.options.renameData.files.includes(missingFileText);
     return currentNamesHaveText && !prevNamesHaveText;
-  }
-
-  updatePrefix = event => {
-    this.setState({ prefix: event.target.value }, ()=> this.resetFileList(this.props.state.options.selection));
   };
 
+
+  // Method to set or unset the page warnings
+  setShowWarning = (show, message) => {
+    if(!show)
+      this.setState({ showWarning: { show: false, message: '' }});
+
+    else
+      this.setState({ showWarning: { show, message } });
+  };
+
+  // Method to update user added prefix
+  updatePrefix = event => {
+    this.setState({ prefix: event.target.value }, ()=> this.resetFileList(this.props.state.options.selection, true));
+  };
+
+  // Method to update user added suffix
   updateSuffix = event => {
-    this.setState({ suffix: event.target.value }, ()=> this.resetFileList(this.props.state.options.selection));
+    this.setState({ suffix: event.target.value }, ()=> this.resetFileList(this.props.state.options.selection, true));
   };
 
   render() {
@@ -228,7 +287,11 @@ class Rename extends Component {
         </div>
 
         <div className={ styles['controls-container'] }>
-          <Controls { ...listControlProps } resetFileList={ resetFileList } resetUserMods={ resetUserMods } />
+          <Controls
+            { ...listControlProps }
+            resetFileList={ resetFileList }
+            resetUserMods={ resetUserMods }
+          />
         </div>
 
         <div className={ styles['modifications-container']}>
@@ -249,8 +312,6 @@ class Rename extends Component {
 
         <Toast
           messageBarType='warning'
-          // TODO: allow dismiss, but prevent it from offsetting scroll
-          //onDismiss={ ()=> this.setState({ showWarning: { show: false, message: '' } }) }
           show={ showWarning.show }
           type='warning'
         >

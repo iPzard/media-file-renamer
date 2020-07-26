@@ -64,6 +64,17 @@ $height: 279px;
         }
       }
     }
+
+    &[data-list-type="files"] {
+      li {
+        span {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
   }
 
 }

@@ -13,11 +13,12 @@ import styles from 'components/titlebar/scss/Titlebar.module.scss';
 
 initializeIcons();
 
-/*
-  NOTICE:
-  the IDs 'electron-window-title-text' & 'electron-window-title-buttons' below
-  are used in main.js to set opacity when the screen goes in and out of focus.
-*/
+/**
+ * @description Title Component to use as an Electron customized titlebar.
+ *
+ * @member { id } electron-window-title-text used in main.js to set opacity on/off focus.
+ * @member { id } electron-window-title-buttons used in main.js to set opacity on/off focus.
+ */
 
 const Titlebar = () => {
 

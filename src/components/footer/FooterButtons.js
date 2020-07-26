@@ -3,6 +3,16 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
 import React from 'react';
 import styles from 'components/footer/scss/FooterButtons.module.scss';
 
+/**
+ * @description - Generic button components to use in the Footer component.
+ *
+ * @property {boolean} disabled - Boolean to decide the button's `disabled` state.
+ * @property {string} text - Text to display on the button.
+ * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/button
+ *
+ * @todo Add prop types to these, and export after declaration
+ */
+
 export const NextButton = props => (
   <PrimaryButton
     className={ styles.button }

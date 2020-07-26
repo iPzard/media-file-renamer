@@ -6,6 +6,14 @@ import { connect } from 'react-redux';
 import { getEpisodeList } from 'utils/api';
 import styles from 'components/search/scss/Results.module.scss';
 
+/**
+ * @description - Results page to display matching search results.
+ *
+ * @property {Array} matches - Array of TV shows that match search query.
+ * @property {function} setResults - Function to reset the results or update with new matches.
+ * @property {function} setTvShowAll - Function to update all TV show details in the Redux store.
+ */
+
 const Results = props => {
   const {
     matches,

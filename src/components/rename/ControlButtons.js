@@ -2,6 +2,13 @@ import { IconButton } from '@fluentui/react/lib/Button';
 import React from 'react';
 import styles from 'components/rename/scss/ControlButtons.module.scss';
 
+/**
+ * @description - Generic notice component to display messages to the end user.
+ *
+ * @property {Object} iconProps - Object containing the corresponding icon's data
+ * @tutorial - https://material-ui.com/api/icon-button/
+ */
+
 export const DownButton = props => <IconButton
   className={ styles.button }
   iconProps={{ iconName: 'CaretDownSolid8' }}

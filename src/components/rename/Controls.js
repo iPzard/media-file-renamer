@@ -11,6 +11,16 @@ import PropTypes from 'prop-types';
 import { missingFileText } from 'utils/constants';
 import styles from 'components/rename/scss/Controls.module.scss';
 
+/**
+ * @description - Controls for file name navigation, deletion, and restoration.
+ *
+ * @property {Object} renameData - Object containing updated files and names.
+ * @property {function} resetFileList - Function to reset lists of files to original.
+ * @property {function} resetUserMods - Function to remove user modifications to prefix/suffix/etc..
+ * @property {string|number} selectedFileIndex - represents the selected file index at any given moment.
+ */
+
+
 class Controls extends Component {
 
   state = {
@@ -37,6 +47,7 @@ class Controls extends Component {
       props: {
         renameData,
         renameData: { files },
+        resetFileList,
         setRenameData,
         selectedFileIndex
       },
@@ -45,7 +56,8 @@ class Controls extends Component {
 
     setHideDialog(true, ()=> {
       files[selectedFileIndex] = missingFileText;
-      setRenameData(renameData, selectedFileIndex);
+
+      resetFileList(selectedFileIndex, true);
     });
   };
 
@@ -58,8 +70,7 @@ class Controls extends Component {
         renameData: { files },
         resetFileList,
         resetUserMods,
-        selectedFileIndex,
-        setRenameData
+        selectedFileIndex
       },
       removeFileFromList,
       setHideDialog,
@@ -76,13 +87,15 @@ class Controls extends Component {
       case 'up':
         if(selectedFileIndex <= 0) return;
         files.swapIndices(selectedFileIndex, selectedFileIndex - 1);
-        setRenameData(renameData, selectedFileIndex - 1);
+        resetFileList(selectedFileIndex - 1, true);
+        //setRenameData(renameData, selectedFileIndex - 1);
         break;
 
       case 'down':
         if(selectedFileIndex >= renameData.files.length - 1) return;
         files.swapIndices(selectedFileIndex, selectedFileIndex + 1);
-        setRenameData(renameData, selectedFileIndex + 1);
+        resetFileList(selectedFileIndex + 1, true);
+        //setRenameData(renameData, selectedFileIndex + 1);
         break;
 
       case 'delete':
@@ -166,8 +179,7 @@ Controls.propTypes = {
   selectedFileIndex: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ]),
-  setRenameData: PropTypes.func
+  ])
 };
 
 export default Controls;
