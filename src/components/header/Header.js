@@ -3,6 +3,7 @@ import React from 'react';
 import styles from 'components/header/scss/Header.module.scss';
 
 /**
+ * @namespace Header
  * @description - Generic header component to display child content to the end user.
  *
  * @property {string} description - String to use as the header description.

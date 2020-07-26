@@ -12,11 +12,12 @@ import { missingFileText } from 'utils/constants';
 import styles from 'components/rename/scss/Controls.module.scss';
 
 /**
+ * @namespace Controls
  * @description - Controls for file name navigation, deletion, and restoration.
  *
  * @property {Object} renameData - Object containing updated files and names.
- * @property {function} resetFileList - Function to reset lists of files to original.
- * @property {function} resetUserMods - Function to remove user modifications to prefix/suffix/etc..
+ * @property {Function} resetFileList - Function to reset lists of files to original.
+ * @property {Function} resetUserMods - Function to remove user modifications to prefix/suffix/etc..
  * @property {string|number} selectedFileIndex - represents the selected file index at any given moment.
  */
 

@@ -12,10 +12,11 @@ import { getFiles } from 'utils/services';
 import styles from 'components/select/scss/Select.module.scss';
 
 /**
- * @description - Initial screen used to select a folder.
+ * @namespace Select
+ * @description - Initial screen used for user to select a folder.
  *
- * @property {function} setFiles - Function to set selected files (episodes) in Redux store.
- * @property {function} setDirectory - Function to set directory files are coming from in Redux store.
+ * @property {Function} setFiles - Function to set selected files (episodes) in Redux store.
+ * @property {Function} setDirectory - Function to set directory files are coming from in Redux store.
  */
 
 const Select = props => {

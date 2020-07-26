@@ -6,15 +6,16 @@ import PropTypes from 'prop-types';
 import { useId } from '@uifabric/react-hooks';
 
 /**
+ * @namespace Notice
  * @description - Generic notice component to display messages to the end user.
  *
- * @property {function} okayText - Text to show in the primary button.
- * @property {function} cancelText - Text to show in the secondary button.
- * @property {function} okayFunc - Function to execute when the primary button is clicked.
- * @property {function} cancelFunc - Function to execute when the secondary button is clicked.
+ * @property {Function} okayText - Text to show in the primary button.
+ * @property {Function} cancelText - Text to show in the secondary button.
+ * @property {Function} okayFunc - Function to execute when the primary button is clicked.
+ * @property {Function} cancelFunc - Function to execute when the secondary button is clicked.
  * @property {boolean } hideDialog - Boolean to determine if the dialog should be shown.
  * @property {string} messageText - Text to show as the main message.
- * @property {function} setHideDialog - Function used to set the `hideDialog` boolean.
+ * @property {Function} setHideDialog - Function used to set the `hideDialog` boolean.
  * @property {string} title - Text to show as the title of the notice.
  * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/dialog
  */

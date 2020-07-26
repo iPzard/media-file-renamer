@@ -28,9 +28,11 @@
   },
   "description": "Fix names of tv show episode files",
   "devDependencies": {
+    "daybrush-jsdoc-template": "^1.6.0",
     "electron": "^9.0.5",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
+    "jsdoc": "^3.6.5",
     "prettier": "^2.0.4",
     "sass": "^1.26.5"
   },
@@ -44,6 +46,7 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
+    "docs": "jsdoc -c jsdoc.json",
     "eject": "react-scripts eject",
     "start": "electron .",
     "test": "react-scripts test"

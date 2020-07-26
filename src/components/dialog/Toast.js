@@ -7,10 +7,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
+ * @namespace Footer
  * @description - Generic toast component to display messages to the end user.
  *
  * @property {node} children - Child components to render within the toast display.
- * @property {function} onDismiss - Function to execute when close is clicked (optional).
+ * @property {Function} onDismiss - Function to execute when close is clicked (optional).
  * @property {boolean} show - Boolean to determine whether or not to show the toast message.
  * @property {string} type - Boolean to determine which type of toast message to use.
  * @property {Object} containerProps - Props to pass to the toast container component (optional).

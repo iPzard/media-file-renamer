@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>components/footer/Footer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/daybrush.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="description" content="components/footer/Footer.js - Documentation"/>
+
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><div class="search"><div class="input-area"><input type="text"/></div><button></button></div><ul class="namespaces"><li file="api" class="parent"><a href="API.html">API</a><h4><a href="API.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="API.html#.exports.getEpisodeList">getEpisodeList</a></li><li data-type='member'><a href="API.html#.exports.searchShows">searchShows</a></li></ul></li><li file="constants" class="parent"><a href="Constants.html">Constants</a><h4><a href="Constants.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Constants.html#.exports.missingFileText">missingFileText</a></li><li data-type='member'><a href="Constants.html#.exports.missingNameText">missingNameText</a></li><li data-type='member'><a href="Constants.html#.exports.notEnoughFilesWarning">notEnoughFilesWarning</a></li><li data-type='member'><a href="Constants.html#.exports.seasonEpisodePrefix">seasonEpisodePrefix</a></li><li data-type='member'><a href="Constants.html#.exports.tooManyFilesWarning">tooManyFilesWarning</a></li></ul></li><li file="controls" class="parent"><a href="Controls.html">Controls</a><h4><a href="Controls.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Controls.html#.exports.DownButton">DownButton</a></li><li data-type='member'><a href="Controls.html#.exports.ResetButton">ResetButton</a></li><li data-type='member'><a href="Controls.html#.exports.TrashButton">TrashButton</a></li><li data-type='member'><a href="Controls.html#.exports.UpButton">UpButton</a></li></ul></li><li file="footer" class="parent"><a href="Footer.html">Footer</a><h4><a href="Footer.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Footer.html#.exports.NextButton">NextButton</a></li></ul></li><li file="header" class="parent"><a href="Header.html">Header</a></li><li file="notice" class="parent"><a href="Notice.html">Notice</a></li><li file="rename" class="parent"><a href="Rename.html">Rename</a><h4><a href="Rename.html#static methods">Static Methods</a></h4><ul class='static methods'><li data-type='method'><a href="Rename.html#.NameList">NameList</a></li></ul></li><li file="requests" class="parent"><a href="Requests.html">Requests</a><h4><a href="Requests.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Requests.html#.exports.get">get</a></li><li data-type='member'><a href="Requests.html#.exports.post">post</a></li></ul></li><li file="search" class="parent"><a href="Search.html">Search</a><h4><a href="Search.html#static methods">Static Methods</a></h4><ul class='static methods'><li data-type='method'><a href="Search.html#.Results">Results</a></li><li data-type='method'><a href="Search.html#.Selection">Selection</a></li></ul></li><li file="select" class="parent"><a href="Select.html">Select</a></li><li file="services" class="parent"><a href="Services.html">Services</a><h4><a href="Services.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Services.html#.exports.app">app</a></li><li data-type='member'><a href="Services.html#.exports.config">config</a></li><li data-type='member'><a href="Services.html#.exports.getFiles">getFiles</a></li></ul></li><li file="titlebar" class="parent"><a href="Titlebar.html">Titlebar</a><h4><a href="Titlebar.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="Titlebar.html#.exports.CloseButton">CloseButton</a></li><li data-type='member'><a href="Titlebar.html#.exports.ContractButton">ContractButton</a></li><li data-type='member'><a href="Titlebar.html#.exports.MaximizeButton">MaximizeButton</a></li><li data-type='member'><a href="Titlebar.html#.exports.MinimizeButton">MinimizeButton</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/footer/Footer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { BackButton, NextButton } from 'components/footer/FooterButtons';
+import { mapDispatchToProps, mapStateToProps } from 'state/dispatch';
+
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import styles from 'components/footer/scss/Footer.module.scss';
+
+/**
+ * @namespace Footer
+ * @description - Generic footer component to display child content to the end user.
+ *
+ * @property {Object} disabled - Object of next and back `disabled` state configuration.
+ * @property {Object} hidden - Object of next and back `hidden` (display) state configuration.
+ * @property {Function} nextPage - Function to execute when the primary (next) button is clicked.
+ * @property {Function} prevPage - Function to execute when the secondary (back) button is clicked.
+ *
+ * @todo - Allow custom function to be passed and used if provided.. Instead of prevPage/nextPage
+ * This will also be used to make back button show results from "match" page of search
+ */
+
+const Footer = props => {
+  const {
+    disabled,
+    hidden,
+    nextPage,
+    prevPage,
+  } = props;
+
+  const shouldHide = button => ({ display: hidden ? hidden[button] ? 'none' : 'auto' : 'auto' });
+  const buttonProps = { disabled, shouldHide };
+
+  return (
+    &lt;footer className={ styles.footer }>
+      &lt;BackButton {...buttonProps } onClick={ ()=> prevPage() }/>
+      &lt;NextButton {...buttonProps } onClick={ ()=> nextPage() }/>
+    &lt;/footer>
+  )
+};
+
+Footer.propTypes = {
+  disabled: PropTypes.object,
+  hidden: PropTypes.object,
+  nextPage: PropTypes.func,
+  prevPage: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+<style>
+
+
+nav li[file="components/footer/footer"]:after {
+    display: none;
+}
+nav li[file="components/footer/footer"] h4, nav li[file="components/footer/footer"] ul {
+    display: block;
+}
+</style>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/daybrush/jsdoc">JSDoc 3.6.5</a> on Sun Jul 26 2020 09:40:11 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/utils.min.js"></script>
+<script src="scripts/search.js"></script>
+<script src="scripts/custom.js"></script>
+</body>
+</html>

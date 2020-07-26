@@ -3,6 +3,21 @@ import { post } from 'utils/requests';
 // Electron Inter Process Communication and dialog
 const { ipcRenderer, remote: { dialog } } = window.require('electron');
 
+/**
+ * @namespace Services
+ * @description - Services to interact with Electron
+ */
+
+
+/**
+ * @description - Methods from Electron Inter Process Communication.
+ * @property {function} maximize - Function to maximize the screen size of the program.
+ * @property {function} minimize - Function to minimize the screen size of the program.
+ * @property {function} quite - Function to close and exit the program.
+ * @property {function} resize - Function to resize the screen size of the program, accepts ({ width: x, height: x }).
+ * @property {function} unmaximize - Function to contract (unmaximize) the screen size of the program.
+ * @memberof Services
+ */
 // Methods to communicate with Electron services
 export const app = {
   maximize:   () => ipcRenderer.send('app-maximize'),
@@ -14,13 +29,14 @@ export const app = {
 
 
 /**
-* Method to get a list of files that a user wants to have renamed, this
+* @description - Method to get a list of files that a user wants to have renamed, this
 * also returns the folder path and name the user has selected.
-* @param callback - optional callback function to be invoked if provided.
-* @return user selected folder path and list/array of files in that folder.
+* @param {Function} callback - Optional callback function to be invoked if provided.
+* @return - User selected folder path and list/array of files in that folder.
+* @memberof Services
+*
+* @todo - Should only accept video files
 */
-
-// TODO: Should only accept video files
 export const getFiles = (callback) => {
   dialog.showOpenDialog({properties: ['openDirectory']})
   .catch(error => console.error(error))

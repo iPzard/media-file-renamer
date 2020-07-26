@@ -9,6 +9,7 @@ import styles from 'components/footer/scss/FooterButtons.module.scss';
  * @property {boolean} disabled - Boolean to decide the button's `disabled` state.
  * @property {string} text - Text to display on the button.
  * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/button
+ * @memberof Footer
  *
  * @todo Add prop types to these, and export after declaration
  */

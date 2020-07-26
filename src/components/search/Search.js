@@ -13,6 +13,7 @@ import { searchShows } from 'utils/api';
 import styles from 'components/search/scss/Search.module.scss';
 
 /**
+ * @namespace Search
  * @description Search page to search for shows and display matching show's information.
  *
  * @property {Object} state Object containing Redux mapped props.

@@ -10,11 +10,12 @@ import styles from 'components/search/scss/Selection.module.scss';
 /**
  * @description - Selection page to show selected matching TV show data.
  *
- * @property {function} setSeason - Function to update the selected season in the Redux store.
+ * @property {Function} setSeason - Function to update the selected season in the Redux store.
  * @property {Object} state - Object containing Redux mapped props.
  * @property {Array.<Object>} state.tvShow.episodes - Array of objects for episodes from matching TV show.
  * @property {number} state.tvShow.season - Number which represents selected season
  * @property {Object} tvShowData - Object containing detailed information about matching TV show.
+ * @memberof Search
  */
 
 const Selection = props => {

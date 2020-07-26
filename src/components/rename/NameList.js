@@ -13,8 +13,9 @@ import styles from 'components/rename/scss/NameList.module.scss';
  * @property {Array} list - Array of file or TV show names.
  * @property {Object} renameData - Object containing updated files and names.
  * @property {string|number} selectedFileIndex - Represents the selected file index at any given moment.
- * @property {function} setRenameData - Function to set the renameData object.
+ * @property {Function} setRenameData - Function to set the renameData object.
  * @property {string} type - Type of list being passed; 'files' or 'names'.
+ * @memberof Rename
  */
 
 const NameList = props => {

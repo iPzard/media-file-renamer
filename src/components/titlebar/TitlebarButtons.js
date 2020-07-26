@@ -3,10 +3,8 @@ import React from 'react';
 import styles from 'components/titlebar/scss/TitlebarButtons.module.scss';
 
 /**
- * @description Title Component to use as an Electron customized titlebar.
- *
- * @member { id } electron-window-title-text used in main.js to set opacity on/off focus.
- * @member { id } electron-window-title-buttons used in main.js to set opacity on/off focus.
+ * @description Titlebar minimize button.
+ * @memberof Titlebar
  */
 
 export const MinimizeButton = props => (
@@ -19,6 +17,10 @@ export const MinimizeButton = props => (
   />
 );
 
+/**
+ * @description Titlebar maximize button.
+ * @memberof Titlebar
+ */
 export const MaximizeButton = props => (
   <IconButton
     className={ styles.button }
@@ -29,6 +31,10 @@ export const MaximizeButton = props => (
   />
 );
 
+/**
+ * @description Titlebar contract (unmaximize) button.
+ * @memberof Titlebar
+ */
 export const ContractButton = props => (
   <IconButton
     className={ styles.button }
@@ -39,6 +45,10 @@ export const ContractButton = props => (
   />
 );
 
+/**
+ * @description Titlebar close button.
+ * @memberof Titlebar
+ */
 export const CloseButton = props => (
   <IconButton
     className={ styles.button }

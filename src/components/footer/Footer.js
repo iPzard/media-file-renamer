@@ -7,12 +7,13 @@ import { connect } from 'react-redux';
 import styles from 'components/footer/scss/Footer.module.scss';
 
 /**
+ * @namespace Footer
  * @description - Generic footer component to display child content to the end user.
  *
  * @property {Object} disabled - Object of next and back `disabled` state configuration.
  * @property {Object} hidden - Object of next and back `hidden` (display) state configuration.
- * @property {function} nextPage - Function to execute when the primary (next) button is clicked.
- * @property {function} prevPage - Function to execute when the secondary (back) button is clicked.
+ * @property {Function} nextPage - Function to execute when the primary (next) button is clicked.
+ * @property {Function} prevPage - Function to execute when the secondary (back) button is clicked.
  *
  * @todo - Allow custom function to be passed and used if provided.. Instead of prevPage/nextPage
  * This will also be used to make back button show results from "match" page of search

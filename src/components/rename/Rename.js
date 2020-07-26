@@ -19,12 +19,13 @@ import { connect } from 'react-redux';
 import styles from 'components/rename/scss/Rename.module.scss';
 
 /**
+ * @namespace Rename
  * @description - Rename screen of file renamer.
  *
  * @property {Object} state - Object containing Redux mapped props.
  * @property {Object} state.renameData - Object containing updated files and names.
  * @property {string|number} state.selectedFileIndex - represents the selected file index at any given moment.
- * @property {function} setRenameData - Function to set the renameData object.
+ * @property {Function} setRenameData - Function to set the renameData object.
  */
 
 // TODO: Give 'names' index that matches 'No File' and 'files' index that matches across from 'Too Many Files'
