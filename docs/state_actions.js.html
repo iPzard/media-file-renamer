@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/dialog/Notice.js - Documentation</title>
+    <title>state/actions.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="styles/daybrush.css">
     <link type="text/css" rel="stylesheet" href="styles/custom.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="description" content="components/dialog/Notice.js - Documentation"/>
+    <meta name="description" content="state/actions.js - Documentation"/>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">components/dialog/Notice.js</h1>
+    <h1 class="page-title">state/actions.js</h1>
     
 
     
@@ -42,92 +42,51 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import React, { useMemo } from 'react';
-
-import PropTypes from 'prop-types';
-import { useId } from '@uifabric/react-hooks';
+            <pre class="prettyprint source linenums"><code>/**
+ * @description - Actions to set files and directories in state.
+ * @param {string} directory - Directory files are selected from.
+ * @param {Array.&lt;string>} fileList - Array of file names from selected directory.
+ * @memberof Redux
+ */
+export const fileActions = dispatch => ({
+  setDirectory: directory => dispatch({ type: 'SET_DIRECTORY', directory }),
+  setFiles: fileList => dispatch({ type: 'SET_FILES', fileList }),
+});
 
 /**
- * @namespace Notice
- * @description - Generic notice component to display messages to the end user.
- *
- * @property {Function} okayText - Text to show in the primary button.
- * @property {Function} cancelText - Text to show in the secondary button.
- * @property {Function} okayFunc - Function to execute when the primary button is clicked.
- * @property {Function} cancelFunc - Function to execute when the secondary button is clicked.
- * @property {boolean } hideDialog - Boolean to determine if the dialog should be shown.
- * @property {string} messageText - Text to show as the main message.
- * @property {Function} setHideDialog - Function used to set the `hideDialog` boolean.
- * @property {string} title - Text to show as the title of the notice.
- * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/dialog
+ * @description - Actions to set and update rename data object.
+ * @param {Object} renameData - Object containing rename data for files and TV show names.
+ * @param {number} selection - Selected index of file names the user is currently focusing on.
+ * @memberof Redux
  */
+export const renameOptionsActions = dispatch => ({
+  setRenameData: (renameData, selection) => dispatch({ type: 'SET_RENAME_DATA', renameData, selection })
+});
 
-export const Notice = props => {
-
-  const {
-    okayText,
-    cancelText,
-    okayFunc,
-    cancelFunc,
-    hideDialog,
-    messageText,
-    setHideDialog,
-    title
-  } = props;
-
-  const dialogContentProps = {
-    type: DialogType.normal,
-    title: title,
-    closeButtonAriaLabel: 'Close',
-    subText: messageText,
-  };
-
-  const modalProps = useMemo(() => ({
-    titleAriaId: labelId,
-    subtitleAriaId: subTextId,
-    isBlocking: false,
-    styles: { main: { maxWidth: 450 } },
-  }), [labelId, subTextId]);
-
-  // Ensure unique IDs
-  const labelId = useId('dialogLabel');
-  const subTextId = useId('subTextLabel');
-
-  const toggleHideDialog = () => setHideDialog(!hideDialog);
+/**
+ * @description - Actions change the page the user is on; file select, search, rename, etc..
+ * @memberof Redux
+ */
+export const pageActions = dispatch => ({
+  nextPage: () => dispatch({ type: 'NEXT_PAGE' }),
+  prevPage: () => dispatch({ type: 'PREV_PAGE' })
+});
 
 
-  return (
-    &lt;aside>
-      &lt;Dialog
-        hidden={hideDialog}
-        onDismiss={toggleHideDialog}
-        dialogContentProps={dialogContentProps}
-        modalProps={modalProps}
-      >
-        &lt;DialogFooter>
-          &lt;PrimaryButton onClick={ okayFunc } text={ okayText } />
-          &lt;DefaultButton onClick={ cancelFunc } text={ cancelText } />
-        &lt;/DialogFooter>
-      &lt;/Dialog>
-    &lt;/aside>
-  );
-};
-
-
-Notice.propTypes = {
-  okayText: PropTypes.string,
-  cancelText: PropTypes.string,
-  okayFunc: PropTypes.func,
-  cancelFunc: PropTypes.func,
-  hideDialog: PropTypes.bool,
-  messageText: PropTypes.string,
-  setHideDialog: PropTypes.func,
-  title: PropTypes.string
-};
-
-export default Notice;</code></pre>
+/**
+ * @description - Actions to set and update TV show data.
+ * @param {Function} setEpisodes - Function to set the episodes for a matching TV show.
+ * @param {Function} setSeason - Function to set the season for a matching TV show.
+ * @param {Function} setTvShow - Function to set a TV show as the matching show.
+ * @param {Function} setTVShowAll - Function to update all aspects of the TV show data.
+ * @memberof Redux
+ */
+export const tvShowActions = dispatch => ({
+  setEpisodes: episodes => dispatch({ type: 'SET_EPISODES', episodes }),
+  setSeason: season => dispatch({ type: 'SET_SEASON', season }),
+  setTvShow: tvShow => dispatch({ type: 'SET_TV_SHOW', tvShow }),
+  setTVShowAll: (tvShow, episodes, season) => dispatch({ type: 'SET_TV_SHOW_ALL', tvShow, episodes, season })
+});</code></pre>
         </article>
     </section>
 
@@ -138,10 +97,10 @@ export default Notice;</code></pre>
 <style>
 
 
-nav li[file="components/dialog/notice"]:after {
+nav li[file="state/actions"]:after {
     display: none;
 }
-nav li[file="components/dialog/notice"] h4, nav li[file="components/dialog/notice"] ul {
+nav li[file="state/actions"] h4, nav li[file="state/actions"] ul {
     display: block;
 }
 </style>

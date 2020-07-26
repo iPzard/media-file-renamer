@@ -1,3 +1,8 @@
+/**
+ * @description - Reducer to update selected files and origin directory.
+ * @memberof Redux
+ */
+
 const fileReducer = (state = { fileList: [], directory: '', renameData: {} }, action) => {
   switch (action.type) {
     case 'SET_DIRECTORY':
@@ -11,7 +16,10 @@ const fileReducer = (state = { fileList: [], directory: '', renameData: {} }, ac
   };
 };
 
-
+/**
+ * @description - Reducer to set and update rename data object.
+ * @memberof Redux
+ */
 const renameOptionsReducer = (state = {
   renameData: { files: [], names: [] },
   selection: 0
@@ -26,7 +34,10 @@ const renameOptionsReducer = (state = {
   };
 };
 
-
+/**
+ * @description - Reducer change the page the user is on; file select, search, rename, etc..
+ * @memberof Redux
+ */
 const pageReducer = (state = 1, action) => {
 
   switch (action.type) {
@@ -41,7 +52,10 @@ const pageReducer = (state = 1, action) => {
   };
 };
 
-
+/**
+ * @description - Actions to set and update TV show data.
+ * @memberof Redux
+ */
 const tvShowReducer = (state = false, action) => {
 
   const updateState = (key, value) => state ? { ...state, [key]: action[value] } : action[value];
@@ -70,8 +84,10 @@ const tvShowReducer = (state = false, action) => {
   };
 };
 
-
-// Set `stateName` for store logic
+/**
+ * @description - Set `stateName` for store logic.
+ * @memberof Redux
+ */
 fileReducer.stateName = 'files';
 pageReducer.stateName = 'page';
 renameOptionsReducer.stateName = 'options';

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/dialog/Notice.js - Documentation</title>
+    <title>state/reducers.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="styles/daybrush.css">
     <link type="text/css" rel="stylesheet" href="styles/custom.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="description" content="components/dialog/Notice.js - Documentation"/>
+    <meta name="description" content="state/reducers.js - Documentation"/>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">components/dialog/Notice.js</h1>
+    <h1 class="page-title">state/reducers.js</h1>
     
 
     
@@ -42,92 +42,108 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import React, { useMemo } from 'react';
-
-import PropTypes from 'prop-types';
-import { useId } from '@uifabric/react-hooks';
-
-/**
- * @namespace Notice
- * @description - Generic notice component to display messages to the end user.
- *
- * @property {Function} okayText - Text to show in the primary button.
- * @property {Function} cancelText - Text to show in the secondary button.
- * @property {Function} okayFunc - Function to execute when the primary button is clicked.
- * @property {Function} cancelFunc - Function to execute when the secondary button is clicked.
- * @property {boolean } hideDialog - Boolean to determine if the dialog should be shown.
- * @property {string} messageText - Text to show as the main message.
- * @property {Function} setHideDialog - Function used to set the `hideDialog` boolean.
- * @property {string} title - Text to show as the title of the notice.
- * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/dialog
+            <pre class="prettyprint source linenums"><code>/**
+ * @description - Reducer to update selected files and origin directory.
+ * @memberof Redux
  */
 
-export const Notice = props => {
+const fileReducer = (state = { fileList: [], directory: '', renameData: {} }, action) => {
+  switch (action.type) {
+    case 'SET_DIRECTORY':
+      return state = { ...state,  directory: action.directory };
 
-  const {
-    okayText,
-    cancelText,
-    okayFunc,
-    cancelFunc,
-    hideDialog,
-    messageText,
-    setHideDialog,
-    title
-  } = props;
+    case 'SET_FILES':
+      return state = { ...state,  fileList: action.fileList };
 
-  const dialogContentProps = {
-    type: DialogType.normal,
-    title: title,
-    closeButtonAriaLabel: 'Close',
-    subText: messageText,
+    default:
+      return state;
   };
-
-  const modalProps = useMemo(() => ({
-    titleAriaId: labelId,
-    subtitleAriaId: subTextId,
-    isBlocking: false,
-    styles: { main: { maxWidth: 450 } },
-  }), [labelId, subTextId]);
-
-  // Ensure unique IDs
-  const labelId = useId('dialogLabel');
-  const subTextId = useId('subTextLabel');
-
-  const toggleHideDialog = () => setHideDialog(!hideDialog);
-
-
-  return (
-    &lt;aside>
-      &lt;Dialog
-        hidden={hideDialog}
-        onDismiss={toggleHideDialog}
-        dialogContentProps={dialogContentProps}
-        modalProps={modalProps}
-      >
-        &lt;DialogFooter>
-          &lt;PrimaryButton onClick={ okayFunc } text={ okayText } />
-          &lt;DefaultButton onClick={ cancelFunc } text={ cancelText } />
-        &lt;/DialogFooter>
-      &lt;/Dialog>
-    &lt;/aside>
-  );
 };
 
+/**
+ * @description - Reducer to set and update rename data object.
+ * @memberof Redux
+ */
+const renameOptionsReducer = (state = {
+  renameData: { files: [], names: [] },
+  selection: 0
+}, action) => {
 
-Notice.propTypes = {
-  okayText: PropTypes.string,
-  cancelText: PropTypes.string,
-  okayFunc: PropTypes.func,
-  cancelFunc: PropTypes.func,
-  hideDialog: PropTypes.bool,
-  messageText: PropTypes.string,
-  setHideDialog: PropTypes.func,
-  title: PropTypes.string
+  switch (action.type) {
+    case 'SET_RENAME_DATA':
+      return state = { ...state, renameData: action.renameData, selection: action.selection || 0 };
+
+    default:
+      return state;
+  };
 };
 
-export default Notice;</code></pre>
+/**
+ * @description - Reducer change the page the user is on; file select, search, rename, etc..
+ * @memberof Redux
+ */
+const pageReducer = (state = 1, action) => {
+
+  switch (action.type) {
+    case 'NEXT_PAGE':
+      return state + 1;
+
+    case 'PREV_PAGE':
+      return state - 1;
+
+    default:
+      return state;
+  };
+};
+
+/**
+ * @description - Actions to set and update TV show data.
+ * @memberof Redux
+ */
+const tvShowReducer = (state = false, action) => {
+
+  const updateState = (key, value) => state ? { ...state, [key]: action[value] } : action[value];
+
+  switch (action.type) {
+    case 'SET_EPISODES':
+      return state = updateState('episodes', 'episodes');
+
+    case 'SET_SEASON':
+      return state = updateState('season', 'season');
+
+    case 'SET_TV_SHOW':
+      return state = updateState('tvShowData', 'tvShow');
+
+    case 'SET_TV_SHOW_ALL':
+      const all = {
+        tvShowData: action.tvShow,
+        episodes: action.episodes,
+        season: action.season
+      };
+
+      return state ? { ...state, ...all } : { ...all }
+
+    default:
+      return state;
+  };
+};
+
+/**
+ * @description - Set `stateName` for store logic.
+ * @memberof Redux
+ */
+fileReducer.stateName = 'files';
+pageReducer.stateName = 'page';
+renameOptionsReducer.stateName = 'options';
+tvShowReducer.stateName = 'tvShow';
+
+
+export {
+  fileReducer,
+  pageReducer,
+  renameOptionsReducer,
+  tvShowReducer
+}</code></pre>
         </article>
     </section>
 
@@ -138,10 +154,10 @@ export default Notice;</code></pre>
 <style>
 
 
-nav li[file="components/dialog/notice"]:after {
+nav li[file="state/reducers"]:after {
     display: none;
 }
-nav li[file="components/dialog/notice"] h4, nav li[file="components/dialog/notice"] ul {
+nav li[file="state/reducers"] h4, nav li[file="state/reducers"] ul {
     display: block;
 }
 </style>
