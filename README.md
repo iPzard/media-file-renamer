@@ -10,9 +10,7 @@ Links to Windows, Mac, and Linux downloads. (coming soon)
 * Icons used are from [Font Awesome](http://fontawesome.io) and are fully open-source.
 
 ## 🐱‍👤 Develop
-Media File Renamer is built with Electron, React, Python, the [TVmaze API](https://www.tvmaze.com/api), and is fully open-source. The technologies are bridged with the help of Electron's [Inter Process Communication](https://www.electronjs.org/docs/api/ipc-main), Node's [child_process](https://nodejs.org/api/child_process.html), and by using Python with [Flask](https://palletsprojects.com/p/flask/) as a microservice.<br /><br />
-
-Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
+Media File Renamer is built with Electron, React, Python, the [TVmaze API](https://www.tvmaze.com/api), and is fully open-source. Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Code Documentation](https://ipzard.github.io/media-file-renamer/)
 <br>
 
