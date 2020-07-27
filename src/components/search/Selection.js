@@ -33,7 +33,11 @@ const Selection = props => {
   return (
     <section className={ styles.selection }>
       <article>
-        <img src={ tvShowData.show.image.medium } alt='TV Show Poster' />
+      {
+        tvShowData.show.image ?
+        <img src={ tvShowData.show.image.medium } alt='TV Show Poster' />:
+        undefined // TODO: get "No Image" image for TV posters
+      }
         <div className={ styles.description } >
           <h3>{ tvShowData.show.name }</h3>
           <div className={ tvShowData.show.summary ? styles.active : styles.inactive }>

@@ -35,20 +35,24 @@ const NameList = props => {
       <ul data-list-type={ type } >
         {
           list.map((name, index) => {
-            const hasNoName = name === missingFileText || name === missingNameText;
+            const hasNoName = name.includes(missingFileText) || name.includes(missingNameText);
+            const matchesMissingName = !hasNoName && type === 'files' ?
+              renameData.names[index].includes(missingNameText) :
+              renameData.files[index].includes(missingFileText);
+
             const selected = selectedFileIndex === index && type === 'files';
             const listProps = { key: hasNoName ? `${type}-${index}` : `${type}-${name}` };
 
-            if(hasNoName && selected) {
-              listProps.className = `${styles['missing-name']} ${styles['selected-file']}`;
-            }
-
-            else if(selected) {
-              listProps.className = styles['selected-file'];
-            }
-
-            else if(hasNoName) {
+            if(hasNoName) {
               listProps.className = styles['missing-name'];
+            }
+
+            else if(matchesMissingName) {
+              listProps.className = styles['matches-missing-name']
+            }
+
+            if(selected) {
+              listProps.className += ` ${styles['selected-file']}`;
             }
 
             return (

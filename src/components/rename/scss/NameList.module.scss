@@ -45,6 +45,14 @@ $height: 279px;
           opacity: .5;
         }
       }
+
+      &.matches-missing-name {
+
+        span{
+          opacity: .5;
+        }
+      }
+
       &.selected-file {
         background-color: $lighter-grey-focus;
 

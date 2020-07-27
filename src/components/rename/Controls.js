@@ -46,10 +46,8 @@ class Controls extends Component {
 
     const {
       props: {
-        renameData,
         renameData: { files },
         resetFileList,
-        setRenameData,
         selectedFileIndex
       },
       setHideDialog,
