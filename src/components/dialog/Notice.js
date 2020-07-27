@@ -9,11 +9,11 @@ import { useId } from '@uifabric/react-hooks';
  * @namespace Notice
  * @description - Generic notice component to display messages to the end user.
  *
- * @property {Function} okayText - Text to show in the primary button.
- * @property {Function} cancelText - Text to show in the secondary button.
+ * @property {string} [okayText=Confirm] - Text to show in the primary button.
+ * @property {string} [cancelText=Cancel] - Text to show in the secondary button.
  * @property {Function} okayFunc - Function to execute when the primary button is clicked.
  * @property {Function} cancelFunc - Function to execute when the secondary button is clicked.
- * @property {boolean } hideDialog - Boolean to determine if the dialog should be shown.
+ * @property {boolean} hideDialog - Boolean to determine if the dialog should be shown.
  * @property {string} messageText - Text to show as the main message.
  * @property {Function} setHideDialog - Function used to set the `hideDialog` boolean.
  * @property {string} title - Text to show as the title of the notice.
@@ -23,8 +23,8 @@ import { useId } from '@uifabric/react-hooks';
 export const Notice = props => {
 
   const {
-    okayText,
-    cancelText,
+    okayText = 'Confirm',
+    cancelText = 'Cancel',
     okayFunc,
     cancelFunc,
     hideDialog,
@@ -57,10 +57,10 @@ export const Notice = props => {
   return (
     <aside>
       <Dialog
-        hidden={hideDialog}
-        onDismiss={toggleHideDialog}
-        dialogContentProps={dialogContentProps}
-        modalProps={modalProps}
+        hidden={ hideDialog }
+        onDismiss={ toggleHideDialog }
+        dialogContentProps={ dialogContentProps }
+        modalProps={ modalProps }
       >
         <DialogFooter>
           <PrimaryButton onClick={ okayFunc } text={ okayText } />

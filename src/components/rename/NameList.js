@@ -52,7 +52,7 @@ const NameList = props => {
             }
 
             if(selected) {
-              listProps.className += ` ${styles['selected-file']}`;
+              listProps.className += ` ${styles['selected-file']}`; // Todo: see if this is adding "undefined" to DOM element
             }
 
             return (

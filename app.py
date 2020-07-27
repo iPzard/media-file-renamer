@@ -16,6 +16,8 @@ def index(command):
     # Return list/array of file names
     return jsonify(files)
 
+  if command == 'rename_files':
+    print(request.data)
 
 # Available for manual testing
 if __name__ == '__main__':

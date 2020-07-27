@@ -29,7 +29,7 @@ export const app = {
 
 
 /**
-* @description - Method to get a list of files that a user wants to have renamed, this
+* @description - Function to get a list of files that a user wants to have renamed, this
 * also returns the folder path and name the user has selected.
 * @param {Function} callback - Optional callback function to be invoked if provided.
 * @return - User selected folder path and list/array of files in that folder.
@@ -48,4 +48,14 @@ export const getFiles = (callback) => {
     } else console.log('response canceled.');
   });
 
+};
+
+/**
+ * @description - Function to rename files with matched files, in original directory (for now).
+ *
+ * @memberof Services
+ */
+export const renameFiles = (folder, names, callback) => {
+  const data = { folder, names };
+  post(data, 'rename_files', response => console.log(response)); // callback goes here later
 };

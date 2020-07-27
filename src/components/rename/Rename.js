@@ -12,6 +12,7 @@ import Controls from 'components/rename/Controls';
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import NameList from 'components/rename/NameList';
+import Notice from 'components/dialog/Notice';
 import PropTypes from 'prop-types';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import Toast from 'components/dialog/Toast';
@@ -28,8 +29,6 @@ import styles from 'components/rename/scss/Rename.module.scss';
  * @property {Function} setRenameData - Function to set the renameData object.
  */
 
-// TODO: Give 'names' index that matches 'No File' and 'files' index that matches across from 'Too Many Files'
-// a disabled looking state..
 class Rename extends Component {
 
   constructor(props) {
@@ -43,6 +42,9 @@ class Rename extends Component {
       showWarning: {
         show: false,
         message: ''
+      },
+      notice: {
+        hide: true
       },
       prefix: '',
       suffix: ''
@@ -134,6 +136,10 @@ class Rename extends Component {
 
   };
 
+  // Custom back and/or next button functions passed to the footer
+  customFunctions = {
+    next: () => this.updateNotice(false)
+  };
 
   resetFileList = (selection = 0, updating) => {
     const {
@@ -219,6 +225,8 @@ class Rename extends Component {
       this.setState({ showWarning: { show, message } });
   };
 
+  updateNotice = hide => this.setState({ notice: { hide } } );
+
   // Method to update user added prefix
   updatePrefix = event => {
     this.setState({ prefix: event.target.value }, ()=> this.resetFileList(this.props.state.options.selection, true));
@@ -232,6 +240,7 @@ class Rename extends Component {
   render() {
 
     const {
+      customFunctions,
       resetFileList,
       resetUserMods,
       scrollArea,
@@ -242,10 +251,12 @@ class Rename extends Component {
         }
       },
       state: {
+        notice,
         prefix,
         showWarning,
         suffix
       },
+      updateNotice,
       updatePrefix,
       updateSuffix
     } = this;
@@ -318,7 +329,19 @@ class Rename extends Component {
         >
           { showWarning.message }
         </Toast>
-        <Footer />
+        <Footer customFunctions={ customFunctions } />
+
+        <Notice
+          cancelFunc={ ()=> updateNotice(true) }
+          messageText='Would you like to rename the files? This cannot be undone.'
+          title='Rename files'
+          okayFunc={ ()=> {
+            alert('ok');
+            updateNotice(true)
+          } }
+          hideDialog={ notice.hide }
+          setHideDialog={ updateNotice }
+        />
       </section>
     );
   };

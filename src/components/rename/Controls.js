@@ -28,10 +28,8 @@ class Controls extends Component {
     hideDialog: true,
     notice: {
       cancelFunc: undefined,
-      cancelText: undefined,
       messageText: undefined,
       okayFunc: undefined,
-      okayText: undefined,
       title: undefined
     }
   }
@@ -100,10 +98,8 @@ class Controls extends Component {
       case 'delete':
         configureNotice({
           cancelFunc: ()=> setHideDialog(true),
-          cancelText: 'Cancel',
           messageText: 'Do you want to remove this file from your rename list?',
           okayFunc: removeFileFromList,
-          okayText: 'Confirm',
           title: 'Remove file'
         }, setHideDialog(false))
         break;
@@ -111,10 +107,8 @@ class Controls extends Component {
       case 'reset':
         configureNotice({
           cancelFunc: ()=> setHideDialog(true),
-          cancelText: 'Cancel',
           messageText: 'Reset all changes you have made to the rename list?',
           okayFunc: ()=> setHideDialog(true, ()=> resetUserMods(resetFileList)),
-          okayText: 'Confirm',
           title: 'Reset changes'
         }, setHideDialog(false))
         break;
@@ -137,10 +131,8 @@ class Controls extends Component {
         hideDialog,
         notice: {
           cancelFunc,
-          cancelText,
           messageText,
           okayFunc,
-          okayText,
           title
         }
       }
@@ -157,11 +149,9 @@ class Controls extends Component {
 
         <Notice
           cancelFunc={ cancelFunc }
-          cancelText={ cancelText }
           hideDialog={ hideDialog }
           messageText={ messageText }
           okayFunc={ okayFunc }
-          okayText={ okayText }
           setHideDialog={ setHideDialog }
           title={ title }
         />
