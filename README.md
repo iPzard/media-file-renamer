@@ -24,7 +24,6 @@ npm run build
 ```bash
 npm run start
 ```
-<br>
 
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
