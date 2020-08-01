@@ -5,7 +5,7 @@
 Links to Windows, Mac, and Linux downloads. (coming soon)
 <br>
 
-# 📜 Scripts
+## 📜 Scripts
 To build and run locally (e.g., for developing), you can run clone the project and then run the following scripts in the project's root directory:
 
 **Install Dependencies:**
