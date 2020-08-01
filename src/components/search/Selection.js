@@ -22,13 +22,14 @@ const Selection = props => {
 
   const {
     setSeason,
-    state: { tvShow: { episodes, season, tvShowData } },
+    state: {
+      tvShow: { episodes, season, tvShowData }
+    },
   } = props;
 
   const lastSeason = !episodes ? 0 : episodes[episodes.length - 1].season;
   const increment = () => season !== lastSeason ? setSeason(season + 1) : undefined;
   const decrement = () => season > 1 ? setSeason(season - 1) : undefined;
-
 
   return (
     <section className={ styles.selection }>

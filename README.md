@@ -5,6 +5,27 @@
 Links to Windows, Mac, and Linux downloads. (coming soon)
 <br>
 
+# 📜 Scripts
+To build and run locally (e.g., for developing), you can run clone the project and then run the following scripts in the project's root directory:
+
+**Install Dependencies:**
+```bash
+npm run install
+```
+<br>
+
+**Build React:**
+```bash
+npm run build
+```
+<br>
+
+**Start Electron:**
+```bash
+npm run start
+```
+<br>
+
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
 * Icons used are from [Font Awesome](http://fontawesome.io) and are fully open-source.

@@ -23,7 +23,12 @@ import styles from 'components/search/scss/Search.module.scss';
 const Search = props => {
 
   const [ results, setResults ] = useState([]);
-  const { state: { tvShow } } = props;
+  const [ backToggle, setBackToggle ] = useState(true);
+  const { prevPage, state: { tvShow } } = props;
+
+  const customFunctions = {
+    back: ()=> tvShow && backToggle ? setBackToggle(false) : prevPage()
+  };
 
   return (
     <section className={ styles.search }>
@@ -38,11 +43,11 @@ const Search = props => {
       />
       {
         results.length ? <Results matches={ results } setResults={ setResults } /> :
-        !tvShow ? <TvIcon className={ styles.svg } /> :
+        !tvShow || !backToggle ? <TvIcon className={ styles.svg } /> :
         <Selection />
       }
 
-      <Footer disabled={{ next: !tvShow }} />
+      <Footer disabled={{ next: !tvShow || !backToggle }} customFunctions={ customFunctions }/>
     </section>
   );
 };

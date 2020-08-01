@@ -31,7 +31,8 @@ class Controls extends Component {
       messageText: undefined,
       okayFunc: undefined,
       title: undefined
-    }
+    },
+    updated: false
   }
 
   configureNotice = ({ ...args }, callback) => {
@@ -84,33 +85,33 @@ class Controls extends Component {
       case 'up':
         if(selectedFileIndex <= 0) return;
         files.swapIndices(selectedFileIndex, selectedFileIndex - 1);
-        resetFileList(selectedFileIndex - 1, true);
+        this.setState({ updated: true }, resetFileList(selectedFileIndex - 1, true));
         //setRenameData(renameData, selectedFileIndex - 1);
         break;
 
       case 'down':
         if(selectedFileIndex >= renameData.files.length - 1) return;
         files.swapIndices(selectedFileIndex, selectedFileIndex + 1);
-        resetFileList(selectedFileIndex + 1, true);
+        this.setState({ updated: true }, resetFileList(selectedFileIndex + 1, true));
         //setRenameData(renameData, selectedFileIndex + 1);
         break;
 
       case 'delete':
-        configureNotice({
+        this.setState({ updated: true }, configureNotice({
           cancelFunc: ()=> setHideDialog(true),
           messageText: 'Do you want to remove this file from your rename list?',
           okayFunc: removeFileFromList,
           title: 'Remove file'
-        }, setHideDialog(false))
+        }, setHideDialog(false)));
         break;
 
       case 'reset':
-        configureNotice({
+        this.setState({ updated: false }, configureNotice({
           cancelFunc: ()=> setHideDialog(true),
           messageText: 'Reset all changes you have made to the rename list?',
           okayFunc: ()=> setHideDialog(true, ()=> resetUserMods(resetFileList)),
           title: 'Reset changes'
-        }, setHideDialog(false))
+        }, setHideDialog(false)))
         break;
 
       default:
@@ -134,7 +135,8 @@ class Controls extends Component {
           messageText,
           okayFunc,
           title
-        }
+        },
+        updated
       }
     } = this;
 
@@ -143,7 +145,7 @@ class Controls extends Component {
     return(
       <div className={ styles.controls } >
         <TrashButton onClick={ ()=> handleButton('delete') } disabled={ ifNoFileExists }/>
-        <ResetButton onClick={ ()=> handleButton('reset') } />
+        <ResetButton onClick={ ()=> handleButton('reset') } disabled={ !updated }/>
         <UpButton onClick={ ()=> handleButton('up') } />
         <DownButton onClick={ ()=> handleButton('down') } />
 

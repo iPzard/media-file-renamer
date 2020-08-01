@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 const getPort = require('get-port');
 const path = require('path');
 
@@ -10,7 +10,6 @@ let port;
 (async () => {
   port = await getPort({port: getPort.makeRange(3000, 3999)});
   ipcMain.on('get-port-number', (event, arg) => event.returnValue = port);
-
 })();
 
 
@@ -29,10 +28,10 @@ function createWindow () {
     width: 850,
   });
 
-  // and load the index.html of the app.
+  // Load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'build/index.html'));
 
-  // Open the DevTools.
+  // Open the DevTools (for debugging).
   mainWindow.webContents.openDevTools();
 
   // Set opacity for title on window blur & focus
@@ -69,14 +68,14 @@ app.whenReady().then(() => {
   })
 
 
-  // Connect to Python micro-services
-  const flask = exec(`cd ${__dirname} && flask run -p ${port}`); //.stdout.pipe(process.stdout); // console.log python stuffs
-  process.on('exit', ()=> flask.kill()); // Kill flask when app closes
+  // Connect to Python micro-services, set `detached` to `true` for a debug shell
+  spawn(`flask run -p ${port}`, { detached: true, shell: true, stdio: 'inherit' });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit();
-})
+  if (process.platform !== 'darwin')
+    app.quit();
+});

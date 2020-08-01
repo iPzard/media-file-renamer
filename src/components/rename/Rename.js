@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import Toast from 'components/dialog/Toast';
 import { connect } from 'react-redux';
+import { renameFiles } from 'utils/services';
 import styles from 'components/rename/scss/Rename.module.scss';
 
 /**
@@ -27,6 +28,9 @@ import styles from 'components/rename/scss/Rename.module.scss';
  * @property {Object} state.renameData - Object containing updated files and names.
  * @property {string|number} state.selectedFileIndex - represents the selected file index at any given moment.
  * @property {Function} setRenameData - Function to set the renameData object.
+ *
+ * @todo Refactor to better compartmentalize functionality to allow for better scalability
+ * @todo Add remove characters feature
  */
 
 class Rename extends Component {
@@ -34,12 +38,21 @@ class Rename extends Component {
   constructor(props) {
     super(props);
     this.scrollArea = createRef();
+    this.directory = this.props.state.files.directory;
     this.episodes = this.props.state.tvShow.episodes;
     this.fileList = this.props.state.files.fileList;
     this.season = this.props.state.tvShow.season;
 
     this.state = {
+      showError: {
+        show: false,
+        message: ''
+      },
       showWarning: {
+        show: false,
+        message: ''
+      },
+      showSuccess: {
         show: false,
         message: ''
       },
@@ -100,6 +113,9 @@ class Rename extends Component {
 
     const files = this.props.state.options.renameData.files;
     const names = this.props.state.options.renameData.names;
+    const noWarnings = !this.state.showWarning.show &&
+      !this.state.showError.show &&
+      !this.state.showSuccess.show;
 
     // If selected item scrollTop in snapshot, set it
     if (snapshot !== null)
@@ -114,10 +130,10 @@ class Rename extends Component {
 
     // If there are not enough files and the warning isn't showing, show it
     if(
-      files.includes(missingFileText) &&
-      !this.state.showWarning.show
+      files.includes(missingFileText) && noWarnings
     )
-      this.setShowWarning(true, notEnoughFilesWarning);
+      this.setShowToast('warning', true, notEnoughFilesWarning);
+
 
     // If all files are present and warning is showing, remove it
     else if(
@@ -125,14 +141,14 @@ class Rename extends Component {
       !names.includes(missingNameText) &&
       this.state.showWarning.show
     )
-      this.setShowWarning(false);
+      this.setShowToast('warning', false);
 
     // Configuration for warning messages (e.g., not enough files or too many files)
     if(this.tooManyFiles(prevProps))
-      this.setShowWarning(true, tooManyFilesWarning);
+      this.setShowToast('warning', true, tooManyFilesWarning);
 
     else if(this.missingFiles(prevProps))
-      this.setShowWarning(true, notEnoughFilesWarning);
+      this.setShowToast('warning', true, notEnoughFilesWarning);
 
   };
 
@@ -217,15 +233,18 @@ class Rename extends Component {
 
 
   // Method to set or unset the page warnings
-  setShowWarning = (show, message) => {
+  setShowToast = (type, show, message, callback) => {
+    const toastType = type === 'warning' ? 'showWarning' :
+      type === 'error' ? 'showError' : 'showSuccess';
+
     if(!show)
-      this.setState({ showWarning: { show: false, message: '' }});
+      this.setState({ [toastType]: { show: false, message: '' }}, callback || undefined);
 
     else
-      this.setState({ showWarning: { show, message } });
+      this.setState({ [toastType]: { show, message } }, callback || undefined);
   };
 
-  updateNotice = hide => this.setState({ notice: { hide } } );
+  updateNotice = (hide, callback) => this.setState({ notice: { hide } }, callback || undefined);
 
   // Method to update user added prefix
   updatePrefix = event => {
@@ -241,6 +260,7 @@ class Rename extends Component {
 
     const {
       customFunctions,
+      directory,
       resetFileList,
       resetUserMods,
       scrollArea,
@@ -250,10 +270,13 @@ class Rename extends Component {
           options: { renameData, selection: selectedFileIndex }
         }
       },
+      setShowToast,
       state: {
         notice,
         prefix,
+        showError,
         showWarning,
+        showSuccess,
         suffix
       },
       updateNotice,
@@ -268,6 +291,11 @@ class Rename extends Component {
       selectedFileIndex,
       setRenameData
     };
+
+    const missingDataText = [
+      missingFileText,
+      missingNameText
+    ];
 
     return (
       <section className={ styles.rename }>
@@ -323,22 +351,48 @@ class Rename extends Component {
         </div>
 
         <Toast
-          messageBarType='warning'
-          show={ showWarning.show }
-          type='warning'
+          messageBarType={
+            showError.show ? 'error' :
+            showWarning.show ? 'warning' :
+            'success'
+          }
+          onDismiss={
+            showError.show ? ()=> setShowToast('error', false) :
+            showSuccess.show ? ()=> setShowToast('success', false) :
+            showWarning.show ? null : null
+          }
+          show={
+            showError.show ||
+            showWarning.show ||
+            showSuccess.show
+          }
+          type={
+            showError.show ? 'error' :
+            showWarning.show ? 'warning' :
+            'success'
+          }
         >
-          { showWarning.message }
+          {
+            showError.show ? showError.message :
+            showWarning.show ? showWarning.message :
+            showSuccess.show ? showSuccess.message :
+            undefined
+          }
         </Toast>
+
         <Footer customFunctions={ customFunctions } />
 
         <Notice
           cancelFunc={ ()=> updateNotice(true) }
           messageText='Would you like to rename the files? This cannot be undone.'
           title='Rename files'
-          okayFunc={ ()=> {
-            alert('ok');
-            updateNotice(true)
-          } }
+          okayFunc={ ()=> renameFiles(directory, renameData, missingDataText, (response) => {
+              updateNotice(true,
+                ()=> setShowToast(response.status, true, response.message,
+                ()=> setRenameData({ ...renameData, files: response.files }, 0)
+              ))
+            })
+          }
           hideDialog={ notice.hide }
           setHideDialog={ updateNotice }
         />

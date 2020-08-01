@@ -1,38 +1,76 @@
-from os import walk
-
+import ast
+from os import path, rename, walk
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/<command>', methods=['GET', 'POST'])
-def index(command):
 
-  """ Request to get files:
-  Request to get the directory path and list
-  of files to rename from user's computer.
-  """
+""" Request to get files:
+Request to get the directory path and list
+of files to rename from user's computer.
+"""
+@app.route('/get_files', methods=['POST'])
+def get_files():
 
-  if command == 'get_files':
-    files = None
+  # Iterate directory for data
+  for (directory) in walk(request.data.decode()):
+    files = directory[2]
 
-    for (directory) in walk(request.data.decode()):
-      files = directory[2]
-
-    # Return list/array of file names
-    return jsonify(files)
+  return jsonify(files)
 
 
-  """ Request to rename files:
-  Request to rename files in the directory
-  path provided with new names passed in
-  the request data.
-  """
+""" Request to rename files:
+Request to rename files in the directory
+path provided with new names passed in
+the request data.
+"""
+@app.route('/rename_files', methods=['POST'])
+def rename_files():
 
-  if command == 'rename_files':
-    print(request.data)
+  # Convert bytes string to dictionary
+  data = ast.literal_eval(request.data.decode())
 
-    return 'Hello!'
+  # Declarations
+  directory = data['directory']
+  rename_data = data['renameData']
+  names_list = list(zip(rename_data['files'], rename_data['names']))
+  missing_data_text = data['missingDataText']
 
-# Available for manual testing
-# if __name__ == '__main__':
-#   app.run(host='127.0.0.1', port=8081)
+  # Rename files
+  response_message = 'All files have been successfully renamed.'
+  status = 'success'
+
+  for file, name in names_list:
+    old_name = path.join(directory, file)
+    new_name = path.join(directory, name)
+
+    # If a user-approved missing index is recursed
+    if old_name in missing_data_text or new_name in missing_data_text:
+      continue
+
+    # If file exists and new name doesn't, rename
+    elif path.exists(old_name) and not path.exists(new_name):
+      rename(old_name, new_name)
+
+    # If file doesn't exist
+    elif not path.exists(old_name):
+      response_message = 'One or more file not found in directory.'
+      status = 'error'
+
+    # If new name already exists
+    elif path.exists(new_name):
+      response_message = 'One or more "New names" already exists in directory.'
+      status = 'error'
+
+  # Get new (actual) file names
+  for (names) in walk(directory):
+    files = names[2]
+
+  # Response object
+  rename_response = {
+    'files': files,
+    'message': response_message,
+    'status': status
+  }
+
+  return jsonify(rename_response)

@@ -52,10 +52,13 @@ export const getFiles = (callback) => {
 
 /**
  * @description - Function to rename files with matched files, in original directory (for now).
- *
+ * @param {string} directory - Directory of files to be renamed.
+ * @param {Object} renameData - Object of files and names arrays.
+ * @param {Array} missingDataText - Array of constants for missing file text to check on back-end.
+ * @param {Function} [callback] - Optional callback which is provided the response as an argument.
  * @memberof Services
  */
-export const renameFiles = (folder, names, callback) => {
-  const data = { folder, names };
-  post(data, 'rename_files', response => console.log(response)); // callback goes here later
+export const renameFiles = (directory, renameData, missingDataText, callback) => {
+  const data = JSON.stringify({ directory, renameData, missingDataText });
+  post(data, 'rename_files', response => callback(response)); // callback goes here later
 };
