@@ -12,13 +12,11 @@ To build and run locally (e.g., for developing), you can run clone the project a
 ```bash
 npm run install
 ```
-<br>
 
 **Build React:**
 ```bash
 npm run build
 ```
-<br>
 
 **Start Electron:**
 ```bash
