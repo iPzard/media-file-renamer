@@ -10,7 +10,7 @@ To build and run locally (e.g., for developing), you can run clone the project a
 
 **Install Dependencies:**
 ```bash
-npm run install
+npm install
 ```
 
 **Build React:**
