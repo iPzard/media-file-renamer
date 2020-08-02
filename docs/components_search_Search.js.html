@@ -67,8 +67,23 @@ import styles from 'components/search/scss/Search.module.scss';
 const Search = props => {
 
   const [ results, setResults ] = useState([]);
-  const { state: { tvShow } } = props;
+  const [ backToggle, setBackToggle ] = useState(true);
+  const { prevPage, state: { tvShow } } = props;
 
+  useEffect(() => {
+    if(results.length &amp;&amp; !backToggle)
+      setBackToggle(true);
+  }, [results]);
+
+  const customFunctions = {
+    back: ()=> tvShow &amp;&amp; backToggle ? setBackToggle(false) : prevPage()
+  };
+
+  const sections = {
+    results: &lt;Results matches={ results } setResults={ setResults } />,
+    tvIcon: &lt;TvIcon className={ styles.svg } />,
+    selection: &lt;Selection />
+  };
   return (
     &lt;section className={ styles.search }>
       &lt;Header
@@ -81,12 +96,12 @@ const Search = props => {
         onClear={ ()=> setResults([]) }
       />
       {
-        results.length ? &lt;Results matches={ results } setResults={ setResults } /> :
-        !tvShow ? &lt;TvIcon className={ styles.svg } /> :
-        &lt;Selection />
+        results.length ? sections.results :
+        !tvShow || !backToggle ? sections.tvIcon :
+        sections.selection
       }
 
-      &lt;Footer disabled={{ next: !tvShow }} />
+      &lt;Footer disabled={{ next: !tvShow || !backToggle }} customFunctions={ customFunctions }/>
     &lt;/section>
   );
 };
