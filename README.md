@@ -27,7 +27,7 @@ npm run start
 
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
-* SVG icons used are from [Font Awesome](http://fontawesome.io) and are fully open-source.
+* SVG icons used are from [Font Awesome](http://fontawesome.io) and fully open-source.
 
 ## 🐱‍👤 Develop
 Media File Renamer is built with Electron, React, Python, the [TVmaze API](https://www.tvmaze.com/api), and is fully open-source. Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here: [Code Documentation](https://ipzard.github.io/media-file-renamer/)
