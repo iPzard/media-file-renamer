@@ -44,22 +44,11 @@ class Rename extends Component {
     this.season = this.props.state.tvShow.season;
 
     this.state = {
-      showError: {
-        show: false,
-        message: ''
-      },
-      showWarning: {
-        show: false,
-        message: ''
-      },
-      showSuccess: {
-        show: false,
-        message: ''
-      },
-      notice: {
-        hide: true
-      },
+      notice: { hide: true },
       prefix: '',
+      showError: { show: false, message: '' },
+      showWarning: { show: false, message: '' },
+      showSuccess: { show: false, message: '' },
       suffix: ''
     };
   };
@@ -129,11 +118,8 @@ class Rename extends Component {
       this.resetFileList(0, true);
 
     // If there are not enough files and the warning isn't showing, show it
-    if(
-      files.includes(missingFileText) && noWarnings
-    )
+    if(files.includes(missingFileText) && noWarnings)
       this.setShowToast('warning', true, notEnoughFilesWarning);
-
 
     // If all files are present and warning is showing, remove it
     else if(

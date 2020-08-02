@@ -26,10 +26,20 @@ const Search = props => {
   const [ backToggle, setBackToggle ] = useState(true);
   const { prevPage, state: { tvShow } } = props;
 
+  useEffect(() => {
+    if(results.length && !backToggle)
+      setBackToggle(true);
+  }, [results]);
+
   const customFunctions = {
     back: ()=> tvShow && backToggle ? setBackToggle(false) : prevPage()
   };
 
+  const sections = {
+    results: <Results matches={ results } setResults={ setResults } />,
+    tvIcon: <TvIcon className={ styles.svg } />,
+    selection: <Selection />
+  };
   return (
     <section className={ styles.search }>
       <Header
@@ -42,9 +52,9 @@ const Search = props => {
         onClear={ ()=> setResults([]) }
       />
       {
-        results.length ? <Results matches={ results } setResults={ setResults } /> :
-        !tvShow || !backToggle ? <TvIcon className={ styles.svg } /> :
-        <Selection />
+        results.length ? sections.results :
+        !tvShow || !backToggle ? sections.tvIcon :
+        sections.selection
       }
 
       <Footer disabled={{ next: !tvShow || !backToggle }} customFunctions={ customFunctions }/>
