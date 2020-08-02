@@ -32,7 +32,7 @@ function createWindow () {
   mainWindow.loadFile(path.join(__dirname, 'build/index.html'));
 
   // Open the DevTools (for debugging).
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   // Set opacity for title on window blur & focus
   const setTitleOpacity = value => `
@@ -69,7 +69,7 @@ app.whenReady().then(() => {
 
 
   // Connect to Python micro-services, set `detached` to `true` for a debug shell
-  spawn(`flask run -p ${port}`, { detached: true, shell: true, stdio: 'inherit' });
+  spawn(`flask run -p ${port}`, { detached: false, shell: true, stdio: 'inherit' });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

@@ -30,6 +30,7 @@
   "description": "Fix names of tv show episode files",
   "devDependencies": {
     "electron": "^9.0.5",
+    "electron-packager": "^15.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "jsdoc": "^3.6.5",
@@ -44,9 +45,11 @@
   "main": "main.js",
   "name": "media-name-fixer",
   "private": true,
+  "productName": "Media File Renamer",
   "scripts": {
     "build": "react-scripts build",
     "build:docs": "jsdoc -c jsdoc.json",
+    "build:dist": "electron-packager . media-file-renamer --all --icon ./src/assets/exe-icon.svg --out ./dist --overwrite",
     "eject": "react-scripts eject",
     "start": "electron .",
     "test": "react-scripts test"

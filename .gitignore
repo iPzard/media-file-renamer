@@ -23,6 +23,7 @@ yarn-error.log*
 
 # production
 /build
-
+/dist
+/src/assets/
 # testing
 /coverage
