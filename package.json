@@ -18,7 +18,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "get-port": "^5.1.1",
-    "kill-port": "^1.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -49,7 +48,10 @@
   "scripts": {
     "build": "react-scripts build",
     "build:docs": "jsdoc -c jsdoc.json",
-    "build:dist": "electron-packager . media-file-renamer --all --icon ./src/assets/exe-icon.svg --out ./dist --overwrite",
+    "build:all": "electron-packager . media-file-renamer --asar --all --icon ./public/favicon.ico --out ./dist --overwrite",
+    "build:linux": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico  --linux --out ./dist --overwrite",
+    "build:mac": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico --darwin --out ./dist --overwrite",
+    "build:windows": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico --win32 --out ./dist --overwrite",
     "eject": "react-scripts eject",
     "start": "electron .",
     "test": "react-scripts test"

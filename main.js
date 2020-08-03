@@ -68,8 +68,11 @@ app.whenReady().then(() => {
   })
 
 
-  // Connect to Python micro-services, set `detached` to `true` for a debug shell
-  spawn(`flask run -p ${port}`, { detached: false, shell: true, stdio: 'inherit' });
+  // Connect to Python micro-services
+  spawn(`flask run -p ${port}`, { detached: false, shell: true, stdio: 'pipe' });
+
+  // Use this instead if you need to debug Flask in a shell
+  //spawn(`flask run -p ${port}`, { detached: true, shell: true, stdio: 'inherit' });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
