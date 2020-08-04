@@ -27,6 +27,9 @@ npm run build
 ```bash
 npm run start
 ```
+<br>
+
+## 📦 Packaging
 
 **Build all OS:**
 ```bash
