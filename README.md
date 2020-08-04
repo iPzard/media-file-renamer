@@ -28,6 +28,25 @@ npm run build
 npm run start
 ```
 
+**Build all OS:**
+```bash
+npm run build:all
+```
+
+**Build Linux:**
+```bash
+npm run build:linux
+```
+
+**Build MacOS:**
+```bash
+npm run build:mac
+```
+
+**Build Windows:**
+```bash
+npm run build:windows
+```
 <br>
 
 ## 🙏 Attribution
@@ -41,7 +60,7 @@ Media File Renamer is built with Electron, React, Python, the [TVmaze API](https
 
 <br>
 
-## 📚 Docs
+## 🐱‍👓 Docs
 Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Media File Renamer](https://ipzard.github.io/media-file-renamer/)
 
