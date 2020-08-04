@@ -27,6 +27,11 @@ npm run build
 ```bash
 npm run start
 ```
+
+**Build Documentation:**
+```bash
+npm run build:docs
+```
 <br>
 
 ## 📦 Packaging
