@@ -64,7 +64,7 @@ npm run build:all
 <br>
 
 ## 🐱‍👓 Docs
-Media File Renamer is built with Electron, React, Python, the [TVmaze API](https://www.tvmaze.com/api), and is fully open-source. Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
+Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Media File Renamer](https://ipzard.github.io/media-file-renamer/)
 
 <br>
