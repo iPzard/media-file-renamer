@@ -5,6 +5,26 @@
 
 <br>
 
+## 🔗 Downloads
+Downloads are available for Windows, macOS, and Linux; in their respective links below.
+
+**Windows**
+* [win32-ia32](https://drive.google.com/drive/folders/1i7FY24feb6-jBlbiwRWSe0R7v2cRFTDO?usp=sharing)
+* [win32-x64](https://drive.google.com/drive/folders/1Hq-v1BJtFhL7OaaxDQft3P7NCLxoqid-?usp=sharing)
+* [win32-arm64](https://drive.google.com/drive/folders/1aj5qD6S8OL8Fg3QsJvcdTm47izCjcFif?usp=sharing)
+
+**macOS**
+* [darwin-x64](https://drive.google.com/drive/folders/1lCCQaov2lybORGN520YRSb9MeY9VHw6x?usp=sharing)
+* [mas-x64](https://drive.google.com/drive/folders/1PHdiwPhpW2422YGrm20itUogWqpl7Qvv?usp=sharing)
+
+**Linux**
+* [linux-ia32](https://drive.google.com/drive/folders/1jzoPyMNFV37SFibUXEtZySo76rn8uupj?usp=sharing)
+* [linux-x64](https://drive.google.com/drive/folders/1F-_KpUcZIW7mlInn0MshCK5algHSoh0p?usp=sharing)
+* [linux-armv7l](https://drive.google.com/drive/folders/121Txv59E5xXSPuulYzmyDJ4ib8N1Y31x?usp=sharing)
+* [linux-arm64](https://drive.google.com/drive/folders/1c4J9dpEa2pO-gUWgQMjbBrLB_zrG88I2?usp=sharing)
+
+<br>
+
 ## 📜 Scripts
 To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory:
 
