@@ -5,7 +5,7 @@
 
 <br>
 
-## 🔗 Downloads
+## 💾 Downloads
 Downloads are available for Windows, macOS, and Linux; in their respective links below.
 
 **Windows**
