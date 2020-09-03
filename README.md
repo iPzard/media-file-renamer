@@ -6,7 +6,7 @@
 <br>
 
 ## 💾 Downloads
-Downloads are available for Windows, macOS, and Linux; in their respective links below.
+Downloads are available for Windows, macOS, and Linux; in their respective links below:
 
 **Windows**
 * [win32-ia32](https://drive.google.com/drive/folders/1i7FY24feb6-jBlbiwRWSe0R7v2cRFTDO?usp=sharing)
