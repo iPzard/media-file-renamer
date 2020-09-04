@@ -8,16 +8,16 @@
 ## 💾 Downloads
 Downloads are available for Windows, macOS, and Linux; in their respective links below:
 
-**Windows**
+**Windows:**
 * [win32-ia32](https://drive.google.com/drive/folders/1i7FY24feb6-jBlbiwRWSe0R7v2cRFTDO?usp=sharing)
 * [win32-x64](https://drive.google.com/drive/folders/1Hq-v1BJtFhL7OaaxDQft3P7NCLxoqid-?usp=sharing)
 * [win32-arm64](https://drive.google.com/drive/folders/1aj5qD6S8OL8Fg3QsJvcdTm47izCjcFif?usp=sharing)
 
-**macOS**
+**macOS:**
 * [darwin-x64](https://drive.google.com/drive/folders/1lCCQaov2lybORGN520YRSb9MeY9VHw6x?usp=sharing)
 * [mas-x64](https://drive.google.com/drive/folders/1PHdiwPhpW2422YGrm20itUogWqpl7Qvv?usp=sharing)
 
-**Linux**
+**Linux:**
 * [linux-ia32](https://drive.google.com/drive/folders/1jzoPyMNFV37SFibUXEtZySo76rn8uupj?usp=sharing)
 * [linux-x64](https://drive.google.com/drive/folders/1F-_KpUcZIW7mlInn0MshCK5algHSoh0p?usp=sharing)
 * [linux-armv7l](https://drive.google.com/drive/folders/121Txv59E5xXSPuulYzmyDJ4ib8N1Y31x?usp=sharing)
