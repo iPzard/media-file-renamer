@@ -189,8 +189,10 @@ class Rename extends Component {
           '': files[index].substring(files[index].lastIndexOf('.'));
 
         // Piece together rename index
-        // TODO: Remove any special characters from new names list (use replace())
-        names[index] = `${prefix}${names[index]}${suffix}${extension}`;
+        names[index] = `${prefix}${names[index]}${suffix}${extension}`
+
+         // Replace special (unusable in folder) characters
+        .replace(/\\|:|\*|\?|"|<|>|\|/g, ',');
       }
     });
 
