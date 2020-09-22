@@ -180,13 +180,13 @@ class Rename extends Component {
 
       // If file the name is matching has an extension
       if(
-          /\.[a-zA-Z][a-zA-Z][a-zA-Z]$/.test(files[index]) ||
+          /\.[a-zA-Z][a-zA-Z]([a-zA-Z]|[0-9])$/.test(files[index]) ||
           files[index].includes(missingFileText)
         ) {
 
         // Only provide extension if it's not a 'No File' or 'Too Many Files' index
         const extension = files[index].includes(missingFileText) || names[index].includes(missingNameText) ?
-          '': files[index].substring(files[index].lastIndexOf('.'));
+          '' : files[index].substring(files[index].lastIndexOf('.'));
 
         // Piece together rename index
         names[index] = `${prefix}${names[index]}${suffix}${extension}`
