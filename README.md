@@ -7,19 +7,18 @@
 Downloads are available for Windows, macOS, and Linux; in their respective links below:
 
 **Windows:**
-* [win32-ia32](https://drive.google.com/drive/folders/1i7FY24feb6-jBlbiwRWSe0R7v2cRFTDO?usp=sharing)
-* [win32-x64](https://drive.google.com/drive/folders/1Hq-v1BJtFhL7OaaxDQft3P7NCLxoqid-?usp=sharing)
-* [win32-arm64](https://drive.google.com/drive/folders/1aj5qD6S8OL8Fg3QsJvcdTm47izCjcFif?usp=sharing)
+* [win32-ia32](https://drive.google.com/file/d/1rfcX-IMp7oSUwigkGkhBBVpa9V57Vbdg/view?usp=sharing)
+* [win32-x64](https://drive.google.com/file/d/1VnCBqaA4DG1g8Du1zpkFQMlLolmOo3Vc/view?usp=sharing)
+* [win32-arm64](https://drive.google.com/file/d/1qQt43lc56HBkpfIxiGuZPiIdRGsZ-j-O/view?usp=sharing)
 
 **macOS:**
-* [darwin-x64](https://drive.google.com/drive/folders/1lCCQaov2lybORGN520YRSb9MeY9VHw6x?usp=sharing)
-* [mas-x64](https://drive.google.com/drive/folders/1PHdiwPhpW2422YGrm20itUogWqpl7Qvv?usp=sharing)
+* [darwin-x64](https://drive.google.com/file/d/1iOyh_irWwGQ4SwF15iSl12CSphfB-S3L/view?usp=sharing)
 
 **Linux:**
-* [linux-ia32](https://drive.google.com/drive/folders/1jzoPyMNFV37SFibUXEtZySo76rn8uupj?usp=sharing)
-* [linux-x64](https://drive.google.com/drive/folders/1F-_KpUcZIW7mlInn0MshCK5algHSoh0p?usp=sharing)
-* [linux-armv7l](https://drive.google.com/drive/folders/121Txv59E5xXSPuulYzmyDJ4ib8N1Y31x?usp=sharing)
-* [linux-arm64](https://drive.google.com/drive/folders/1c4J9dpEa2pO-gUWgQMjbBrLB_zrG88I2?usp=sharing)
+* [linux-ia32](https://drive.google.com/file/d/1u4NSe_bwBSy1WGZ2jG-KOakrxUvbg0cZ/view?usp=sharing)
+* [linux-x64](https://drive.google.com/file/d/1gcWrS9i2bMExorjDlHRwcL9_lm12emyv/view?usp=sharing)
+* [linux-armv7l](https://drive.google.com/file/d/1cKXgZU5FIpUpb0xWsxqxwonSzNnAZUvU/view?usp=sharing)
+* [linux-arm64](https://drive.google.com/file/d/1i8v8DzNhR8TDNxbYzDYxdwTXZ3Bmr3t4/view?usp=sharing)
 
 <br>
 
