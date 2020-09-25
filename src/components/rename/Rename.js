@@ -192,7 +192,10 @@ class Rename extends Component {
         names[index] = `${prefix}${names[index]}${suffix}${extension}`
 
          // Replace special (unusable in folder) characters
-        .replace(/\\|:|\*|\?|"|<|>|\|/g, ',');
+         .replace(/\\|\/|\|/g, '-')
+         .replace(/:/g, ',')
+         .replace(/"/g, "'")
+         .replace(/\*|\?|<|>/g, '');
       }
     });
 
