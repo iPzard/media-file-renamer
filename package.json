@@ -47,13 +47,14 @@
   "private": true,
   "productName": "Media File Renamer",
   "scripts": {
+    "build": "node ./scripts/build",
     "build:react": "react-scripts build",
     "build:python": "node ./scripts/pyinstaller",
     "build:docs": "jsdoc -c jsdoc.json",
-    "build:all": "electron-packager . mfr --asar --all --icon ./public/favicon.ico --out ./dist/all --overwrite",
-    "build:linux": "electron-packager . mfr --asar --icon ./public/favicon.ico  --linux --out ./dist/linux --overwrite",
-    "build:mac": "electron-packager . mfr --asar --icon ./public/favicon.ico --darwin --out ./dist/mac --overwrite",
-    "build:windows": "electron-packager . mfr --asar --icon ./public/favicon.ico --win32 --out ./dist/windows --overwrite",
+    "build:package:all": "electron-packager . media-file-renamer --asar --all --icon ./public/favicon.ico --out ./dist/all --overwrite",
+    "build:package:linux": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico  --linux --out ./dist/linux --overwrite",
+    "build:package:mac": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico --darwin --out ./dist/mac --overwrite",
+    "build:package:windows": "electron-packager . media-file-renamer --asar --icon ./public/favicon.ico --win32 --out ./dist/windows --overwrite",
     "eject": "react-scripts eject",
     "start": "electron .",
     "test": "react-scripts test"
