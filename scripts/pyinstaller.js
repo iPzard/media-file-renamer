@@ -1,5 +1,9 @@
 const { spawn } = require('child_process');
 const app = 'app.py';
 
-// Build Pyinstaller executable
+/**
+ * @namespace PyInstaller
+ * @description - Child process to convert Python app into an executable (.exe).
+ */
+
 spawn(`pyinstaller --noconsole ${app}`, { detached: false, shell: true, stdio: 'inherit' });
