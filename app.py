@@ -1,8 +1,15 @@
 import ast
+import sys
 from os import path, rename, walk
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
+
+""" Get Flask port:
+Accepts port as system argument
+e.g., `start app.exe 3000`
+"""
+port = sys.argv[1]
 
 
 """ Request to get files:
@@ -34,7 +41,9 @@ def rename_files():
   directory = data['directory']
   rename_data = data['renameData']
   names_list = list(zip(rename_data['files'], rename_data['names']))
+
   missing_data_text = data['missingDataText']
+  files = []
 
   # Rename files
   response_message = 'All files have been successfully renamed.'
@@ -45,11 +54,13 @@ def rename_files():
     new_name = path.join(directory, name)
 
     # If a user-approved missing index is recursed
-    if old_name in missing_data_text or new_name in missing_data_text:
+    if file in missing_data_text or name in missing_data_text:
+      files.append(file)
       continue
 
     # If file exists and new name doesn't, rename
     elif path.exists(old_name) and not path.exists(new_name):
+      files.append(name)
       rename(old_name, new_name)
 
     # If file doesn't exist
@@ -57,14 +68,8 @@ def rename_files():
       response_message = 'One or more file not found in directory.'
       status = 'error'
 
-    # If new name already exists
-    elif path.exists(new_name):
-      response_message = 'One or more "New names" already exists in directory.'
-      status = 'error'
-
-  # Get new (actual) file names
-  for (names) in walk(directory):
-    files = names[2]
+    else:
+      files.append(name)
 
   # Response object
   rename_response = {
@@ -74,3 +79,24 @@ def rename_files():
   }
 
   return jsonify(rename_response)
+
+
+""" Shutdown Flask:
+Generic function to shutdown
+Flask when Electron app closes.
+"""
+@app.route('/quit')
+def quit():
+  shutdown = request.environ.get('werkzeug.server.shutdown')
+  shutdown()
+
+  return
+
+
+"""
+Start flask microservice server:
+Uses a random port between 3000
+and 3999.
+"""
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=port)

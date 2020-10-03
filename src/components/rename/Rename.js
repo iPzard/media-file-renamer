@@ -169,10 +169,7 @@ class Rename extends Component {
     }
 
     else if(files.length > names.length) {
-      const namesNoGaps = files.reduce((acc, item, index) =>
-        acc = [ ...acc, names[index] || missingNameText], []);
 
-      names = namesNoGaps;
     }
 
     // Add extension from matching file
@@ -185,11 +182,11 @@ class Rename extends Component {
         ) {
 
         // Only provide extension if it's not a 'No File' or 'Too Many Files' index
-        const extension = files[index].includes(missingFileText) || names[index].includes(missingNameText) ?
+        const extension = files[index].includes(missingFileText) || name.includes(missingNameText) ?
           '' : files[index].substring(files[index].lastIndexOf('.'));
 
         // Piece together rename index
-        names[index] = `${prefix}${names[index]}${suffix}${extension}`
+        name = `${prefix}${name}${suffix}${extension}`
 
          // Replace special (unusable in folder) characters
          .replace(/\\|\/|\|/g, '-')

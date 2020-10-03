@@ -2,6 +2,7 @@
 
 #cache
 app.pyc
+app.spec
 __pycache__
 
 # debug

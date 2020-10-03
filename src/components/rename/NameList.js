@@ -37,8 +37,8 @@ const NameList = props => {
           list.map((name, index) => {
             const hasNoName = name.includes(missingFileText) || name.includes(missingNameText);
             const matchesMissingName = !hasNoName && type === 'files' ?
-              renameData.names[index].includes(missingNameText) :
-              renameData.files[index].includes(missingFileText);
+              renameData.names[index]?.includes(missingNameText) :
+              renameData.files[index]?.includes(missingFileText);
 
             const selected = selectedFileIndex === index && type === 'files';
             const listProps = { key: hasNoName ? `${type}-${index}` : `${type}-${name}` };

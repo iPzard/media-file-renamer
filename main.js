@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { spawn } = require('child_process');
+const fetch = require('node-fetch');
 const getPort = require('get-port');
 const path = require('path');
 
@@ -12,6 +13,11 @@ let port;
   ipcMain.on('get-port-number', (event, arg) => event.returnValue = port);
 })();
 
+const shutdown = (port)=> {
+  fetch(`http://localhost:${port}/quit`)
+    .then(() => app.quit())
+    .catch(()=> app.quit());
+};
 
 function createWindow () {
   // Create the browser window.
@@ -32,7 +38,7 @@ function createWindow () {
   mainWindow.loadFile(path.join(__dirname, 'build/index.html'));
 
   // Open the DevTools (for debugging).
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Set opacity for title on window blur & focus
   const setTitleOpacity = value => `
@@ -41,13 +47,14 @@ function createWindow () {
   `;
 
   const executeOnWindow = command => mainWindow.webContents.executeJavaScript(command);
+
   mainWindow.on('focus', ()=> executeOnWindow(setTitleOpacity(1)));
   mainWindow.on('blur',  ()=> executeOnWindow(setTitleOpacity(.5)));
 
   // Send window control event listeners to front end
   ipcMain.on('app-maximize',   () => mainWindow.maximize());
   ipcMain.on('app-minimize',   () => mainWindow.minimize());
-  ipcMain.on('app-quit',       () => app.quit());
+  ipcMain.on('app-quit',       () => shutdown(port));
   ipcMain.on('app-unmaximize', () => mainWindow.unmaximize());
   ipcMain.on('resize-window',  (event, arg) => {
     const { width = 850, height = 600 } = arg;
@@ -68,10 +75,10 @@ app.whenReady().then(() => {
   })
 
 
-  // Connect to Python micro-services
-  spawn(`flask run -p ${port}`, { detached: false, shell: true, stdio: 'pipe' });
+  // Connect to Python micro-services..
+  spawn(`start ./dist/app/app.exe ${port}`, { detached: false, shell: true, stdio: 'pipe' });
 
-  // Use this instead if you need to debug Flask in a shell
+  // Run Flask in a shell for dev, debugging or testing
   //spawn(`flask run -p ${port}`, { detached: true, shell: true, stdio: 'inherit' });
 });
 
@@ -80,5 +87,6 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin')
-    app.quit();
+    shutdown();
+
 });
