@@ -30,6 +30,11 @@ To build and run locally (e.g., for developing), you can clone the project and t
 npm install
 ```
 
+**Build Documentation:**
+```bash
+npm run build:docs
+```
+
 **Build React & Python:**
 ```bash
 npm run build
@@ -48,11 +53,6 @@ npm run build:python
 **Start Electron:**
 ```bash
 npm run start
-```
-
-**Build Documentation:**
-```bash
-npm run build:docs
 ```
 <br>
 
