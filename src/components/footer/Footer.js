@@ -17,7 +17,7 @@ import styles from 'components/footer/scss/Footer.module.scss';
  * @property {Function} prevPage - Function to execute when the secondary (back) button is clicked.
  */
 
-const Footer = props => {
+const Footer = (props) => {
   const {
     customFunctions,
     disabled,

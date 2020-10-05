@@ -18,7 +18,7 @@ import styles from 'components/search/scss/Selection.module.scss';
  * @memberof Search
  */
 
-const Selection = props => {
+const Selection = (props) => {
 
   const {
     setSeason,

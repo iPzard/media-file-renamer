@@ -14,7 +14,7 @@ import styles from 'components/footer/scss/FooterButtons.module.scss';
  * @todo Add prop types to these, and export after declaration
  */
 
-export const NextButton = props => (
+export const NextButton = (props) => (
   <PrimaryButton
     className={ styles.button }
     disabled={ props.disabled ? props.disabled.next : false }
@@ -24,7 +24,7 @@ export const NextButton = props => (
   />
 );
 
-export const BackButton = props => (
+export const BackButton = (props) => (
   <DefaultButton
     className={ styles.button }
     disabled={ props.disabled ? props.disabled.back : false }

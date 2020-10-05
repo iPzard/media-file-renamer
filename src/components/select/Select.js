@@ -19,7 +19,7 @@ import styles from 'components/select/scss/Select.module.scss';
  * @property {Function} setDirectory - Function to set directory files are coming from in Redux store.
  */
 
-const Select = props => {
+const Select = (props) => {
   const { setFiles, setDirectory } = props;
 
   const disabled = !props.state.files.fileList.length ? true : false;

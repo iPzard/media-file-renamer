@@ -15,14 +15,14 @@ import styles from 'components/search/scss/Results.module.scss';
  * @memberof Search
  */
 
-const Results = props => {
+const Results = (props) => {
   const {
     matches,
     setResults,
     setTVShowAll
   } = props;
 
-  const updateTvShow = match => {
+  const updateTvShow = (match) => {
     getEpisodeList(match.show.id, episodes =>
       setTVShowAll(match, episodes, 1));
     setResults([]);
@@ -38,7 +38,7 @@ const Results = props => {
       <h3><span>{ matches.length } Results:</span><span>Aired</span></h3>
       <ul>
         {
-          matches.map(match => {
+          matches.map((match) => {
             const genres = match.show.genres.length ?
               `(${match.show.genres.join(', ')})` : undefined;
 

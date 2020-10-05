@@ -74,24 +74,22 @@ class Controls extends Component {
       setHideDialog,
     } = this;
 
-    if(!Array.prototype.hasOwnProperty('swapIndices')) {
-      Array.prototype.swapIndices = function(indexA, indexB) {
-        this[indexA] = this.splice(indexB, 1, this[indexA])[0];
-        return this;
-      };
-    }
+    const swapIndices = (array, indexA, indexB) => {
+      array[indexA] = array.splice(indexB, 1, array[indexA])[0];
+      return array;
+    };
 
     switch(command) {
       case 'up':
         if(selectedFileIndex <= 0) return;
-        files.swapIndices(selectedFileIndex, selectedFileIndex - 1);
+        swapIndices(files, selectedFileIndex, selectedFileIndex - 1);
         this.setState({ updated: true }, resetFileList(selectedFileIndex - 1, true));
         //setRenameData(renameData, selectedFileIndex - 1);
         break;
 
       case 'down':
         if(selectedFileIndex >= renameData.files.length - 1) return;
-        files.swapIndices(selectedFileIndex, selectedFileIndex + 1);
+        swapIndices(files, selectedFileIndex, selectedFileIndex + 1);
         this.setState({ updated: true }, resetFileList(selectedFileIndex + 1, true));
         //setRenameData(renameData, selectedFileIndex + 1);
         break;

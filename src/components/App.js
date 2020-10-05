@@ -12,7 +12,7 @@ import styles from 'components/App.module.scss';
 loadTheme({ palette: customTheme });
 
 
-const App = props => {
+const App = (props) => {
   const { state: { page } } = props;
 
   useEffect(()=> config[page].setScreenSize(), [page]);

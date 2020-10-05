@@ -7,7 +7,7 @@ import styles from 'components/titlebar/scss/TitlebarButtons.module.scss';
  * @memberof Titlebar
  */
 
-export const MinimizeButton = props => (
+export const MinimizeButton = (props) => (
   <IconButton
     className={ styles.button }
     iconProps={{ iconName: 'ChromeMinimize' }}
@@ -21,7 +21,7 @@ export const MinimizeButton = props => (
  * @description Titlebar maximize button.
  * @memberof Titlebar
  */
-export const MaximizeButton = props => (
+export const MaximizeButton = (props) => (
   <IconButton
     className={ styles.button }
     iconProps={{ iconName: 'Checkbox' }}
@@ -35,7 +35,7 @@ export const MaximizeButton = props => (
  * @description Titlebar contract (unmaximize) button.
  * @memberof Titlebar
  */
-export const ContractButton = props => (
+export const ContractButton = (props) => (
   <IconButton
     className={ styles.button }
     iconProps={{ iconName: 'MiniContract' }}
@@ -49,7 +49,7 @@ export const ContractButton = props => (
  * @description Titlebar close button.
  * @memberof Titlebar
  */
-export const CloseButton = props => (
+export const CloseButton = (props) => (
   <IconButton
     className={ styles.button }
     iconProps={{ iconName: 'ChromeClose' }}

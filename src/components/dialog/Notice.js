@@ -20,7 +20,7 @@ import { useId } from '@uifabric/react-hooks';
  * @tutorial - https://developer.microsoft.com/en-us/fluentui#/controls/web/dialog
  */
 
-export const Notice = props => {
+export const Notice = (props) => {
 
   const {
     okayText = 'Confirm',
@@ -40,16 +40,16 @@ export const Notice = props => {
     subText: messageText,
   };
 
+  // Ensure unique IDs
+  const labelId = useId('dialogLabel');
+  const subTextId = useId('subTextLabel');
+
   const modalProps = useMemo(() => ({
     titleAriaId: labelId,
     subtitleAriaId: subTextId,
     isBlocking: false,
     styles: { main: { maxWidth: 450 } },
   }), [labelId, subTextId]);
-
-  // Ensure unique IDs
-  const labelId = useId('dialogLabel');
-  const subTextId = useId('subTextLabel');
 
   const toggleHideDialog = () => setHideDialog(!hideDialog);
 

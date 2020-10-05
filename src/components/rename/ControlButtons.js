@@ -12,7 +12,7 @@ import styles from 'components/rename/scss/ControlButtons.module.scss';
  * @description - Button to navigate down in the rename file list.
  * @memberof Controls
  */
-export const DownButton = props => <IconButton
+export const DownButton = (props) => <IconButton
   className={ styles.button }
   iconProps={{ iconName: 'CaretDownSolid8' }}
   title="Move Down"
@@ -24,7 +24,7 @@ export const DownButton = props => <IconButton
  * @description - Button to navigate up in the rename file list.
  * @memberof Controls
  */
-export const UpButton = props => <IconButton
+export const UpButton = (props) => <IconButton
   className={ styles.button }
   iconProps={{ iconName: 'CaretUpSolid8' }}
   title="Move Up"
@@ -36,7 +36,7 @@ export const UpButton = props => <IconButton
  * @description - Button to reset the rename file list.
  * @memberof Controls
  */
-export const ResetButton = props => <IconButton
+export const ResetButton = (props) => <IconButton
   className={ styles.button }
   iconProps={{ iconName: 'Refresh' }}
   title="Reset"
@@ -48,7 +48,7 @@ export const ResetButton = props => <IconButton
  * @description - Button to remove a name from the rename file list.
  * @memberof Controls
  */
-export const TrashButton = props => <IconButton
+export const TrashButton = (props) => <IconButton
   className={ styles.button }
   iconProps={{ iconName: 'Delete' }}
   title="Remove"

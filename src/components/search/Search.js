@@ -20,7 +20,7 @@ import styles from 'components/search/scss/Search.module.scss';
  * @property {Object} state.tvShow Object containing information about matching TV Show.
  */
 
-const Search = props => {
+const Search = (props) => {
 
   const [ results, setResults ] = useState([]);
   const [ backToggle, setBackToggle ] = useState(true);
@@ -29,6 +29,7 @@ const Search = props => {
   useEffect(() => {
     if(results.length && !backToggle)
       setBackToggle(true);
+
   }, [results]);
 
   const customFunctions = {
@@ -40,6 +41,8 @@ const Search = props => {
     tvIcon: <TvIcon className={ styles.svg } />,
     selection: <Selection />
   };
+
+
   return (
     <section className={ styles.search }>
       <Header

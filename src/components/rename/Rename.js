@@ -59,7 +59,8 @@ class Rename extends Component {
   };
 
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
+  getSnapshotBeforeUpdate(prevProps) {
+
     // Line and scrollable area dimensions
     const lineHeight = 47, rows = 6;
     const scrollViewSize = lineHeight * rows;
@@ -76,8 +77,8 @@ class Rename extends Component {
 
     // Determining if below or above viewable area
     const aboveScrollView = selectedPosition > scrollView;
-    const belowScrollView = selectedPosition <= scrollView - scrollViewSize ||
-      selectedPosition === scrollView && prevSelectedPosition < selectedPosition;
+    const belowScrollView = (selectedPosition <= scrollView - scrollViewSize) ||
+      (selectedPosition === scrollView && prevSelectedPosition < selectedPosition);
 
     // If out of view, return selected item scroll top
     if (aboveScrollView || belowScrollView) {
@@ -177,7 +178,7 @@ class Rename extends Component {
 
       // If file the name is matching has an extension
       if(
-          /\.[a-zA-Z][a-zA-Z]([a-zA-Z]|[0-9])$/.test(files[index]) ||
+          /\.([a-zA-Z]|[0-9]){3,4}$/.test(files[index]) ||
           files[index].includes(missingFileText)
         ) {
 
@@ -186,7 +187,7 @@ class Rename extends Component {
           '' : files[index].substring(files[index].lastIndexOf('.'));
 
         // Piece together rename index
-        name = `${prefix}${name}${suffix}${extension}`
+        names[index] = `${prefix}${name}${suffix}${extension}`
 
          // Replace special (unusable in folder) characters
          .replace(/\\|\/|\|/g, '-')

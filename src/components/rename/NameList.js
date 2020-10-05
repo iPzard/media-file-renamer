@@ -18,7 +18,7 @@ import styles from 'components/rename/scss/NameList.module.scss';
  * @memberof Rename
  */
 
-const NameList = props => {
+const NameList = (props) => {
 
   const {
     list,
