@@ -55,35 +55,51 @@
 <blockquote>
 <p>Open source media file renamer, built with Electron, React, &amp; Python. Easily rename digital copies of your favorite titles, in bulk. Keeping the names accurate, and making them easier to import to media libraries such as Plex and/or Kodi.<br><br></p>
 </blockquote>
-<p><img src="https://user-images.githubusercontent.com/8584126/89114625-851e5680-d433-11ea-8d3f-f8e8a4549d0d.gif" alt="media_file_renamer"></p>
+<p><img src="https://user-images.githubusercontent.com/8584126/92296836-b20bd080-eeed-11ea-9672-424185d9bbf6.gif" alt="media_file_renamer"></p>
+<h2>💾 Downloads</h2>
+<p>Downloads are available for Windows and macOS; in their respective links below:</p>
+<p><strong>Windows:</strong></p>
+<ul>
+<li><a href="https://drive.google.com/file/d/1VnCBqaA4DG1g8Du1zpkFQMlLolmOo3Vc/view?usp=sharing">win32-x64</a></li>
+</ul>
+<p><strong>macOS:</strong></p>
+<ul>
+<li><a href="https://drive.google.com/file/d/1iOyh_irWwGQ4SwF15iSl12CSphfB-S3L/view?usp=sharing">darwin-x64</a></li>
+</ul>
 <br>
 <h2>📜 Scripts</h2>
-<p>To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory:</p>
+<p>To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory, in order to start electron, you must first build React &amp; Python:</p>
 <p><strong>Install Dependencies:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm install
-</code></pre>
-<p><strong>Build React:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build
-</code></pre>
-<p><strong>Start Electron:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run start
+<pre class="prettyprint source lang-bash"><code>yarn install
 </code></pre>
 <p><strong>Build Documentation:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build:docs
+<pre class="prettyprint source lang-bash"><code>yarn run build:docs
+</code></pre>
+<p><strong>Build React &amp; Python:</strong></p>
+<pre class="prettyprint source lang-bash"><code>yarn run build
+</code></pre>
+<p><strong>Build React:</strong></p>
+<pre class="prettyprint source lang-bash"><code>yarn run build:react
+</code></pre>
+<p><strong>Build Python:</strong></p>
+<pre class="prettyprint source lang-bash"><code>yarn run build:python
+</code></pre>
+<p><strong>Start Electron:</strong></p>
+<pre class="prettyprint source lang-bash"><code>yarn run start
 </code></pre>
 <br>
 <h2>📦 Packaging</h2>
 <p><strong>Build Linux:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build:linux
+<pre class="prettyprint source lang-bash"><code>yarn run build:package:linux
 </code></pre>
 <p><strong>Build MacOS:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build:mac
+<pre class="prettyprint source lang-bash"><code>yarn run build:package:mac
 </code></pre>
 <p><strong>Build Windows:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build:windows
+<pre class="prettyprint source lang-bash"><code>yarn run build:package:windows
 </code></pre>
 <p><strong>Build all:</strong></p>
-<pre class="prettyprint source lang-bash"><code>npm run build:all
+<pre class="prettyprint source lang-bash"><code>yarn run build:package:all
 </code></pre>
 <br>
 <h2>🙏 Attribution</h2>
