@@ -16,10 +16,11 @@ let port;
 const shutdown = (port)=> {
   fetch(`http://localhost:${port}/quit`)
     .then(() => app.quit())
-    .catch(()=> app.quit());
+    .catch(() => app.quit());
 };
 
 function createWindow () {
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     frame: false,
@@ -41,12 +42,12 @@ function createWindow () {
   // mainWindow.webContents.openDevTools();
 
   // Set opacity for title on window blur & focus
-  const setTitleOpacity = value => `
+  const setTitleOpacity = (value) => `
     document.getElementById('electron-window-title-text').style.opacity = ${value};
     document.getElementById('electron-window-title-buttons').style.opacity = ${value}
   `;
 
-  const executeOnWindow = command => mainWindow.webContents.executeJavaScript(command);
+  const executeOnWindow = (command) => mainWindow.webContents.executeJavaScript(command);
 
   mainWindow.on('focus', ()=> executeOnWindow(setTitleOpacity(1)));
   mainWindow.on('blur',  ()=> executeOnWindow(setTitleOpacity(.5)));
@@ -76,7 +77,7 @@ app.whenReady().then(() => {
 
 
   // Connect to Python micro-services..
-  spawn(`start ./dist/app/app.exe ${port}`, { detached: false, shell: true, stdio: 'pipe' });
+  spawn(`start ./resources/app/app.exe ${port}`, { detached: false, shell: true, stdio: 'pipe' });
 
   // Run Flask in a shell for dev, debugging or testing
   //spawn(`flask run -p ${port}`, { detached: true, shell: true, stdio: 'inherit' });
