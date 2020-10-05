@@ -63,9 +63,9 @@ function packageWindows(){
   // Define input and output directory.
   const appDirectory = path('../dist/windows/media-file-renamer-win32-x64');
   const outputDirectory = path('../dist/windows/setup');
-  const appIconPath = path('../utilities/wix/images/icon.ico');
-  const appBackgroundPath = path('../utilities/wix/images/background.png');
-  const appBannerPath = path('../utilities/wix/images/banner.png');
+  const appIconPath = path('../utilities/msi/images/icon.ico');
+  const appBackgroundPath = path('../utilities/msi/images/background.png');
+  const appBannerPath = path('../utilities/msi/images/banner.png');
 
 
   // Instantiate the MSICreator
