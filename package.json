@@ -59,7 +59,7 @@
     "build:react": "node ./scripts/build react",
     "build:python": "node ./scripts/build python",
     "build:docs": "jsdoc -c jsdoc.json",
-    "build:package:mac": "node ./scripts/package macOS",
+    "build:package:mac": "node ./scripts/package mac",
     "build:package:windows": "node ./scripts/package windows",
     "eject": "react-scripts eject",
     "start": "electron .",

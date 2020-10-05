@@ -5,14 +5,14 @@ const [ os ] = sysArgs;
 /**
  * @namespace Packaging
  * @description - Packages app for various operating systems.
- * @argument os - OS you would like to build for (e.g., windows or macOS).
+ * @argument os - OS you would like to build for (e.g., windows or mac).
  */
 
 switch(os) {
   case 'windows':
     return packageWindows();
 
-  case 'macOS':
+  case 'mac':
     return packageMacOS();
 }
 
@@ -26,7 +26,7 @@ function packageMacOS(){
     '--icon ./public/favicon.ico',
     '--darwin',
     '--out',
-    './dist/macOS',
+    './dist/mac',
     '--overwrite'
   ].join(' ');
 
