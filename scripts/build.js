@@ -23,17 +23,17 @@ class Builder {
    */
   buildPython = () => {
     console.log('Creating Python distribution files...');
-    
+
     const app = 'app.py';
     const icon = './public/favicon.ico';
-  
+
     const options = [
       '--noconsole',
       '--noconfirm',
       '--distpath ./resources',
       `--icon ${icon}`
     ].join(' ');
-  
+
     spawnSync(`pyinstaller ${options} ${app}`, { detached: false, shell: true, stdio: 'inherit' });
   }
 

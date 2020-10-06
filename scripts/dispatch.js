@@ -11,26 +11,26 @@ const { Packager } = require('./package');
 
 switch(script) {
   case 'build':
-    return build();
+    return buildApp();
 
-  case 'package': 
-    return package();
+  case 'package':
+    return packageApp();
 }
 
 /**
  * @description - Builds various production builds (e.g., Python, React).
  * @memberof Dispatcher
  */
-function build() {
+function buildApp() {
   const builder = new Builder();
-  
+
   switch(command) {
     case 'react':
       return builder.buildReact();
-  
+
     case 'python':
       return builder.buildPython();
-  
+
     case 'all':
       return builder.buildAll();
   }
@@ -40,7 +40,7 @@ function build() {
  * @description - Builds various installers (e.g., DMG, MSI).
  * @memberof Dispatcher
  */
-function package() {
+function packageApp() {
   const packager = new Packager();
 
   switch(command) {
