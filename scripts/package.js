@@ -1,78 +1,91 @@
 const { spawnSync } = require('child_process');
-const [ , , ...sysArgs ] = process.argv;
-const [ os ] = sysArgs;
+const { Builder } = require('./build');
+const builder = new Builder();
 
-/**
- * @namespace Packaging
- * @description - Packages app for various operating systems.
- * @argument os - OS you would like to build for (e.g., windows or mac).
- */
-
-switch(os) {
-  case 'windows':
-    return packageWindows();
-
-  case 'mac':
-    return packageMacOS();
-}
-
-function packageMacOS(){
-
-  // TODO: Add installer
-  const options = [
-    'media-file-renamer',
-    '--asar',
-    '--extra-resource=./resources/app',
-    '--icon ./public/favicon.ico',
-    '--darwin',
-    '--out',
-    './dist/mac',
-    '--overwrite'
-  ].join(' ');
-
-  // Run Electron package manager
-  spawnSync(`electron-packager . ${options}`, { detached: false, shell: true, stdio: 'inherit' });
+// Define input and output directories
+const path = (directory) => {
+  return require('path').resolve(__dirname, directory);
 };
 
-function packageWindows(){
+/**
+ * @namespace Packager
+ * @description - Packages app for various operating systems.
+ */
+class Packager {
 
-  console.log('Building windows package...');
+  /**
+   * @description - Creates DMG installer for macOS.
+   * @memberof Packager
+   */
+  packageMacOS = () => {
+  
+    // Build Python & React distribution files
+    builder.buildAll();
 
-  // Build Python & React distribution files
-  require('./build');
+    const options = {
+      build: [
+        'media-file-renamer',
+        '--asar',
+        '--extra-resource=./resources/app',
+        '--icon ./public/favicon.ico',
+        '--darwin',
+        '--out',
+        './dist/mac',
+        '--overwrite'
+      ].join(' '),
 
-  // Options for electron packager
-  const options = [
-    'media-file-renamer',
-    '--asar',
-    '--extra-resource=./resources/app',
-    '--icon ./public/favicon.ico',
-    '--win32',
-    '--out',
-    './dist/windows',
-    '--overwrite'
-  ].join(' ');
+      package: [
+        path('../dist/mac/media-file-renamer-darwin-x64/media-file-renamer.app'),
+        'media-file-renamer',
+        `--out=${path('../dist/mac/setup')}`,
+        `--icon=${path('../utilities/dmg/images/icon.icns')}`,
+        // `--background=${path('../utilities/dmg/images/background.png')}`, 
+        `--title="Media File Renamer"`,
+        `--overwrite`
+      ].join(' '),
 
-  // Run Electron package manager
-  spawnSync(`electron-packager . ${options}`, { detached: false, shell: true, stdio: 'inherit' });
+      spawn: { detached: false, shell: true, stdio: 'inherit' }
+    };
+  
+    spawnSync(`electron-packager . ${options.build}`, options.spawn);
+    spawnSync(`electron-installer-dmg ${options.package}`, options.spawn);
+  };
 
-  // Import Modules
-  const { MSICreator } = require('electron-wix-msi');
-  const path = (directory) => require('path').resolve(__dirname, directory);
+  
+  /**
+   * @description - Creates MSI installer for Windows.
+   * @memberof Packager
+   */
+  packageWindows = () => {
 
-  // Define input and output directory.
-  const appDirectory = path('../dist/windows/media-file-renamer-win32-x64');
-  const outputDirectory = path('../dist/windows/setup');
-  const appIconPath = path('../utilities/msi/images/icon.ico');
-  const appBackgroundPath = path('../utilities/msi/images/background.png');
-  const appBannerPath = path('../utilities/msi/images/banner.png');
+    console.log('Building windows package...');
+  
+    // Build Python & React distribution files
+    builder.buildAll();
+  
+    const options = {
+      app: [
+        'media-file-renamer',
+        '--asar',
+        '--extra-resource=./resources/app',
+        '--icon ./public/favicon.ico',
+        '--win32',
+        '--out',
+        './dist/windows',
+        '--overwrite'
+      ].join(' '),
 
-
-  // Instantiate the MSICreator
-  const msiCreator = new MSICreator({
-      appDirectory,
-      appIconPath,
-      outputDirectory,
+      spawn: { detached: false, shell: true, stdio: 'inherit' }
+    };
+  
+    spawnSync(`electron-packager . ${options.app}`, options.spawn);
+  
+    const { MSICreator } = require('electron-wix-msi');
+    
+    const msiCreator = new MSICreator({
+      appDirectory: path('../dist/windows/media-file-renamer-win32-x64'),
+      appIconPath: path('../utilities/msi/images/icon.ico'),
+      outputDirectory: path('../dist/windows/setup'),
       description: 'Media File Renamer app',
       exe: 'media-file-renamer',
       manufacturer: 'Daniel Wade',
@@ -80,23 +93,23 @@ function packageWindows(){
       ui: {
         chooseDirectory: true,
         images: {
-          background: appBackgroundPath,
-          banner: appBannerPath,
+          background: path('../utilities/msi/images/background.png'),
+          banner: path('../utilities/msi/images/banner.png'),
         }
       },
       version: '1.0.0',
-  });
+    });
+  
+    // Customized MSI template
+    msiCreator.wixTemplate = msiCreator.wixTemplate
+      .replace(/ \(Machine - MSI\)/gi, '')
+      .replace(/ \(Machine\)/gi, '');
+  
+  
+    // Create .wxs template and compile MSI
+    msiCreator.create().then(() => msiCreator.compile());
+  };
+  
+}
 
-  // Customized MSI template
-  msiCreator.wixTemplate = msiCreator.wixTemplate
-    .replace(/ \(Machine - MSI\)/gi, '')
-    .replace(/ \(Machine\)/gi, '');
-
-
-  // Create a .wxs template for MSI
-  msiCreator.create().then(() => {
-
-    // Compile .msi file
-    msiCreator.compile();
-  });
-};
+module.exports.Packager = Packager;
