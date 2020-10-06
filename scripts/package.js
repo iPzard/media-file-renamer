@@ -18,7 +18,7 @@ class Packager {
    * @memberof Packager
    */
   packageMacOS = () => {
-  
+
     // Build Python & React distribution files
     builder.buildAll();
 
@@ -27,7 +27,7 @@ class Packager {
         'media-file-renamer',
         '--asar',
         '--extra-resource=./resources/app',
-        '--icon ./public/favicon.ico',
+        '--icon ./public/favicon.icns',
         '--darwin',
         '--out',
         './dist/mac',
@@ -39,19 +39,19 @@ class Packager {
         'media-file-renamer',
         `--out=${path('../dist/mac/setup')}`,
         `--icon=${path('../utilities/dmg/images/icon.icns')}`,
-        // `--background=${path('../utilities/dmg/images/background.png')}`, 
+        // `--background=${path('../utilities/dmg/images/background.png')}`,
         `--title="Media File Renamer"`,
         `--overwrite`
       ].join(' '),
 
       spawn: { detached: false, shell: true, stdio: 'inherit' }
     };
-  
+
     spawnSync(`electron-packager . ${options.build}`, options.spawn);
     spawnSync(`electron-installer-dmg ${options.package}`, options.spawn);
   };
 
-  
+
   /**
    * @description - Creates MSI installer for Windows.
    * @memberof Packager
@@ -59,10 +59,10 @@ class Packager {
   packageWindows = () => {
 
     console.log('Building windows package...');
-  
+
     // Build Python & React distribution files
     builder.buildAll();
-  
+
     const options = {
       app: [
         'media-file-renamer',
@@ -77,11 +77,11 @@ class Packager {
 
       spawn: { detached: false, shell: true, stdio: 'inherit' }
     };
-  
+
     spawnSync(`electron-packager . ${options.app}`, options.spawn);
-  
+
     const { MSICreator } = require('electron-wix-msi');
-    
+
     const msiCreator = new MSICreator({
       appDirectory: path('../dist/windows/media-file-renamer-win32-x64'),
       appIconPath: path('../utilities/msi/images/icon.ico'),
@@ -99,17 +99,17 @@ class Packager {
       },
       version: '1.0.0',
     });
-  
+
     // Customized MSI template
     msiCreator.wixTemplate = msiCreator.wixTemplate
       .replace(/ \(Machine - MSI\)/gi, '')
       .replace(/ \(Machine\)/gi, '');
-  
-  
+
+
     // Create .wxs template and compile MSI
     msiCreator.create().then(() => msiCreator.compile());
   };
-  
+
 }
 
 module.exports.Packager = Packager;
