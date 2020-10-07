@@ -29,7 +29,7 @@ yarn run build:docs
 
 **Build React & Python:**
 ```bash
-yarn run build
+yarn run build:all
 ```
 
 **Build React:**
@@ -50,9 +50,9 @@ yarn run start
 
 ## 📦 Packaging
 
-**Build Linux:**
+**Build Windows:**
 ```bash
-yarn run build:package:linux
+yarn run build:package:windows
 ```
 
 **Build MacOS:**
@@ -60,15 +60,6 @@ yarn run build:package:linux
 yarn run build:package:mac
 ```
 
-**Build Windows:**
-```bash
-yarn run build:package:windows
-```
-
-**Build all:**
-```bash
-yarn run build:package:all
-```
 <br>
 
 ## 🙏 Attribution
