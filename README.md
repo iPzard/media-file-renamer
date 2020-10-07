@@ -14,8 +14,8 @@ Downloads are available for Windows and macOS; in their respective links below:
 
 <br>
 
-## 🛠️ Install dependencies
-Clone this repository, navigate to its directory, and install Node & Python dependencies:
+## 🛠️ Setup
+To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory. Requires [Node](https://nodejs.org/en/download/) and [Python](https://www.python.org/downloads/).
 
 **Python dependencies:**
 ```bash
@@ -30,7 +30,7 @@ yarn install
 <br>
 
 ## 📜 Scripts
-To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory, in order to start electron, you must first build React & Python:
+in order to start electron, you must first build React & Python:
 
 **Build Documentation:**
 ```bash
