@@ -15,7 +15,7 @@ Downloads are available for Windows and macOS; in their respective links below:
 <br>
 
 ## 🛠️ Setup
-To build and run locally (e.g., for developing), you can clone the project and then run the following scripts in the project's root directory. Requires [Node](https://nodejs.org/en/download/) and [Python](https://www.python.org/downloads/).
+To build and run locally (e.g., for developing), ensure you have [Node](https://nodejs.org/en/download/) and [Python](https://www.python.org/downloads/) installed, then clone the project. Navigate to the project's root directory and run the following scripts in a terminal application *(e.g., Git Bash)*:
 
 **Python dependencies:**
 ```bash
