@@ -73,8 +73,8 @@ yarn run build:package:mac
 <br>
 
 ## 🙏 Attribution
-* TV information is provided by the [TVmaze API](https://www.tvmaze.com/api).
-* SVG icons used are from [Font Awesome](http://fontawesome.io) and fully open-source.
+* TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
+* SVG icons used are from [Font Awesome](http://fontawesome.io)
 
 <br>
 
