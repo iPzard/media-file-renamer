@@ -88,7 +88,7 @@ class Packager {
       outputDirectory: path('../dist/windows/setup'),
       description: 'Media File Renamer app',
       exe: 'media-file-renamer',
-      manufacturer: 'Daniel Wade',
+      manufacturer: 'Media File Renamer',
       name: 'Media File Renamer',
       ui: {
         chooseDirectory: true,

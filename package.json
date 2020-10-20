@@ -18,22 +18,18 @@
     ]
   },
   "dependencies": {
-    "@fluentui/react": "^7.121.12",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "get-port": "^5.1.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",
     "react-redux": "^7.2.0",
-    "react-scripts": "3.4.1",
     "redux": "^4.0.5"
   },
   "description": "Fix names of tv show episode files",
   "devDependencies": {
+    "@fluentui/react": "^7.121.12",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
     "electron": "^10.1.3",
     "electron-installer-dmg": "^3.0.0",
     "electron-packager": "^15.0.0",
@@ -42,6 +38,10 @@
     "eslint-config-prettier": "^6.7.0",
     "jsdoc": "^3.6.5",
     "prettier": "^2.0.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
     "sass": "^1.26.5"
   },
   "eslintConfig": {
