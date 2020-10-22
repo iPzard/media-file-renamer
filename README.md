@@ -4,14 +4,7 @@
 ![media_file_renamer](https://user-images.githubusercontent.com/8584126/92296836-b20bd080-eeed-11ea-9672-424185d9bbf6.gif)
 
 ## 💾 Downloads
-Downloads are available for Windows and macOS; in their respective links below:
-
-**Windows:**
-* [win32-x64](https://drive.google.com/file/d/1VnCBqaA4DG1g8Du1zpkFQMlLolmOo3Vc/view?usp=sharing)
-
-**macOS:**
-* [darwin-x64](https://drive.google.com/file/d/1iOyh_irWwGQ4SwF15iSl12CSphfB-S3L/view?usp=sharing)
-
+Downloads are available for Windows and macOS on the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/).
 <br>
 
 ## 🛠️ Setup
