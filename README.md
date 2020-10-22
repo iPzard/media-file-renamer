@@ -4,8 +4,8 @@
 ![media_file_renamer](https://user-images.githubusercontent.com/8584126/92296836-b20bd080-eeed-11ea-9672-424185d9bbf6.gif)
 
 ## 💾 Downloads
-Downloads are available for Windows and macOS on the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/).
-<br>
+Downloads are available for Windows and macOS, see the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/) for download links.
+<br><br>
 
 ## 🛠️ Setup
 To build and run locally *(e.g., for developing)*, ensure you have [Node](https://nodejs.org/en/download/) and [Python](https://www.python.org/downloads/) installed, then clone this repository. After it's cloned, navigate to the project's root directory on your computer and run the following scripts in a terminal application *(e.g., Git Bash)*:
