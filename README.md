@@ -62,13 +62,8 @@ yarn run build:package:windows
 ```bash
 yarn run build:package:mac
 ```
-
 <br>
 
-
-## 🦟 Software bugs
-Bugs reported on the project's [issues page](https://github.com/iPzard/media-file-renamer/issues) will be exterminated as quickly as possible.
-<br><br><br>
 
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
@@ -78,8 +73,11 @@ Bugs reported on the project's [issues page](https://github.com/iPzard/media-fil
 ## 🐱‍👓 Docs
 Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Media File Renamer](https://ipzard.github.io/media-file-renamer/)
-
 <br>
+
+## 🦟 Software bugs
+Bugs reported on the project's [issues page](https://github.com/iPzard/media-file-renamer/issues) will be exterminated as quickly as possible, be sure to include steps to reproduce so they can be spotted easily.
+<br><br>
 
 ## 🏷️ License
 MIT © [Media File Renamer](https://github.com/iPzard/media-file-renamer/blob/master/LICENSE)
