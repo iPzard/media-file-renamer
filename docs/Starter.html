@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/utils/services.js - Documentation</title>
+    <title>Starter - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="styles/daybrush.css">
     <link type="text/css" rel="stylesheet" href="styles/custom.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="description" content="src/utils/services.js - Documentation"/>
+    <meta name="description" content="Starter - Documentation"/>
 
 </head>
 <body>
@@ -32,82 +32,172 @@
 
 <div id="main">
     
-    <h1 class="page-title">src/utils/services.js</h1>
+    <h1 class="page-title">Starter</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { post } from 'utils/requests';
+        <h2>
+        Starter
+        </h2>
+        
+    
+</header>
 
-// Electron Inter Process Communication and dialog
-const { ipcRenderer, remote: { dialog } } = window.require('electron');
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * @namespace Services
- * @description - Services to interact with Electron
- */
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_start.js.html">scripts/start.js</a>, <a href="scripts_start.js.html#line4">line 4</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
 
 
-/**
- * @description - Methods from Electron Inter Process Communication.
- * @property {function} maximize - Function to maximize the screen size of the program.
- * @property {function} minimize - Function to minimize the screen size of the program.
- * @property {function} quit - Function to close and exit the program.
- * @property {function} resize - Function to resize the screen size of the program, accepts ({ width: x, height: x }).
- * @property {function} unmaximize - Function to contract (unmaximize) the screen size of the program.
- * @memberof Services
- */
-// Methods to communicate with Electron services
-export const app = {
-  maximize:   () => ipcRenderer.send('app-maximize'),
-  minimize:   () => ipcRenderer.send('app-minimize'),
-  quit:       () => ipcRenderer.send('app-quit'),
-  resize:   size => ipcRenderer.send('resize-window', size),
-  unmaximize: () => ipcRenderer.send('app-unmaximize'),
-};
 
 
-/**
-* @description - Function to get a list of files that a user wants to have renamed, this
-* also returns the folder path and name the user has selected.
-* @param {Function} callback - Optional callback function to be invoked if provided.
-* @return - User selected folder path and list/array of files in that folder.
-* @memberof Services
-*
-* @todo - Should only accept video files
-*/
-export const getFiles = (callback) => {
-  dialog.showOpenDialog({properties: ['openDirectory']})
-  .catch(error => console.error(error))
+        
+            <div class="description"><ul>
+<li>Scripts to start Electron, React, and Python.</li>
+</ul></div>
+        
 
-  .then( response => {
-    if(!response.canceled) {
-      const folder = String.raw`${response.filePaths[0]}`;
-      post(folder, 'get_files', fileList => callback(fileList, folder) || undefined);
-    } else console.log('response canceled.');
-  });
+        
+    
+    </div>
 
-};
+    
 
-/**
- * @description - Function to rename files with matched files, in original directory (for now).
- * @param {string} directory - Directory of files to be renamed.
- * @param {Object} renameData - Object of files and names arrays.
- * @param {Array} missingDataText - Array of constants for missing file text to check on back-end.
- * @param {Function} [callback] - Optional callback which is provided the response as an argument.
- * @memberof Services
- */
-export const renameFiles = (directory, renameData, missingDataText, callback) => {
-  const data = JSON.stringify({ directory, renameData, missingDataText });
-  post(data, 'rename_files', response => callback(response)); // callback goes here later
-};</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".developerMode"><span class="type-signature">(static) </span>developerMode<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_start.js.html">scripts/start.js</a>, <a href="scripts_start.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <ul>
+<li>Starts developer mode.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -116,10 +206,10 @@ export const renameFiles = (directory, renameData, missingDataText, callback) =>
 <style>
 
 
-nav li[file="src/utils/services"]:after {
+nav li[file="starter"]:after {
     display: none;
 }
-nav li[file="src/utils/services"] h4, nav li[file="src/utils/services"] ul {
+nav li[file="starter"] h4, nav li[file="starter"] ul {
     display: block;
 }
 </style>

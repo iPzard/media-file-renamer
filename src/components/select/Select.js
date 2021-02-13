@@ -42,6 +42,7 @@ const Select = (props) => {
           className={ styles['select-input-field'] }
           placeholder="Browse for a folder"
           onClick={ handleGetFiles }
+          readOnly
           value={ props.state.files.directory }
         />
         <PrimaryButton onClick={ handleGetFiles } text="Browse..." className={ styles['select-browse-button'] }/>

@@ -24,10 +24,10 @@ class Packager {
 
     const options = {
       build: [
-        'media-file-renamer',
+        'app',
         '--asar',
         '--extra-resource=./resources/app',
-        '--icon ./public/favicon.icns',
+        '--icon ./public/favicon.ico',
         '--darwin',
         '--out',
         './dist/mac',
@@ -35,12 +35,12 @@ class Packager {
       ].join(' '),
 
       package: [
-        path('../dist/mac/media-file-renamer-darwin-x64/media-file-renamer.app'),
-        'media-file-renamer',
+        path('../dist/mac/app-darwin-x64/app.app'),
+        'Example',
         `--out=${path('../dist/mac/setup')}`,
         `--icon=${path('../utilities/dmg/images/icon.icns')}`,
         // `--background=${path('../utilities/dmg/images/background.png')}`,
-        `--title="Media File Renamer"`,
+        `--title="Example App"`,
         `--overwrite`
       ].join(' '),
 

@@ -30,6 +30,7 @@ const Search = (props) => {
     if(results.length && !backToggle)
       setBackToggle(true);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [results]);
 
   const customFunctions = {
