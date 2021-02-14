@@ -30,38 +30,38 @@ const NameList = (props) => {
 
   const handleClick = index => type === 'files' ? setRenameData(renameData, index) : undefined;
 
+  const Names = () => list.map((name, index) => {
+    const hasNoName = name.includes(missingFileText) || name.includes(missingNameText);
+    const matchesMissingName = !hasNoName && type === 'files' ?
+      renameData.names[index]?.includes(missingNameText) :
+      renameData.files[index]?.includes(missingFileText);
+
+    const selected = selectedFileIndex === index && type === 'files';
+    const listProps = { key: hasNoName ? `${type}-${index}` : `${type}-${name}` };
+
+    if(hasNoName) {
+      listProps.className = styles['missing-name'];
+    }
+
+    else if(matchesMissingName) {
+      listProps.className = styles['matches-missing-name']
+    }
+
+    if(selected) {
+      listProps.className += ` ${styles['selected-file']}`; // Todo: see if this is adding "undefined" to DOM element
+    }
+
+    return (
+      <li { ...listProps } onClick={ ()=> handleClick(index) }>
+        <span>{ hasNoName ? <span className={ styles['message'] }>{ name }</span> : name }</span>
+      </li>
+    );
+  });
+
   return (
     <article className={ styles.list }>
       <ul data-list-type={ type } >
-        {
-          list.map((name, index) => {
-            const hasNoName = name.includes(missingFileText) || name.includes(missingNameText);
-            const matchesMissingName = !hasNoName && type === 'files' ?
-              renameData.names[index]?.includes(missingNameText) :
-              renameData.files[index]?.includes(missingFileText);
-
-            const selected = selectedFileIndex === index && type === 'files';
-            const listProps = { key: hasNoName ? `${type}-${index}` : `${type}-${name}` };
-
-            if(hasNoName) {
-              listProps.className = styles['missing-name'];
-            }
-
-            else if(matchesMissingName) {
-              listProps.className = styles['matches-missing-name']
-            }
-
-            if(selected) {
-              listProps.className += ` ${styles['selected-file']}`; // Todo: see if this is adding "undefined" to DOM element
-            }
-
-            return (
-              <li { ...listProps } onClick={ ()=> handleClick(index) }>
-                <span>{ hasNoName ? <span className={ styles['message'] }>{ name }</span> : name }</span>
-              </li>
-            );
-          })
-        }
+        <Names />
       </ul>
     </article>
   );

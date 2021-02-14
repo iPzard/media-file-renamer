@@ -43,11 +43,15 @@ const Toast = (props) => {
   );
 };
 
+Toast.defaultProps = {
+  children: null,
+};
+
 Toast.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
+  ]),
   onDismiss: PropTypes.func,
   show: PropTypes.bool,
   type: PropTypes.string

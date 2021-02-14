@@ -158,19 +158,34 @@ class Rename extends Component {
       this.props.state.options.renameData.files.reduce((acc, filename) => acc = [...acc, filename ], []) :
       fileList.reduce((acc, filename) => acc = [...acc, filename ], []);
 
+    // Filter out just the names of given episodes
     let names = episodes.filter(episode => episode.season === season).map( episode => {
       return `${seasonEpisodePrefix(season, episode.number)}${episode.name}`;
      });
 
+    // Update names to missingFileText if there are too many names vs files
     if(files.length < names.length) {
-      const filesNoGaps = names.reduce((acc, item, index) =>
-        acc = [ ...acc, files[index] || missingFileText], []);
+      const filesNoGaps = names.reduce((acc, _item, index) => {
+        const name = index > (files.length - 1) ? missingFileText : files[index];
+        console.log(index, files.length)
+        acc.push(name);
+
+        return acc;
+      }, []);
 
       files = filesNoGaps;
     }
 
+    // Update files to missingNameText if there are too many files vs names
     else if(files.length > names.length) {
+      const namesNoGaps = files.reduce((acc, _item, index) => {
+        const name = index > (names.length - 1) ? missingNameText : names[index];
+        acc.push(name);
 
+        return acc;
+      }, []);
+
+      names = namesNoGaps;
     }
 
     // Add extension from matching file
@@ -178,8 +193,8 @@ class Rename extends Component {
 
       // If file the name is matching has an extension
       if(
-          /\.([a-zA-Z]|[0-9]){3,4}$/.test(files[index]) ||
-          files[index].includes(missingFileText)
+          /\.([a-zA-Z]|[0-9]){3,4}$/.test(files[index]) &&
+          !name.includes(missingNameText)
         ) {
 
         // Only provide extension if it's not a 'No File' or 'Too Many Files' index
@@ -340,11 +355,6 @@ class Rename extends Component {
         </div>
 
         <Toast
-          messageBarType={
-            showError.show ? 'error' :
-            showWarning.show ? 'warning' :
-            'success'
-          }
           onDismiss={
             showError.show ? ()=> setShowToast('error', false) :
             showSuccess.show ? ()=> setShowToast('success', false) :
@@ -365,7 +375,7 @@ class Rename extends Component {
             showError.show ? showError.message :
             showWarning.show ? showWarning.message :
             showSuccess.show ? showSuccess.message :
-            undefined
+            null
           }
         </Toast>
 
