@@ -1,4 +1,9 @@
 # Media File Renamer
+
+[![Build](https://img.shields.io/badge/build-passing-%2357a9a9?color=57a9a9&style=for-the-badge)](https://github.com/default-services/components)
+[![License](https://img.shields.io/github/license/iPzard/media-file-renamer?color=57a9a9&style=for-the-badge)](https://github.com/default-services/components/blob/master/LICENSE)
+[![Github All Releases](https://img.shields.io/github/downloads/iPzard/media-file-renamer/total.svg?color=57a9a9&style=for-the-badge)]()
+
 > Open source media file renamer, built with Electron, React, & Python. Easily rename digital copies of your favorite titles, in bulk. Keeping the names accurate, and making them easier to import to media libraries such as Plex and/or Kodi.<br><br>
 
 ![media_file_renamer](https://user-images.githubusercontent.com/8584126/92296836-b20bd080-eeed-11ea-9672-424185d9bbf6.gif)
