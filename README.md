@@ -7,6 +7,7 @@
 > Open source media file renamer, built with Electron, React, & Python. Easily rename digital copies of your favorite titles, in bulk. Keeping the names accurate, and making them easier to import to media libraries such as Plex and/or Kodi.<br><br>
 
 ![media_file_renamer](https://user-images.githubusercontent.com/8584126/92296836-b20bd080-eeed-11ea-9672-424185d9bbf6.gif)
+<br><br>
 
 ## 💾 Downloads
 Media File Renamer works on Windows 32-bit (x86) and Windows 64-bit (x64) operating systems, see the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/) for download links.
