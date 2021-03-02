@@ -12,64 +12,6 @@
 Media File Renamer works on Windows 32-bit (x86) and Windows 64-bit (x64) operating systems, see the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/) for download links.
 <br><br>
 
-## 🛠️ Setup
-To build and run locally *(e.g., for developing)*, ensure you have [Node](https://nodejs.org/en/download/) and [Python](https://www.python.org/downloads/) installed, then clone this repository. After it's cloned, navigate to the project's root directory on your computer and run the following scripts in a terminal application *(e.g., Git Bash)*:
-
-**Python dependencies:**
-```bash
-pip3 install -r requirements.txt
-```
-
-**Node dependencies:**
-```bash
-yarn install
-```
-
-<br>
-
-## 📜 Scripts
-in order to start electron, you must first build React & Python:
-
-**Build Documentation:**
-```bash
-yarn run build:docs
-```
-
-**Build React & Python:**
-```bash
-yarn run build:all
-```
-
-**Build React:**
-```bash
-yarn run build:react
-```
-
-**Build Python:**
-```bash
-yarn run build:python
-```
-
-**Start Electron:**
-```bash
-yarn run start
-```
-<br>
-
-## 📦 Packaging
-
-**Build Windows:**
-```bash
-yarn run build:package:windows
-```
-
-**Build MacOS:**
-```bash
-yarn run build:package:mac
-```
-<br>
-
-
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
 * SVG icons used are from [Font Awesome](http://fontawesome.io)
