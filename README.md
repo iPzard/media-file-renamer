@@ -13,15 +13,15 @@
 Media File Renamer works on Windows 32-bit (x86) and Windows 64-bit (x64) operating systems, see the project's [releases page](https://github.com/iPzard/media-file-renamer/releases/) for download links.
 <br><br>
 
-## 🙏 Attribution
-* TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
-* SVG icons used are from [Font Awesome](http://fontawesome.io)
-<br>
-
 ## 🐱‍👓 Docs
 Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Media File Renamer](https://ipzard.github.io/media-file-renamer/)
 <br><br>
+
+## 🙏 Attribution
+* TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
+* SVG icons used are from [Font Awesome](http://fontawesome.io)
+<br>
 
 ## 🦟 Software bugs
 Bugs reported on the project's [issues page](https://github.com/iPzard/media-file-renamer/issues) will be exterminated as quickly as possible, be sure to include steps to reproduce so they can be spotted easily.
