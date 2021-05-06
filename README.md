@@ -27,7 +27,7 @@ Code documentation for this project, created with [JSDoc](https://github.com/jsd
 Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
 [Media File Renamer](https://ipzard.github.io/media-file-renamer)
 <br><br>
-For documentation on how this project uses Electron, React, and Python together, see: [Electron, React & Python](https://github.com/iPzard/electron-react-python-template#readme)
+For documentation on how this project uses Electron, React, and Python together, see:<br>[Electron, React & Python](https://github.com/iPzard/electron-react-python-template#readme)
 <br><br>
 
 ## 🦟 Software bugs
