@@ -21,7 +21,14 @@ Code documentation for this project, created with [JSDoc](https://github.com/jsd
 ## 🙏 Attribution
 * TV information is provided by the [TVmaze API](https://www.tvmaze.com/api)
 * SVG icons used are from [Font Awesome](http://fontawesome.io)
-<br>
+<br><br>
+
+## 🐱‍👤 Develop
+Code documentation for this project, created with [JSDoc](https://github.com/jsdoc/jsdoc), can be found here:<br>
+[Media File Renamer](https://ipzard.github.io/media-file-renamer)
+<br><br>
+For documentation on how this project uses Electron, React, and Python together, see: [Electron, React & Python](https://github.com/iPzard/electron-react-python-template#readme)
+<br><br>
 
 ## 🦟 Software bugs
 Bugs reported on the project's [issues page](https://github.com/iPzard/media-file-renamer/issues) will be exterminated as quickly as possible, be sure to include steps to reproduce so they can be spotted easily.
